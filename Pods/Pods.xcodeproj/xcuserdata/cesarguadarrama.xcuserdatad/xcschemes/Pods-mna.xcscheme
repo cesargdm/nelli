@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "053506BC1EF442450073B078"
-               BuildableName = "mna.app"
-               BlueprintName = "mna"
-               ReferencedContainer = "container:mna.xcodeproj">
+               BlueprintIdentifier = "CC6CE13A4D6B9D25CCDE7C380C9B3FE0"
+               BuildableName = "Pods_mna.framework"
+               BlueprintName = "Pods-mna"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "053506BC1EF442450073B078"
-            BuildableName = "mna.app"
-            BlueprintName = "mna"
-            ReferencedContainer = "container:mna.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "053506BC1EF442450073B078"
-            BuildableName = "mna.app"
-            BlueprintName = "mna"
-            ReferencedContainer = "container:mna.xcodeproj">
+            BlueprintIdentifier = "CC6CE13A4D6B9D25CCDE7C380C9B3FE0"
+            BuildableName = "Pods_mna.framework"
+            BlueprintName = "Pods-mna"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "053506BC1EF442450073B078"
-            BuildableName = "mna.app"
-            BlueprintName = "mna"
-            ReferencedContainer = "container:mna.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

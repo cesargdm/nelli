@@ -12,7 +12,7 @@
 		053506C61EF442450073B078 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053506C41EF442450073B078 /* Main.storyboard */; };
 		053506C81EF442450073B078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053506C71EF442450073B078 /* Assets.xcassets */; };
 		053506CB1EF442450073B078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053506C91EF442450073B078 /* LaunchScreen.storyboard */; };
-		27C993F51EF449810071B34B /* VoiceRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C993F41EF449810071B34B /* VoiceRecognition.swift */; };
+		4FC6109F3CCB76DF46A7197B /* Pods_mna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21396402ABEB3392922F408 /* Pods_mna.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,9 @@
 		053506C71EF442450073B078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		053506CA1EF442450073B078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053506CC1EF442450073B078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		27C993F41EF449810071B34B /* VoiceRecognition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoiceRecognition.swift; sourceTree = "<group>"; };
+		D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.release.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.release.xcconfig"; sourceTree = "<group>"; };
+		EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.debug.xcconfig"; sourceTree = "<group>"; };
+		F21396402ABEB3392922F408 /* Pods_mna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC6109F3CCB76DF46A7197B /* Pods_mna.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +45,8 @@
 			children = (
 				053506BF1EF442450073B078 /* mna */,
 				053506BE1EF442450073B078 /* Products */,
+				EF87F57EE1314E915C975F40 /* Pods */,
+				EE37C6937C4D9ED230305719 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,9 +67,25 @@
 				053506C71EF442450073B078 /* Assets.xcassets */,
 				053506C91EF442450073B078 /* LaunchScreen.storyboard */,
 				053506CC1EF442450073B078 /* Info.plist */,
-				27C993F41EF449810071B34B /* VoiceRecognition.swift */,
 			);
 			path = mna;
+			sourceTree = "<group>";
+		};
+		EE37C6937C4D9ED230305719 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F21396402ABEB3392922F408 /* Pods_mna.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF87F57EE1314E915C975F40 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */,
+				D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 053506CF1EF442450073B078 /* Build configuration list for PBXNativeTarget "mna" */;
 			buildPhases = (
+				0BC1E1BEBBDE5AD5931DD7FD /* [CP] Check Pods Manifest.lock */,
 				053506B91EF442450073B078 /* Sources */,
 				053506BA1EF442450073B078 /* Frameworks */,
 				053506BB1EF442450073B078 /* Resources */,
+				0F0B02F3DEB9AE833B8B67C9 /* [CP] Embed Pods Frameworks */,
+				90532DF55587EB8CF15F3E6F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -94,13 +118,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "ibm-mx";
 				TargetAttributes = {
 					053506BC1EF442450073B078 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = AUR7UR6M72;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -135,13 +167,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BC1E1BEBBDE5AD5931DD7FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0F0B02F3DEB9AE833B8B67C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mna/Pods-mna-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90532DF55587EB8CF15F3E6F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mna/Pods-mna-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		053506B91EF442450073B078 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				053506C31EF442450073B078 /* ViewController.swift in Sources */,
-				27C993F51EF449810071B34B /* VoiceRecognition.swift in Sources */,
 				053506C11EF442450073B078 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,7 +257,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -186,7 +267,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -228,7 +313,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -236,7 +323,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -263,6 +354,7 @@
 		};
 		053506D01EF442450073B078 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
@@ -276,6 +368,7 @@
 		};
 		053506D11EF442450073B078 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
