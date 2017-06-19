@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  mna
 //
-//  Created by César Guadarrama on 6/16/17.
-//  Copyright © 2017 ibm-mx. All rights reserved.
+//  Created by César Guadarrama, Martín Ruiz, Isaac Secundino on 6/19/17.
+//  Copyright © 2017 IBM. All rights reserved.
 //
 
 import UIKit
@@ -18,7 +18,6 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     
     
     // CONSTANTS
-    let API_HOST = "http://192.168.100.21:8080/v1/text_to_speech"
     let COLOR_TOP = UIColor(red: 21/255, green: 129/255, blue: 212/255, alpha: 1)
     let COLOR_BOTTOM = UIColor(red: 0/255, green: 76/255, blue: 136/255, alpha: 1)
     
@@ -29,9 +28,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     private let audioEngine = AVAudioEngine()
     
     // Audio
-    private var audioPlayer:AVAudioPlayer?
-    var player: AVAudioPlayer?
-    
+    var voice:Voice?
     
     // Set light status bar
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -40,6 +37,9 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Init voice class
+        voice = Voice()
         
         // Init gradient layer
         let gradient = CAGradientLayer()
@@ -53,7 +53,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
         recordButton.isEnabled = false
         speechRecognizer?.delegate = self
         
-        // REquest authorization
+        // Request authorization
         SFSpeechRecognizer.requestAuthorization{
             (authStatus) in
             var isButtonEnabled = false
@@ -79,68 +79,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
             
         }
         
-        
-        print("HELLO WORLD")
-        Alamofire.request("http://www.nch.com.au/acm/11k16bitpcm.wav", method: .get, parameters: ["text":"Texto de prueba"], encoding: URLEncoding.default, headers: nil)
-            .responseData { (data) in
-                
-                print("DATA! 2")
-                print(data)
-                
-//                self.playAudioFromData(data)
-                
-                if let statusCode = data.response?.statusCode {
-                    print("STATUS CODE \(statusCode)")
-                }
-                print("DATA")
-                if let data = data.data {
-                    self.play(data: data)
-                } else {
-                    print("NO DATA DATA")
-                }
-                
-        }
-        
-        
-        
-//        playSound()
-        
     }
-    
-    func play(data: Data) {
-        do {
-            print("PLAYING FROM DATA!")
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            player = try AVAudioPlayer(data: data, fileTypeHint: AVFileTypeWAVE)
-            self.player?.play()
-        } catch let error {
-            print("ERROR")
-            print(error.localizedDescription)
-        }
-    }
-    
-//    func playSound() {
-//        guard let url = Bundle.main.url(forResource: "response", withExtension: "wav") else {
-//            print("Error oppening url")
-//
-//            return
-//        }
-//
-//        do {
-//            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-//            try AVAudioSession.sharedInstance().setActive(true)
-//
-//            player = try AVAudioPlayer(contentsOf: url)
-//
-//            guard let player = player else { return }
-//
-//            player.play()
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//    }
     
     @IBAction func microphoneTapped(_ sender: Any) {
         if audioEngine.isRunning {
@@ -182,13 +121,23 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
             fatalError("Unable to create recognition request")
         }
         
-        recognitionRequest.shouldReportPartialResults = true
+        recognitionRequest.shouldReportPartialResults = false
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
             if let transcript = result?.bestTranscription.formattedString {
                 self.textViewSpeech.text = "\"\(transcript)\""
+                
+                Watson.textToSpeech(text: transcript, callback: { (data) in
+                    if let audioData = data {
+                        self.voice?.play(data: audioData)
+                    } else {
+                        // TODO could not get data
+                        print("Didn't get data")
+                    }
+                    
+                })
                 
                 isFinal = (result?.isFinal)!
             }
@@ -227,7 +176,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         
-        print("SPEECH RECOGNIZER AVAILABILITY CHANGED")
+        print("Speech recognizer AVAILABILITY CHANGED")
         
         if available {
             recordButton.isEnabled = true

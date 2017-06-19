@@ -3,7 +3,8 @@
 //  mna
 //
 //  Created by César Guadarrama on 6/16/17.
-//  Copyright © 2017 ibm-mx. All rights reserved.
+//  Created by César Guadarrama, Martín Ruiz, Isaac Secundino on 6/19/17.
+//  Copyright © 2017 IBM. All rights reserved.
 //
 
 import UIKit

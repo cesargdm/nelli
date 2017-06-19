@@ -12,6 +12,10 @@
 		053506C61EF442450073B078 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053506C41EF442450073B078 /* Main.storyboard */; };
 		053506C81EF442450073B078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053506C71EF442450073B078 /* Assets.xcassets */; };
 		053506CB1EF442450073B078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053506C91EF442450073B078 /* LaunchScreen.storyboard */; };
+		0573DAF91EF81355005184DA /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAF81EF81355005184DA /* Voice.swift */; };
+		0573DAFB1EF814EE005184DA /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAFA1EF814EE005184DA /* Watson.swift */; };
+		0573DAFD1EF81C20005184DA /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0573DAFC1EF81C20005184DA /* MapView.xib */; };
+		0573DAFF1EF82392005184DA /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAFE1EF82392005184DA /* Speech.swift */; };
 		4FC6109F3CCB76DF46A7197B /* Pods_mna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21396402ABEB3392922F408 /* Pods_mna.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +27,10 @@
 		053506C71EF442450073B078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		053506CA1EF442450073B078 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053506CC1EF442450073B078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0573DAF81EF81355005184DA /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
+		0573DAFA1EF814EE005184DA /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
+		0573DAFC1EF81C20005184DA /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
+		0573DAFE1EF82392005184DA /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
 		D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.release.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.release.xcconfig"; sourceTree = "<group>"; };
 		EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.debug.xcconfig"; sourceTree = "<group>"; };
 		F21396402ABEB3392922F408 /* Pods_mna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,12 +69,16 @@
 		053506BF1EF442450073B078 /* mna */ = {
 			isa = PBXGroup;
 			children = (
+				0573DAF81EF81355005184DA /* Voice.swift */,
+				0573DAFE1EF82392005184DA /* Speech.swift */,
+				0573DAFA1EF814EE005184DA /* Watson.swift */,
 				053506C01EF442450073B078 /* AppDelegate.swift */,
 				053506C21EF442450073B078 /* ViewController.swift */,
 				053506C41EF442450073B078 /* Main.storyboard */,
 				053506C71EF442450073B078 /* Assets.xcassets */,
 				053506C91EF442450073B078 /* LaunchScreen.storyboard */,
 				053506CC1EF442450073B078 /* Info.plist */,
+				0573DAFC1EF81C20005184DA /* MapView.xib */,
 			);
 			path = mna;
 			sourceTree = "<group>";
@@ -160,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				053506CB1EF442450073B078 /* LaunchScreen.storyboard in Resources */,
+				0573DAFD1EF81C20005184DA /* MapView.xib in Resources */,
 				053506C81EF442450073B078 /* Assets.xcassets in Resources */,
 				053506C61EF442450073B078 /* Main.storyboard in Resources */,
 			);
@@ -221,7 +234,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				053506C31EF442450073B078 /* ViewController.swift in Sources */,
+				0573DAF91EF81355005184DA /* Voice.swift in Sources */,
 				053506C11EF442450073B078 /* AppDelegate.swift in Sources */,
+				0573DAFB1EF814EE005184DA /* Watson.swift in Sources */,
+				0573DAFF1EF82392005184DA /* Speech.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
