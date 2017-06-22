@@ -152,6 +152,7 @@
 					053506BC1EF442450073B078 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = AUR7UR6M72;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
