@@ -12,18 +12,6 @@ import Alamofire
 import AVFoundation
 import CoreLocation
 
-class Piece {
-    let title:String
-    let room:String
-    let workspaceId:String
-    
-    init (_ title:String, room: String, workspaceId: String) {
-        self.title = title
-        self.room = room
-        self.workspaceId = workspaceId
-    }
-}
-
 class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDelegate {
     
     var pieces:[Int:[Piece]] = [Int:[Piece]]()
@@ -63,7 +51,9 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         super.viewDidLoad()
         
         //Init data
-        pieces[0] = [Piece.init("Chac-mool", room: "Sala mexica", workspaceId: "91520396-535c-409c-b1a7-60e2724ec8ba")]
+        pieces[0] = [
+            Piece("Dintel 26", room: "Sala Maya", workspaceId: "91520396-535c-409c-b1a7-60e2724ec8ba")
+        ]
         
         //Init voice class
         voice = Voice()
@@ -234,8 +224,12 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
     
     func nearBeaconsLocations(_ beacons: [CLBeacon]) {
         if (beacons.count == 0) {
-            self.recordButton.isEnabled = false
+//            self.recordButton.isEnabled = false
         }
+        
+        pieceTitleLabel.text = pieces[0]?[0].title
+        pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
+        currentWorkspaceId = pieces[0]?[0].workspaceId
         
         for beacon in beacons {
             let proximity = beacon.proximity
@@ -247,7 +241,6 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
                     self.pieceRoomLabel.alpha = 0.3
                 }
             case .unknown:
-                print("Uknown")
                 self.recordButton.isEnabled = false
                 
                 UIView.animate(withDuration: 1.0) {

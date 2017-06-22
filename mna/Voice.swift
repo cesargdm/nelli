@@ -20,9 +20,12 @@ class Voice {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
+//            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             
             player = try AVAudioPlayer(data: data, fileTypeHint: AVFileTypeWAVE)
+            player?.volume = 1.0
             player?.play()
+            
         } catch let error {
             print(error.localizedDescription)
         }

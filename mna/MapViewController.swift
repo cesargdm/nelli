@@ -16,7 +16,10 @@ class MapViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         view.backgroundColor = UIColor.clear
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffect =
+            
+            
+            UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         //always fill the view
         
