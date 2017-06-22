@@ -14,8 +14,10 @@
 		053506CB1EF442450073B078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053506C91EF442450073B078 /* LaunchScreen.storyboard */; };
 		0573DAF91EF81355005184DA /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAF81EF81355005184DA /* Voice.swift */; };
 		0573DAFB1EF814EE005184DA /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAFA1EF814EE005184DA /* Watson.swift */; };
-		0573DAFD1EF81C20005184DA /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0573DAFC1EF81C20005184DA /* MapView.xib */; };
 		0573DAFF1EF82392005184DA /* Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0573DAFE1EF82392005184DA /* Speech.swift */; };
+		05CEFAB41EFB070F00D7921E /* SpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CEFAB31EFB070F00D7921E /* SpeechManager.swift */; };
+		05EC6D211EFAEBCB00683BAA /* BeaconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EC6D201EFAEBCB00683BAA /* BeaconsManager.swift */; };
+		05EFFED91EFB5370001F8BB1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EFFED81EFB5370001F8BB1 /* MapViewController.swift */; };
 		4FC6109F3CCB76DF46A7197B /* Pods_mna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21396402ABEB3392922F408 /* Pods_mna.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,8 +31,11 @@
 		053506CC1EF442450073B078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0573DAF81EF81355005184DA /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
 		0573DAFA1EF814EE005184DA /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
-		0573DAFC1EF81C20005184DA /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		0573DAFE1EF82392005184DA /* Speech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech.swift; sourceTree = "<group>"; };
+		05CEFAB31EFB070F00D7921E /* SpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechManager.swift; sourceTree = "<group>"; };
+		05DBED061EFB1D550062B96A /* mna.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mna.entitlements; sourceTree = "<group>"; };
+		05EC6D201EFAEBCB00683BAA /* BeaconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsManager.swift; sourceTree = "<group>"; };
+		05EFFED81EFB5370001F8BB1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.release.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.release.xcconfig"; sourceTree = "<group>"; };
 		EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mna.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mna/Pods-mna.debug.xcconfig"; sourceTree = "<group>"; };
 		F21396402ABEB3392922F408 /* Pods_mna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,18 +74,29 @@
 		053506BF1EF442450073B078 /* mna */ = {
 			isa = PBXGroup;
 			children = (
+				05DBED061EFB1D550062B96A /* mna.entitlements */,
 				0573DAF81EF81355005184DA /* Voice.swift */,
 				0573DAFE1EF82392005184DA /* Speech.swift */,
 				0573DAFA1EF814EE005184DA /* Watson.swift */,
 				053506C01EF442450073B078 /* AppDelegate.swift */,
 				053506C21EF442450073B078 /* ViewController.swift */,
+				05EFFED81EFB5370001F8BB1 /* MapViewController.swift */,
+				05CEFAB51EFB071B00D7921E /* Managers */,
 				053506C41EF442450073B078 /* Main.storyboard */,
 				053506C71EF442450073B078 /* Assets.xcassets */,
 				053506C91EF442450073B078 /* LaunchScreen.storyboard */,
 				053506CC1EF442450073B078 /* Info.plist */,
-				0573DAFC1EF81C20005184DA /* MapView.xib */,
 			);
 			path = mna;
+			sourceTree = "<group>";
+		};
+		05CEFAB51EFB071B00D7921E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				05CEFAB31EFB070F00D7921E /* SpeechManager.swift */,
+				05EC6D201EFAEBCB00683BAA /* BeaconsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		EE37C6937C4D9ED230305719 /* Frameworks */ = {
@@ -142,7 +158,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -172,7 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				053506CB1EF442450073B078 /* LaunchScreen.storyboard in Resources */,
-				0573DAFD1EF81C20005184DA /* MapView.xib in Resources */,
 				053506C81EF442450073B078 /* Assets.xcassets in Resources */,
 				053506C61EF442450073B078 /* Main.storyboard in Resources */,
 			);
@@ -238,6 +253,9 @@
 				053506C11EF442450073B078 /* AppDelegate.swift in Sources */,
 				0573DAFB1EF814EE005184DA /* Watson.swift in Sources */,
 				0573DAFF1EF82392005184DA /* Speech.swift in Sources */,
+				05EC6D211EFAEBCB00683BAA /* BeaconsManager.swift in Sources */,
+				05CEFAB41EFB070F00D7921E /* SpeechManager.swift in Sources */,
+				05EFFED91EFB5370001F8BB1 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -360,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -373,12 +391,15 @@
 			baseConfigurationReference = EBA91BCBC94420FB481635B1 /* Pods-mna.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = mna/mna.entitlements;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = mna/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm-mx.mna";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -387,12 +408,15 @@
 			baseConfigurationReference = D0B38F5C8068AEECBB9F8B85 /* Pods-mna.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = mna/mna.entitlements;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = mna/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibm-mx.mna";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

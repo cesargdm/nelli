@@ -20,11 +20,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We will use your location to know when you are close to pieces</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We will use your location to know when you are close to pieces</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We will use your location to know when you are close to pieces</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string></string>
 	<key>NSSpeechRecognitionUsageDescription</key>
@@ -44,11 +45,12 @@
 	</array>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>

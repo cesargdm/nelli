@@ -10,22 +10,46 @@ import UIKit
 import Speech
 import Alamofire
 import AVFoundation
+import CoreLocation
 
-class ViewController: UIViewController , SFSpeechRecognizerDelegate{
+class Piece {
+    let title:String
+    let room:String
+    let workspaceId:String
+    
+    init (_ title:String, room: String, workspaceId: String) {
+        self.title = title
+        self.room = room
+        self.workspaceId = workspaceId
+    }
+}
+
+class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDelegate {
+    
+    var pieces:[Int:[Piece]] = [Int:[Piece]]()
 
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var textViewSpeech: UITextView!
-    
+    @IBOutlet weak var pieceTitleLabel: UILabel!
+    @IBOutlet weak var pieceRoomLabel: UILabel!
     
     // CONSTANTS
-    let COLOR_TOP = UIColor(red: 21/255, green: 129/255, blue: 212/255, alpha: 1)
-    let COLOR_BOTTOM = UIColor(red: 0/255, green: 76/255, blue: 136/255, alpha: 1)
+    let COLOR_TOP = UIColor(red: 0/255, green: 158/255, blue: 255/255, alpha: 1)
+    let COLOR_BOTTOM = UIColor(red: 0/255, green: 42/255, blue: 69/255, alpha: 1)
+    
+    let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
+    let BEACON_IDENTIFIER = "MyBeacon"
+    
+    var currentWorkspaceId: String?
     
     // Speech
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "es-MX"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    
+    // Beacons
+    private var beaconsManager: BeaconsManager?
     
     // Audio
     var voice:Voice?
@@ -38,12 +62,24 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Init data
+        pieces[0] = [Piece.init("Chac-mool", room: "Sala mexica", workspaceId: "91520396-535c-409c-b1a7-60e2724ec8ba")]
+        
         //Init voice class
         voice = Voice()
         
+        //Init beacons manager
+        beaconsManager = BeaconsManager(uuid: PROXIMITY_UUID, beaconIdentifier: "beacon")
+        beaconsManager?.delegate = self
+        
         // Init gradient layer
         let gradient = CAGradientLayer()
-        gradient.colors = [COLOR_TOP.cgColor, COLOR_BOTTOM.cgColor] // Assign colors
+        gradient.colors = [
+            UIColor(red: 18/255, green: 139/255, blue: 219/255, alpha: 1).cgColor,
+            UIColor(red: 20/255, green: 155/255, blue: 245/255, alpha: 1).cgColor,
+            UIColor(red: 20/255, green: 155/255, blue: 245/255, alpha: 1).cgColor,
+            UIColor(red: 15/255, green: 115/255, blue: 181/255, alpha: 1).cgColor
+        ] // Assign colors
         gradient.frame = self.view.bounds // Asign to view bounds
         
         // Add gradient layer
@@ -84,7 +120,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     @IBAction func microphoneTapped(_ sender: Any) {
         if audioEngine.isRunning {
             recordButton.isHighlighted = false
-            audioEngine.stop()
+            audioEngine.stop() // Stop audio
             recognitionRequest?.endAudio()
             recordButton.isEnabled = false
         } else {
@@ -121,7 +157,8 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
             fatalError("Unable to create recognition request")
         }
         
-        recognitionRequest.shouldReportPartialResults = false
+        recognitionRequest.shouldReportPartialResults = true
+        
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
@@ -129,17 +166,22 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
             if let transcript = result?.bestTranscription.formattedString {
                 self.textViewSpeech.text = "\"\(transcript)\""
                 
-                Watson.textToSpeech(text: transcript, callback: { (data) in
-                    if let audioData = data {
-                        self.voice?.play(data: audioData)
-                    } else {
-                        // TODO could not get data
-                        print("Didn't get data")
-                    }
-                    
-                })
-                
                 isFinal = (result?.isFinal)!
+                
+                if (isFinal && self.currentWorkspaceId != nil) {
+                    Watson.textToSpeech(text: transcript, workspaceId: self.currentWorkspaceId!, callback: { (data) in
+                        if let audioData = data {
+                            self.voice?.play(data: audioData)
+                        } else {
+                            // TODO could not get data
+                            print("Didn't get data")
+                        }
+                        
+                    })
+                } else {
+                    print("No workspace selected")
+                }
+                
             }
             
             if (error != nil || isFinal) {
@@ -176,8 +218,6 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         
-        print("Speech recognizer AVAILABILITY CHANGED")
-        
         if available {
             recordButton.isEnabled = true
         } else {
@@ -185,6 +225,48 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate{
         }
     }
     
+    
+    /*
+     
+     BEACONS
+     
+     */
+    
+    func nearBeaconsLocations(_ beacons: [CLBeacon]) {
+        if (beacons.count == 0) {
+            self.recordButton.isEnabled = false
+        }
+        
+        for beacon in beacons {
+            let proximity = beacon.proximity
+            
+            switch proximity {
+            case .far:
+                UIView.animate(withDuration: 1.0) {
+                    self.pieceTitleLabel.alpha = 0.3
+                    self.pieceRoomLabel.alpha = 0.3
+                }
+            case .unknown:
+                print("Uknown")
+                self.recordButton.isEnabled = false
+                
+                UIView.animate(withDuration: 1.0) {
+                    self.pieceTitleLabel.alpha = 0.1
+                    self.pieceRoomLabel.alpha = 0.1
+                }
+            default: //Near and inmediate
+                UIView.animate(withDuration: 1.0) {
+                    self.recordButton.isEnabled = true
+                    self.pieceTitleLabel.alpha = 1
+                    self.pieceRoomLabel.alpha = 1
+                }
+            }
+            
+            pieceTitleLabel.text = pieces[0]?[0].title
+            pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
+            currentWorkspaceId = pieces[0]?[0].workspaceId
+        }
+    }
     
 }
 

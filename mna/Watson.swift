@@ -9,11 +9,11 @@
 import Foundation
 import Alamofire
 
-private let API_HOST = "http://mna.coma.mx/v1/text_to_speech"
+private let API_HOST = "https://mna-guide.mybluemix.net/v1/talk-answer"
 
 class Watson {
-    static func textToSpeech(text: String, callback: @escaping (Data?) -> Void) {
-        Alamofire.request(API_HOST, method: .post, parameters: ["text": text], encoding: JSONEncoding.default, headers: nil)
+    static func textToSpeech(text: String, workspaceId: String, callback: @escaping (Data?) -> Void) {
+        Alamofire.request(API_HOST, method: .post, parameters: ["question": text, "workspace_id": workspaceId], encoding: JSONEncoding.default, headers: nil)
         .response { (response) in
             if var data = response.data {
                 self.repairWAVHeader(data: &data)

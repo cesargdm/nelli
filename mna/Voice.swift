@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 
 class Voice {
-    
     var player: AVAudioPlayer?
     
     init() {
