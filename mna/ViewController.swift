@@ -20,7 +20,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
     @IBOutlet weak var textViewSpeech: UITextView!
     @IBOutlet weak var pieceTitleLabel: UILabel!
     @IBOutlet weak var pieceRoomLabel: UILabel!
-    
+
     // CONSTANTS
     let COLOR_TOP = UIColor(red: 0/255, green: 158/255, blue: 255/255, alpha: 1)
     let COLOR_BOTTOM = UIColor(red: 0/255, green: 42/255, blue: 69/255, alpha: 1)
@@ -105,6 +105,10 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
             
         }
         
+        pieceTitleLabel.text = pieces[0]?[0].title
+        pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
+        currentWorkspaceId = pieces[0]?[0].workspaceId
+        
     }
     
     @IBAction func microphoneTapped(_ sender: Any) {
@@ -161,6 +165,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
                 if (isFinal && self.currentWorkspaceId != nil) {
                     Watson.textToSpeech(text: transcript, workspaceId: self.currentWorkspaceId!, callback: { (data) in
                         if let audioData = data {
+                            print("Playing data...")
                             self.voice?.play(data: audioData)
                         } else {
                             // TODO could not get data
@@ -226,6 +231,9 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         if (beacons.count == 0) {
 //            self.recordButton.isEnabled = false
         }
+        
+        print("TITLE!!!")
+        print(pieces[0]?[0].title)
         
         pieceTitleLabel.text = pieces[0]?[0].title
         pieceRoomLabel.text = pieces[0]?[0].room.uppercased()

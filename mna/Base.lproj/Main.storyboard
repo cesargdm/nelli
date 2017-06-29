@@ -35,17 +35,17 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inah-logo" translatesAutoresizingMaskIntoConstraints="NO" id="fgt-7k-UJk">
-                                <rect key="frame" x="16" y="621" width="80" height="30"/>
+                                <rect key="frame" x="16" y="621" width="70" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="UZh-iy-z8d"/>
+                                    <constraint firstAttribute="width" constant="70" id="UZh-iy-z8d"/>
                                     <constraint firstAttribute="height" constant="30" id="pwP-f4-iHH"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibm-logo" translatesAutoresizingMaskIntoConstraints="NO" id="RNx-K2-d6W">
-                                <rect key="frame" x="299" y="621" width="60" height="30"/>
+                                <rect key="frame" x="309" y="621" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IpF-dI-AWg"/>
-                                    <constraint firstAttribute="width" constant="60" id="RVU-Zr-se8"/>
+                                    <constraint firstAttribute="width" constant="50" id="RVU-Zr-se8"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-Gv-sYS">
