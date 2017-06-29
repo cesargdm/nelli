@@ -6,7 +6,7 @@ Install dependencies with cocapods
 ```
 > pod install
 ```
-This will create a new `.xworkspace file`
+This will create a new `.xworkspace` file
 
 ## Run
 Open new `.xworkspace` and run```
