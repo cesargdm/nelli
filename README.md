@@ -9,4 +9,4 @@ Install dependencies with cocapods
 This will create a new `.xworkspace` file
 
 ## Run
-Open new `.xworkspace` and run```
+Open new `.xworkspace` and run
