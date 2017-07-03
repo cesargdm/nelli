@@ -12,6 +12,23 @@ import Alamofire
 import AVFoundation
 import CoreLocation
 
+enum Room: Int {
+    case mexica = 0, maya = 1, access = 2
+    
+    var stringValue: String {
+        switch self.rawValue {
+        case 0:
+            return "Sala Mexica"
+        case 1:
+            return "Sala Maya"
+        case 2:
+            return "Acceso"
+        default:
+            return "Sala indefinida"
+        }
+    }
+}
+
 class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDelegate {
     
     var pieces:[Int:[Piece]] = [Int:[Piece]]()
@@ -52,7 +69,21 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         
         //Init data
         pieces[0] = [
-            Piece("Dintel 26", room: "Sala Maya", workspaceId: "91520396-535c-409c-b1a7-60e2724ec8ba")
+            Piece("Friso Estucado", room: .mexica, workspaceId: "e2b7f5ad-eb36-4e45-a824-70e1af62e8be"),
+            Piece("Piedra del Sol", room: .mexica, workspaceId: "99d3e78d-8e38-448a-903b-d887c5bf3dd3"),
+            Piece("Coatlicue", room: .access, workspaceId: "f46bba7b-6355-463a-aaa7-d51386612d50"),
+            Piece("Penacho de Moctezuma", room: .mexica, workspaceId: "e151b746-d91c-480c-8137-5cce7294201d"),
+            Piece("Coyolxauhqui", room: .mexica, workspaceId: "6c1de7f2-109e-48d6-9418-db2b58b31bde"),
+            Piece("Ocelocuauhxicalli", room: .mexica, workspaceId: "1e8f7277-c44c-4933-8ee7-bae318428a73")
+        ]
+        pieces[1] = [
+            Piece("Dintel 26", room: .maya, workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91"),
+            Piece("Tumba de Pakal", room: .maya, workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"),
+            Piece("Chac Mool", room: .maya, workspaceId: "e1ea6765-3399-4367-85e6-47425605f8b6"),
+            Piece("Piedra de Tizoc", room: .maya, workspaceId: "e3fab98f-daaa-47d8-b4b4-dd65775f7f82")
+        ]
+        pieces[2] = [
+            Piece("Mural Dualidad", room: .access, workspaceId: "e2b7f5ad-eb36-4e45-a824-70e1af62e8be")
         ]
         
         //Init voice class
@@ -105,10 +136,6 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
             
         }
         
-        pieceTitleLabel.text = pieces[0]?[0].title
-        pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
-        currentWorkspaceId = pieces[0]?[0].workspaceId
-        
     }
     
     @IBAction func microphoneTapped(_ sender: Any) {
@@ -118,6 +145,8 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
             recognitionRequest?.endAudio()
             recordButton.isEnabled = false
         } else {
+            print("Recording...")
+            audioEngine.stop()
             startRecording()
             recordButton.isHighlighted = true
         }
@@ -126,7 +155,7 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
     
     func startRecording() {
         
-        if recognitionTask != nil{
+        if recognitionTask != nil {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
@@ -152,7 +181,6 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         }
         
         recognitionRequest.shouldReportPartialResults = true
-        
         
         recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
@@ -227,46 +255,47 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
      
      */
     
-    func nearBeaconsLocations(_ beacons: [CLBeacon]) {
-        if (beacons.count == 0) {
-//            self.recordButton.isEnabled = false
-        }
-        
-        print("TITLE!!!")
-        print(pieces[0]?[0].title)
-        
-        pieceTitleLabel.text = pieces[0]?[0].title
-        pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
-        currentWorkspaceId = pieces[0]?[0].workspaceId
-        
-        for beacon in beacons {
-            let proximity = beacon.proximity
-            
-            switch proximity {
-            case .far:
-                UIView.animate(withDuration: 1.0) {
-                    self.pieceTitleLabel.alpha = 0.3
-                    self.pieceRoomLabel.alpha = 0.3
-                }
-            case .unknown:
-                self.recordButton.isEnabled = false
+    func didFoundClosestBeacon(_ beacon: CLBeacon?) {
+        if (beacon != nil) {
+            if let piece = pieces[Int(beacon!.major)]?[Int(beacon!.minor)] {
                 
-                UIView.animate(withDuration: 1.0) {
-                    self.pieceTitleLabel.alpha = 0.1
-                    self.pieceRoomLabel.alpha = 0.1
-                }
-            default: //Near and inmediate
-                UIView.animate(withDuration: 1.0) {
-                    self.recordButton.isEnabled = true
-                    self.pieceTitleLabel.alpha = 1
-                    self.pieceRoomLabel.alpha = 1
+                // Set workspaceId
+                self.currentWorkspaceId = piece.workspaceId
+                
+                // Set label's text
+                self.pieceTitleLabel.text = piece.title
+                self.pieceRoomLabel.text = piece.room.stringValue
+                
+                // Change
+                switch beacon!.proximity {
+                case .far:
+                    UIView.animate(withDuration: 1.0) {
+                        self.pieceTitleLabel.alpha = 0.4
+                        self.pieceRoomLabel.alpha = 0.4
+                    }
+                case .unknown:
+                    self.recordButton.isEnabled = false
+                    
+                    UIView.animate(withDuration: 1.0) {
+                        self.pieceTitleLabel.alpha = 0.2
+                        self.pieceRoomLabel.alpha = 0.2
+                    }
+                default: //Near and inmediate
+                    UIView.animate(withDuration: 1.0) {
+                        self.recordButton.isEnabled = true
+                        self.pieceTitleLabel.alpha = 1
+                        self.pieceRoomLabel.alpha = 1
+                    }
                 }
             }
-            
-            pieceTitleLabel.text = pieces[0]?[0].title
-            pieceRoomLabel.text = pieces[0]?[0].room.uppercased()
-            currentWorkspaceId = pieces[0]?[0].workspaceId
+        } else {
+            self.pieceTitleLabel.text = "Acércate a una pieza"
+            self.pieceRoomLabel.text = nil
+            self.pieceTitleLabel.alpha = 0.7
+            self.pieceRoomLabel.alpha = 0.7
         }
+        
+        
     }
     
 }

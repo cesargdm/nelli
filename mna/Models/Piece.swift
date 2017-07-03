@@ -9,11 +9,11 @@
 import Foundation
 
 class Piece {
-    let title:String
-    let room:String
-    let workspaceId:String
+    let title: String
+    let room: Room
+    let workspaceId: String
     
-    init (_ title:String, room: String, workspaceId: String) {
+    init (_ title:String, room: Room, workspaceId: String) {
         self.title = title
         self.room = room
         self.workspaceId = workspaceId

@@ -11,7 +11,7 @@ import CoreLocation
 
 // Make class bound
 protocol BeaconDelegate: class {
-    func nearBeaconsLocations(_ beacons: [CLBeacon])
+    func didFoundClosestBeacon(_ beacon: CLBeacon?)
 }
 
 class BeaconsManager: NSObject, CLLocationManagerDelegate {
@@ -24,8 +24,6 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
     
     init(uuid: String, beaconIdentifier: String) {
         super.init()
-        
-        print("Init beacons manager")
         
         self.uuid = uuid
         self.beaconIdentifier = beaconIdentifier
@@ -43,16 +41,42 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
                     startScanning()
                 }
             }
+        case .authorizedWhenInUse:
+            // Suggest set to allways to enable push notifications
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    startScanning()
+                }
+            }
         default:
+            // TODO promot to change this
             print("NOT AUTHORIZED, STATUS: \(status)")
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        delegate?.nearBeaconsLocations(beacons)
+        
+        let numberOfBeacons = beacons.count
+        // Set a closestBeacon variable
+        var closestBeacon: CLBeacon?
+        
+        if (numberOfBeacons == 0) {
+            delegate?.didFoundClosestBeacon(nil)
+            return
+        }
+        
+        for index in 0..<numberOfBeacons {
+            if (closestBeacon == nil) {
+                closestBeacon = beacons[index]
+            } else {
+                if (index+1 == numberOfBeacons-1 && beacons[index+1].accuracy > 0 && beacons[index+1].accuracy < closestBeacon!.accuracy) {
+                    closestBeacon = beacons[index+1]
+                }
+            }
+        }
+        
+        delegate?.didFoundClosestBeacon(closestBeacon)
     }
-    
-    
     
     func startScanning() {
         let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: uuid!)!, identifier: beaconIdentifier!)
