@@ -239,8 +239,8 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         textViewSpeech.text = "Escuchando..."
     }
     
+    // If speech recognizer is available set the button to enable or disabled
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        
         if available {
             recordButton.isEnabled = true
         } else {
@@ -248,12 +248,24 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
         }
     }
     
+    // MARK: Label's UI Changes
     
-    /*
-     
-     BEACONS
-     
-     */
+    func setLabelsAlpha(_ alpha: Float) {
+        UIView.animate(withDuration: 1.0) {
+            self.pieceTitleLabel.alpha = CGFloat(alpha)
+            self.pieceRoomLabel.alpha = CGFloat(alpha)
+        }
+    }
+    
+    func setLabelsText(title: String?, room: String?, alpha: Float?) {
+        pieceTitleLabel.text = title
+        pieceRoomLabel.text = room
+        if alpha != nil {
+            setLabelsAlpha(alpha!)
+        }
+    }
+    
+    // MARK: Beacons
     
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
         if (beacon != nil) {
@@ -262,37 +274,24 @@ class ViewController: UIViewController , SFSpeechRecognizerDelegate, BeaconDeleg
                 // Set workspaceId
                 self.currentWorkspaceId = piece.workspaceId
                 
-                // Set label's text
-                self.pieceTitleLabel.text = piece.title
-                self.pieceRoomLabel.text = piece.room.stringValue
+                // Set label's text and alpha
+                setLabelsText(title: piece.title, room: piece.room.stringValue, alpha: 1)
                 
-                // Change
+                // Change alpha based on proximity
                 switch beacon!.proximity {
                 case .far:
-                    UIView.animate(withDuration: 1.0) {
-                        self.pieceTitleLabel.alpha = 0.4
-                        self.pieceRoomLabel.alpha = 0.4
-                    }
+                    self.setLabelsAlpha(0.4) // Indicate that the piece is far
                 case .unknown:
+                    self.setLabelsAlpha(0.2) // Disable the button since it's in a unstable distance
                     self.recordButton.isEnabled = false
-                    
-                    UIView.animate(withDuration: 1.0) {
-                        self.pieceTitleLabel.alpha = 0.2
-                        self.pieceRoomLabel.alpha = 0.2
-                    }
                 default: //Near and inmediate
-                    UIView.animate(withDuration: 1.0) {
-                        self.recordButton.isEnabled = true
-                        self.pieceTitleLabel.alpha = 1
-                        self.pieceRoomLabel.alpha = 1
-                    }
+                    self.setLabelsAlpha(1)
+                    self.recordButton.isEnabled = true
                 }
             }
         } else {
-            self.pieceTitleLabel.text = "Acércate a una pieza"
-            self.pieceRoomLabel.text = nil
-            self.pieceTitleLabel.alpha = 0.7
-            self.pieceRoomLabel.alpha = 0.7
+            // If we dont't have a closet beacon invite to move around
+            setLabelsText(title: "Acércate a una pieza", room: nil, alpha: 0.7)
         }
         
         
