@@ -9,14 +9,6 @@
 import Foundation
 import Speech
 
-protocol SpeechRecoginizerDelegate: class {
-    func didChangeAuthorization(_ authorized: Bool)
-    func didOutputText(_ text: String?)
-    func availabilityDidChange(_ available: Bool)
-    func didEndListening()
-    func didStartListening()
-}
-
 class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))!
@@ -49,6 +41,8 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     
     func startRecording() throws {
         
+        var stoppedListening = false
+        
         // Check if audio is allready running, if it's cancel it
         if audioEngine.isRunning {
             audioEngine.stop()
@@ -56,6 +50,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             
             // Call stop listening
             delegate?.didEndListening()
+            stoppedListening = true
             return
         }
         
@@ -97,7 +92,10 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 self.recognitionTask = nil
                 
                 // Call end listening
-                self.delegate?.didEndListening()
+                if (stoppedListening) {
+                    self.delegate?.didEndListening()
+                    stoppedListening = true
+                }
                 
             }
         }

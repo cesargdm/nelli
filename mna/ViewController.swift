@@ -19,6 +19,9 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     @IBOutlet weak var pieceTitleLabel: UILabel!
     @IBOutlet weak var pieceRoomLabel: UILabel!
     
+    // Question text
+    private var question: String?
+    
     // Pieces variable declaration
     private var pieces:[Int:[Piece]] = [Int:[Piece]]()
 
@@ -37,7 +40,7 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     private var speechRecognizerManager: SpeechRecognizerManager?
     
     // Voice
-    var voice:Voice?
+    var voice: Voice?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +96,9 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     
     func didOutputText(_ text: String?) {
         // Set the output text to label
-        textViewSpeech.text = text
+        print("DID OUTPUT TEXT")
+        textViewSpeech.text = "\"\(text ?? "")\""
+        question = text
     }
     
     func availabilityDidChange(_ available: Bool) {
@@ -102,21 +107,19 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     
     func didEndListening() {
         
-        if let question = self.textViewSpeech.text {
-            self.textViewSpeech.text = "Pensando...\n(\(question))"
+        print("END LISTENING")
+        if let _ = self.textViewSpeech.text {
+            self.textViewSpeech.text = "Pensando...\n(\(self.textViewSpeech.text))"
         }
         
         self.recordButton.isEnabled = true
         
-        if let text = self.textViewSpeech.text {
+        if let question = question {
             if let workspaceId = self.currentWorkspaceId {
                 
-                //
-                print("WORKSPACE ID: \(workspaceId)")
-                
-                Watson.textToSpeech(text: text, workspaceId: workspaceId, callback: { (data) in
+                Watson.textToSpeech(text: question, workspaceId: workspaceId, callback: { (data) in
                     if let audioData = data {
-                        print("Playing data...")
+                        self.textViewSpeech.text = "Respondiendo..."
                         self.voice?.play(data: audioData)
                     } else {
                         // TODO could not get data

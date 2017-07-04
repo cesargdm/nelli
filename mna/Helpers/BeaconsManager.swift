@@ -9,11 +9,6 @@
 import Foundation
 import CoreLocation
 
-// Make class bound
-protocol BeaconDelegate: class {
-    func didFoundClosestBeacon(_ beacon: CLBeacon?)
-}
-
 class BeaconsManager: NSObject, CLLocationManagerDelegate {
     
     var uuid:String?

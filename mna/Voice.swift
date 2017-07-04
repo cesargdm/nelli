@@ -9,22 +9,34 @@
 import Foundation
 import AVFoundation
 
-class Voice {
-    var player: AVAudioPlayer?
+class Voice: NSObject, AVAudioPlayerDelegate {
     
-    init() {
-        player = AVAudioPlayer()
+    var avPlayer: AVAudioPlayer?
+    
+    override init() {
+        super.init()
+        
+        avPlayer = AVAudioPlayer()
+        
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        player.stop()
+        print(avPlayer?.isPlaying)
+        avPlayer = nil
     }
     
     func play(data: Data) {
         do {
+            // AVAudioSessionCategoryPlayAndRecord
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
 //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             
-            player = try AVAudioPlayer(data: data, fileTypeHint: AVFileTypeWAVE)
-            player?.volume = 1.0
-            player?.play()
+            avPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileTypeWAVE)
+            avPlayer?.delegate = self
+            avPlayer?.volume = 1.0
+            avPlayer?.play()
             
         } catch let error {
             print(error.localizedDescription)
