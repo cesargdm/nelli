@@ -13,22 +13,23 @@ protocol SpeechRecoginizerDelegate: class {
     func didChangeAuthorization(_ authorized: Bool)
     func didOutputText(_ text: String?)
     func availabilityDidChange(_ available: Bool)
-    func didEndOutputText()
+    func didEndListening()
     func didStartListening()
 }
 
 class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     
-    var audioEngine: AVAudioEngine?
-    var request: SFSpeechAudioBufferRecognitionRequest?
-    var recognizer: SFSpeechRecognizer?
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))!
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
     
     weak var delegate: SpeechRecoginizerDelegate?
     
     override init() {
         super.init()
         
-        audioEngine = AVAudioEngine()
+        speechRecognizer.delegate = self
         
         SFSpeechRecognizer.requestAuthorization { status in
             print("SPEECH STATUS: \(status.rawValue)")
@@ -40,66 +41,78 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             }
         }
         
-        // Record audio
-        request = SFSpeechAudioBufferRecognitionRequest()
-        
-        guard let node = audioEngine?.inputNode else {
-            print("COULD NOT SET NODE")
-            return
-        }
-        let recordingFormat = node.outputFormat(forBus: 0)
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, _) in
-            self.request?.append(buffer)
-        }
-        
-        // Speech recognizer
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))
-        
-        if recognizer?.isAvailable == false {
-            print("RECOGNIZER IS NOT AVAILABLE")
-            // The recognizer is not available right now
-            return
-        }
-        
     }
     
-    func startRecordingSpeech() {
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        delegate?.availabilityDidChange(available)
+    }
+    
+    func startRecording() throws {
         
-        if (request == nil) {
-            print("Request not initialized")
+        // Check if audio is allready running, if it's cancel it
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            recognitionRequest?.endAudio()
+            
+            // Call stop listening
+            delegate?.didEndListening()
             return
         }
         
-        // Stop 
-        request?.endAudio()
-        audioEngine?.stop()
-        
-        
-        audioEngine?.prepare()
-        do {
-            try audioEngine?.start()
-        } catch {
-            print("AUDIO ENGINE ERROR \(error)")
+        // Cancel the previous task if it's running.
+        if let recognitionTask = recognitionTask {
+            recognitionTask.cancel()
+            self.recognitionTask = nil
         }
         
-        request?.shouldReportPartialResults = true
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(AVAudioSessionCategoryRecord)
+        try audioSession.setMode(AVAudioSessionModeMeasurement)
+        try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
         
-        recognizer?.recognitionTask(with: request!) { (result, error) in
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        guard let inputNode = audioEngine.inputNode else { fatalError("Audio engine has no input node") }
+        guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
+        
+        // Configure request so that results are returned before audio recording is finished
+        recognitionRequest.shouldReportPartialResults = true
+        
+        // A recognition task represents a speech recognition session.
+        // We keep a reference to the task so that it can be cancelled.
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            var isFinal = false
+            
             if let result = result {
-                let bestString = result.bestTranscription.formattedString
-                
-                self.delegate?.didOutputText(bestString)
-                
-                if result.isFinal {
-                    // Print the speech that has been recognized so far
-                    self.delegate?.didEndOutputText()
-                    print("FINAL: \(result.bestTranscription.formattedString)")
-                }
-            } else {
-                print("ERROR")
+                // Call text results
+                self.delegate?.didOutputText(result.bestTranscription.formattedString)
+                isFinal = result.isFinal
             }
             
+            if error != nil || isFinal {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                
+                // Call end listening
+                self.delegate?.didEndListening()
+                
+            }
         }
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        
+        try audioEngine.start()
+        
+        // Call start listening
+        delegate?.didStartListening()
     }
     
 }

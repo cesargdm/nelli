@@ -36,8 +36,14 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     // Speech recognizer
     private var speechRecognizerManager: SpeechRecognizerManager?
     
+    // Voice
+    var voice:Voice?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Voice init
+        voice = Voice()
         
         //Init pieces data
         initializePieces()
@@ -63,7 +69,18 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
         self.view.layer.insertSublayer(gradient, at: 0) // Insert gradient sublayer
     }
     
+    @IBAction func microphoneTapped(_ sender: Any) {
+        do {
+            try speechRecognizerManager?.startRecording()
+        } catch {
+            print("ERROR \(error)")
+        }
+    }
+    
+    //
     // MARK: Speech Recognizer
+    //
+    
     func didChangeAuthorization(_ authorized: Bool) {
         
         print("Did change auth")
@@ -75,27 +92,48 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     }
     
     func didOutputText(_ text: String?) {
-        
         // Set the output text to label
         textViewSpeech.text = text
-        
     }
     
     func availabilityDidChange(_ available: Bool) {
-        print("Speech recognizer availability changed")
-//        self.recordButton.isEnabled = available
+        self.recordButton.isEnabled = available
     }
     
-    func didEndOutputText() {
-        print("End output text")
+    func didEndListening() {
+        
+        if let question = self.textViewSpeech.text {
+            self.textViewSpeech.text = "Pensando...\n(\(question))"
+        }
+        
+        self.recordButton.isEnabled = true
+        
+        if let text = self.textViewSpeech.text {
+            if let workspaceId = self.currentWorkspaceId {
+                
+                //
+                print("WORKSPACE ID: \(workspaceId)")
+                
+                Watson.textToSpeech(text: text, workspaceId: workspaceId, callback: { (data) in
+                    if let audioData = data {
+                        print("Playing data...")
+                        self.voice?.play(data: audioData)
+                    } else {
+                        // TODO could not get data
+                        print("Didn't get data")
+                    }
+                })
+            } else {
+                print("NO WORKSPACE ID")
+            }
+        } else {
+            print("NO TEXT")
+        }
+        
     }
     
     func didStartListening() {
-        print("Did start listening")
-    }
-    
-    @IBAction func microphoneTapped(_ sender: Any) {
-        speechRecognizerManager?.startRecordingSpeech()
+        self.textViewSpeech.text = "Escuchando..."
     }
     
     // Set light status bar
@@ -110,7 +148,9 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
         }
     }
     
+    //
     // MARK: Label's UI Changes
+    //
     
     func setLabelsAlpha(_ alpha: Float) {
         UIView.animate(withDuration: 1.0) {
