@@ -11,8 +11,9 @@ import Speech
 import Alamofire
 import AVFoundation
 import CoreLocation
+import UserNotifications
 
-class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegate {
+class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegate, TalkDelegate {
     
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var textViewSpeech: UITextView!
@@ -21,6 +22,8 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     
     // Question text
     private var question: String?
+    private var currentWorkspaceId: String?
+    private var currentBeacon: CLBeacon?
     
     // Pieces variable declaration
     private var pieces:[Int:[Piece]] = [Int:[Piece]]()
@@ -31,8 +34,6 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     
     private let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
-    var currentWorkspaceId: String?
-    
     // Beacons manager
     private var beaconsManager: BeaconsManager?
     
@@ -40,13 +41,13 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     private var speechRecognizerManager: SpeechRecognizerManager?
     
     // Voice
-    var voice: Voice?
+    var talk: Talk?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Voice init
-        voice = Voice()
+        // Talk init
+        talk = Talk()
         
         //Init pieces data
         initializePieces()
@@ -78,6 +79,14 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
         } catch {
             print("ERROR \(error)")
         }
+    }
+    
+    //
+    // MARK: Talk
+    //
+    
+    func didFinishPlaying(succesfully: Bool) {
+        self.textViewSpeech.text = ""
     }
     
     //
@@ -120,7 +129,7 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
                 Watson.textToSpeech(text: question, workspaceId: workspaceId, callback: { (data) in
                     if let audioData = data {
                         self.textViewSpeech.text = "Respondiendo..."
-                        self.voice?.play(data: audioData)
+                        self.talk?.play(data: audioData)
                     } else {
                         // TODO could not get data
                         print("Didn't get data")
@@ -173,8 +182,31 @@ class ViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegat
     // MARK: Beacons
     
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
+        
+//        print("Found closest beacon...")
+        
         if (beacon != nil) {
             if let piece = pieces[Int(beacon!.major)]?[Int(beacon!.minor)] {
+                
+                print(currentWorkspaceId != piece.workspaceId)
+                
+                // Send notification is we find other piece (beacon)
+                if (currentWorkspaceId != piece.workspaceId) {
+                    print("Sending notification...")
+                    let content = UNMutableNotificationContent()
+                    content.title = "¡Pregunta!"
+                    content.body = "Estás cerca de la pieza \(piece.title), empieza a preguntar"
+                    
+                    let request = UNNotificationRequest(identifier: "closeToPiece", content: content, trigger: nil)
+                    
+                    let center = UNUserNotificationCenter.current()
+                    center.add(request, withCompletionHandler: { error in
+                        if let error = error {
+                            print("ERROR IN REQUEST \(error)")
+                        }
+                    })
+                    
+                }
                 
                 // Set workspaceId
                 self.currentWorkspaceId = piece.workspaceId

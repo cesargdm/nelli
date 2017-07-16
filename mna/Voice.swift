@@ -9,9 +9,14 @@
 import Foundation
 import AVFoundation
 
-class Voice: NSObject, AVAudioPlayerDelegate {
+protocol TalkDelegate: class {
+    func didFinishPlaying(succesfully: Bool)
+}
+
+class Talk: NSObject, AVAudioPlayerDelegate {
     
     var avPlayer: AVAudioPlayer?
+    weak var delegate: TalkDelegate?
     
     override init() {
         super.init()
@@ -22,8 +27,10 @@ class Voice: NSObject, AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         player.stop()
-        print(avPlayer?.isPlaying)
         avPlayer = nil
+        
+        // Call delegate
+        delegate?.didFinishPlaying(succesfully: flag)
     }
     
     func play(data: Data) {
