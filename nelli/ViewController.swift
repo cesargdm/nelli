@@ -8,49 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, WatsonDelegate {
+    
     @IBOutlet weak var containerScrollView: UIScrollView!
+    
+    // Get the bounds width and height
+    let bounds = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
+        // Instiate view controllers
         let watsonViewController = storyBoard.instantiateViewController(withIdentifier: "WatsonViewController") as! WatsonViewController
         let piecesViewController = storyBoard.instantiateViewController(withIdentifier: "PiecesViewController") as! PiecesViewController
         let mapViewController = storyBoard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
-        let bounds = UIScreen.main.bounds
-        let width = bounds.width
-        let height = bounds.height
+        // Set the view's delegate as this class
+        watsonViewController.delegate = self
         
-        print("WIDTH \(width)")
-        print("HEIGHT \(height)")
+        // Set the view and height to scroll view
+        containerScrollView.contentSize = CGSize(width: bounds.width*3, height: bounds.height)
         
-        containerScrollView.contentSize = CGSize(width: 3*width, height: height)
-        containerScrollView.setContentOffset(CGPoint(x: width, y: 0), animated: false)
+        // Move to second position (initial view controller)
+        containerScrollView.setContentOffset(CGPoint(x: bounds.width, y: 0), animated: false)
         
+        // Arrange view controllers in an array for easy use
         let viewControllers = [piecesViewController, watsonViewController, mapViewController]
         
+        // Iterate over view controller array
         for (index, viewController) in viewControllers.enumerated() {
             addChildViewController(viewController)
-            let originX = CGFloat(index)*width
-            viewController.view.frame = CGRect(x: originX, y: 0, width: width, height: height)
+            let originX = CGFloat(index)*bounds.width
+            viewController.view.frame = CGRect(x: originX, y: 0, width: bounds.width, height: bounds.height)
             containerScrollView.addSubview(viewController.view)
             viewController.didMove(toParentViewController: self)
-            viewController.view.setNeedsLayout()
-            viewController.view.setNeedsUpdateConstraints()
-            viewController.view.layoutIfNeeded()
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func onMoveTo(viewNumber: Int) {
+        print("Move to \(viewNumber)")
+        containerScrollView.setContentOffset(CGPoint(x: bounds.width*CGFloat(viewNumber),y: 0), animated: true)
     }
-
-
+    
 }
 

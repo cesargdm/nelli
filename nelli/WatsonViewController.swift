@@ -8,34 +8,27 @@
 
 import UIKit
 
-class WatsonViewController: UIViewController {
+protocol WatsonDelegate: class {
+    func onMoveTo(viewNumber: Int) -> Void
+}
 
+class WatsonViewController: UIViewController {
+    
+    weak var delegate: WatsonDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("View did load")
-
-        // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("WATSON View will appear")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func moveToPieces(_ sender: Any) {
+        print("Sending move...")
+        delegate?.onMoveTo(viewNumber: 0)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func moveToMap(_ sender: Any) {
+        print("Sending move...")
+        delegate?.onMoveTo(viewNumber: 2)
     }
-    */
-
+    
+    
 }
