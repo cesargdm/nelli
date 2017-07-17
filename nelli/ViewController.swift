@@ -17,30 +17,32 @@ class ViewController: UIViewController {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        let watsonViewController = storyBoard.instantiateViewController(withIdentifier: "WatsonViewController")
-        let piecesViewController = storyBoard.instantiateViewController(withIdentifier: "PiecesViewController")
-        let mapViewController = storyBoard.instantiateViewController(withIdentifier: "MapViewController")
+        let watsonViewController = storyBoard.instantiateViewController(withIdentifier: "WatsonViewController") as! WatsonViewController
+        let piecesViewController = storyBoard.instantiateViewController(withIdentifier: "PiecesViewController") as! PiecesViewController
+        let mapViewController = storyBoard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         
-        // Add in each view to the container view
-        self.containerScrollView.addSubview(piecesViewController.view)
-        self.containerScrollView.addSubview(watsonViewController.view)
-        self.containerScrollView.addSubview(mapViewController.view)
+        let bounds = UIScreen.main.bounds
+        let width = bounds.width
+        let height = bounds.height
         
-        let containerHeight = view.layer.frame.height
-        let containerWidth = view.layer.frame.width
+        print("WIDTH \(width)")
+        print("HEIGHT \(height)")
         
-        // Set size and positions
-        let piecesFrame = CGRect(x: 0, y: 0, width: containerWidth, height: containerHeight)
-        piecesViewController.view.frame = piecesFrame
+        containerScrollView.contentSize = CGSize(width: 3*width, height: height)
+        containerScrollView.setContentOffset(CGPoint(x: width, y: 0), animated: false)
         
-        let watsonFrame = CGRect(x: containerWidth, y: 0, width: containerWidth, height: containerHeight)
-        watsonViewController.view.frame = watsonFrame
+        let viewControllers = [piecesViewController, watsonViewController, mapViewController]
         
-        let mapFrame = CGRect(x: containerWidth*2, y: 0, width: containerWidth, height: containerHeight)
-        mapViewController.view.frame = mapFrame
-        
-        // Set the size of the container scroll view
-        self.containerScrollView.contentSize = CGSize(width: containerWidth*3, height: containerHeight)
+        for (index, viewController) in viewControllers.enumerated() {
+            addChildViewController(viewController)
+            let originX = CGFloat(index)*width
+            viewController.view.frame = CGRect(x: originX, y: 0, width: width, height: height)
+            containerScrollView.addSubview(viewController.view)
+            viewController.didMove(toParentViewController: self)
+            viewController.view.setNeedsLayout()
+            viewController.view.setNeedsUpdateConstraints()
+            viewController.view.layoutIfNeeded()
+        }
         
     }
 

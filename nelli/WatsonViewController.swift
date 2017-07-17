@@ -19,7 +19,7 @@ class WatsonViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("View will appear")
+        print("WATSON View will appear")
     }
 
     override func didReceiveMemoryWarning() {

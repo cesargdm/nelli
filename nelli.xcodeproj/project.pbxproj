@@ -17,9 +17,6 @@
 		0599B59A1F1670CD00CA8FE1 /* WatsonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */; };
 		0599B59C1F1670D300CA8FE1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59B1F1670D300CA8FE1 /* MapViewController.swift */; };
 		0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */; };
-		05E9E2081F1675F6003ACE46 /* PiecesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E9E2071F1675F6003ACE46 /* PiecesViewController.xib */; };
-		05E9E20B1F167627003ACE46 /* WatsonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E9E20A1F167627003ACE46 /* WatsonViewController.xib */; };
-		05E9E20D1F167634003ACE46 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E9E20C1F167634003ACE46 /* MapViewController.xib */; };
 		0FB613BE8331A5FCDF3DD2C1 /* Pods_nelli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95411867A51AE4814BA24619 /* Pods_nelli.framework */; };
 		4434F6C640F1A3A1A77D2066 /* Pods_nelliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */; };
 		F6447619DABF5B27C2957EE9 /* Pods_nelliUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542118E4544311B203637995 /* Pods_nelliUITests.framework */; };
@@ -59,9 +56,6 @@
 		0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatsonViewController.swift; sourceTree = "<group>"; };
 		0599B59B1F1670D300CA8FE1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesViewController.swift; sourceTree = "<group>"; };
-		05E9E2071F1675F6003ACE46 /* PiecesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PiecesViewController.xib; sourceTree = "<group>"; };
-		05E9E20A1F167627003ACE46 /* WatsonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatsonViewController.xib; sourceTree = "<group>"; };
-		05E9E20C1F167634003ACE46 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		1F21456D17FBC32508D0E385 /* Pods-nelliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EE6F52F503C15D4015FB05C /* Pods-nelliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,7 +120,6 @@
 		0599B56A1F166C1C00CA8FE1 /* nelli */ = {
 			isa = PBXGroup;
 			children = (
-				05E9E2091F167611003ACE46 /* views */,
 				0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */,
 				0599B56D1F166C1C00CA8FE1 /* ViewController.swift */,
 				0599B56F1F166C1C00CA8FE1 /* Main.storyboard */,
@@ -156,16 +149,6 @@
 				0599B58D1F166C1C00CA8FE1 /* Info.plist */,
 			);
 			path = nelliUITests;
-			sourceTree = "<group>";
-		};
-		05E9E2091F167611003ACE46 /* views */ = {
-			isa = PBXGroup;
-			children = (
-				05E9E2071F1675F6003ACE46 /* PiecesViewController.xib */,
-				05E9E20A1F167627003ACE46 /* WatsonViewController.xib */,
-				05E9E20C1F167634003ACE46 /* MapViewController.xib */,
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		1C2DEFAE9B8DD47AFB9B96D2 /* Pods */ = {
@@ -305,10 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0599B5761F166C1C00CA8FE1 /* LaunchScreen.storyboard in Resources */,
-				05E9E20D1F167634003ACE46 /* MapViewController.xib in Resources */,
-				05E9E2081F1675F6003ACE46 /* PiecesViewController.xib in Resources */,
 				0599B5731F166C1C00CA8FE1 /* Assets.xcassets in Resources */,
-				05E9E20B1F167627003ACE46 /* WatsonViewController.xib in Resources */,
 				0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
