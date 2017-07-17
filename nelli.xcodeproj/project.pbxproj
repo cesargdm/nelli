@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */; };
+		050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */; };
+		050CB0E81F1D480000C833B3 /* BeaconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E71F1D480000C833B3 /* BeaconsManager.swift */; };
+		050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */; };
+		050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0EB1F1D483800C833B3 /* Voice.swift */; };
+		050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0ED1F1D486600C833B3 /* Watson.swift */; };
 		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
+		0569B35C1F1D47470061B34E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35B1F1D47470061B34E /* Piece.swift */; };
+		0569B35E1F1D47590061B34E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35D1F1D47590061B34E /* Room.swift */; };
 		0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */; };
 		0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56D1F166C1C00CA8FE1 /* ViewController.swift */; };
 		0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0599B56F1F166C1C00CA8FE1 /* Main.storyboard */; };
@@ -41,7 +49,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDelegate.swift; sourceTree = "<group>"; };
+		050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		050CB0E71F1D480000C833B3 /* BeaconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsManager.swift; sourceTree = "<group>"; };
+		050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
+		050CB0EB1F1D483800C833B3 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
+		050CB0ED1F1D486600C833B3 /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
+		050CB0EF1F1D489600C833B3 /* nelli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nelli.entitlements; sourceTree = "<group>"; };
 		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
+		0569B35B1F1D47470061B34E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		0569B35D1F1D47590061B34E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		0599B5681F166C1C00CA8FE1 /* nelli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nelli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0599B56D1F166C1C00CA8FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,9 +114,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050CB0E21F1D47AD00C833B3 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */,
+				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
+				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
 		0569B3561F1D372D0061B34E /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				050CB0E71F1D480000C833B3 /* BeaconsManager.swift */,
+				050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -110,6 +139,24 @@
 				0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		0569B35A1F1D472D0061B34E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				0569B35B1F1D47470061B34E /* Piece.swift */,
+				0569B35D1F1D47590061B34E /* Room.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		0569B35F1F1D476E0061B34E /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */,
+				050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */,
+			);
+			path = delegates;
 			sourceTree = "<group>";
 		};
 		0599B55F1F166C1C00CA8FE1 = {
@@ -137,17 +184,20 @@
 		0599B56A1F166C1C00CA8FE1 /* nelli */ = {
 			isa = PBXGroup;
 			children = (
-				0569B3571F1D37340061B34E /* views */,
-				0569B3561F1D372D0061B34E /* helpers */,
+				050CB0EF1F1D489600C833B3 /* nelli.entitlements */,
 				0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */,
 				0599B56D1F166C1C00CA8FE1 /* ViewController.swift */,
 				0599B56F1F166C1C00CA8FE1 /* Main.storyboard */,
-				0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */,
-				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
-				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
+				050CB0EB1F1D483800C833B3 /* Voice.swift */,
+				050CB0E21F1D47AD00C833B3 /* controllers */,
+				0569B35A1F1D472D0061B34E /* models */,
+				0569B35F1F1D476E0061B34E /* delegates */,
+				0569B3571F1D37340061B34E /* views */,
+				0569B3561F1D372D0061B34E /* helpers */,
 				0599B5721F166C1C00CA8FE1 /* Assets.xcassets */,
 				0599B5741F166C1C00CA8FE1 /* LaunchScreen.storyboard */,
 				0599B5771F166C1C00CA8FE1 /* Info.plist */,
+				050CB0ED1F1D486600C833B3 /* Watson.swift */,
 			);
 			path = nelli;
 			sourceTree = "<group>";
@@ -270,6 +320,14 @@
 				TargetAttributes = {
 					0599B5671F166C1C00CA8FE1 = {
 						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					0599B57B1F166C1C00CA8FE1 = {
 						CreatedOnToolsVersion = 9.0;
@@ -471,10 +529,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */,
+				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
 				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
+				0569B35C1F1D47470061B34E /* Piece.swift in Sources */,
+				0569B35E1F1D47590061B34E /* Room.swift in Sources */,
+				050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */,
+				050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */,
 				0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */,
+				050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */,
 				0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */,
 				0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */,
+				050CB0E81F1D480000C833B3 /* BeaconsManager.swift in Sources */,
 				0599B59A1F1670CD00CA8FE1 /* WatsonViewController.swift in Sources */,
 				0599B59C1F1670D300CA8FE1 /* MapViewController.swift in Sources */,
 			);
@@ -643,6 +709,7 @@
 			baseConfigurationReference = 5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nelli/nelli.entitlements;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -658,6 +725,7 @@
 			baseConfigurationReference = F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nelli/nelli.entitlements;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
