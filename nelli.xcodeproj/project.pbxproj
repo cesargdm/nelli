@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
 		0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */; };
 		0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56D1F166C1C00CA8FE1 /* ViewController.swift */; };
 		0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0599B56F1F166C1C00CA8FE1 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
 		0599B5681F166C1C00CA8FE1 /* nelli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nelli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0599B56D1F166C1C00CA8FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0569B3561F1D372D0061B34E /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		0569B3571F1D37340061B34E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		0599B55F1F166C1C00CA8FE1 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +137,8 @@
 		0599B56A1F166C1C00CA8FE1 /* nelli */ = {
 			isa = PBXGroup;
 			children = (
+				0569B3571F1D37340061B34E /* views */,
+				0569B3561F1D372D0061B34E /* helpers */,
 				0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */,
 				0599B56D1F166C1C00CA8FE1 /* ViewController.swift */,
 				0599B56F1F166C1C00CA8FE1 /* Main.storyboard */,
@@ -452,6 +471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
 				0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */,
 				0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */,
 				0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */,
