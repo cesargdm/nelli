@@ -16,6 +16,6 @@ Nelli was developed using beta software.
 -   Swift 4
 
 ***
-# Developers
+## Credits
 
 César Guadarrama (cesargdm), Martín A. Ruíz (martinrzg), Isaac S. Montoya.
