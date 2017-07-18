@@ -24,7 +24,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         speechRecognizer.delegate = self
         
         SFSpeechRecognizer.requestAuthorization { status in
-            print("SPEECH STATUS: \(status.rawValue)")
             switch status {
             case .authorized:
                 self.delegate?.didChangeAuthorization(true)
@@ -49,7 +48,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             recognitionRequest?.endAudio()
             
             // Call stop listening
-            print("Called did end listening...")
             delegate?.didEndListening()
             stoppedListening = true
         }
@@ -85,7 +83,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             
             if let result = result {
                 // Call text results
-                print("Results...")
                 self.delegate?.didOutputText(result.bestTranscription.formattedString)
                 isFinal = result.isFinal
             }
@@ -99,7 +96,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 
                 // Call end listening
                 if (stoppedListening) {
-                    print("Is final...")
                     self.delegate?.didEndListening()
                     stoppedListening = true
                 }

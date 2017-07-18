@@ -38,7 +38,6 @@ class Talk: NSObject, AVAudioPlayerDelegate {
             // AVAudioSessionCategoryPlayAndRecord
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
-            //            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             
             avPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.wav.rawValue)
             avPlayer?.delegate = self
