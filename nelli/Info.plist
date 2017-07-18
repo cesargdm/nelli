@@ -2,20 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Usaremos el reconocimiento de voz para saber tus preguntas</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Usaremos el micrófono para escuchar tus preguntas</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Nelli</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -32,6 +22,18 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Usaremos tu localización para saber cuando estés cerca de una pieza</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Usaremos el micrófono para escuchar tus preguntas</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Usaremos el reconocimiento de voz para saber tus preguntas</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
