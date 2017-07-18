@@ -10,9 +10,12 @@ import UIKit
 
 class PieceTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var pieceImageView: UIImageView!
+    @IBOutlet weak var pieceTitleLabel: UILabel!
+    @IBOutlet weak var roomLabel: UILabel!
+    
+    var piece: Piece?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +26,12 @@ class PieceTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setData(pieceTitle piece: String, room: String) {
+        pieceTitleLabel.text = piece
+        roomLabel.text = room
+        pieceImageView.image = UIImage(named: piece)
     }
 
 }

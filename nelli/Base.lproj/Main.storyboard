@@ -54,32 +54,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="179" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-ia-hRa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="179" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-ia-hRa">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.35364276639999997" green="0.67605424889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pieceCell" rowHeight="179" id="jk4-ic-nW6" customClass="PieceTableViewCell" customModule="nelli" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="179"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="179"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jk4-ic-nW6" id="hX6-44-Ycb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-P6-vzT">
-                                                    <rect key="frame" x="16" y="24" width="343" height="147"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="163"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="piedra-del-sol" translatesAutoresizingMaskIntoConstraints="NO" id="1Hb-hN-HmB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="147"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hb-hN-HmB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="163"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Piedra del Sol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeV-Vp-Fye">
-                                                            <rect key="frame" x="8" y="93" width="148.5" height="29"/>
+                                                            <rect key="frame" x="8" y="109" width="148.5" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sala Mexica" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEd-HP-DdQ">
-                                                            <rect key="frame" x="8" y="122" width="77" height="17"/>
+                                                            <rect key="frame" x="8" y="138" width="77" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -99,15 +99,17 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Cqf-P6-vzT" secondAttribute="trailing" constant="8" id="0z0-oc-JTI"/>
-                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="leading" secondItem="hX6-44-Ycb" secondAttribute="leadingMargin" constant="8" id="PTb-C1-b1b"/>
-                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="top" secondItem="hX6-44-Ycb" secondAttribute="topMargin" constant="16" id="Pdm-V8-LPP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Cqf-P6-vzT" secondAttribute="trailing" id="0z0-oc-JTI"/>
+                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="leading" secondItem="hX6-44-Ycb" secondAttribute="leadingMargin" id="PTb-C1-b1b"/>
+                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="top" secondItem="hX6-44-Ycb" secondAttribute="topMargin" id="Pdm-V8-LPP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Cqf-P6-vzT" secondAttribute="bottom" id="fhL-83-gAx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="mainView" destination="Cqf-P6-vzT" id="ylF-Ax-Az6"/>
                                             <outlet property="pieceImageView" destination="1Hb-hN-HmB" id="OVo-4V-Fv3"/>
+                                            <outlet property="pieceTitleLabel" destination="TeV-Vp-Fye" id="snR-30-9Zn"/>
+                                            <outlet property="roomLabel" destination="QEd-HP-DdQ" id="dfX-hc-BP9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -300,7 +302,6 @@
         <image name="inah-logo" width="80" height="80"/>
         <image name="map-icon" width="30" height="30"/>
         <image name="piece" width="37" height="37"/>
-        <image name="piedra-del-sol" width="3008" height="2000"/>
         <image name="watson" width="1333" height="1333"/>
     </resources>
 </document>
