@@ -19,26 +19,25 @@ protocol WatsonDelegate: class {
 
 class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegate, TalkDelegate {
     
+    // Contants
+    let NOTIFICATION_TITLE = "¡Pregunta!"
+    let GO_CLOSER = "Acércate a una pieza para preguntarle a Nelli"
+    
     weak var delegate: WatsonDelegate?
     
-    // This label is an attributed label, meaning that it can handle multiple text styles in the same label
-    @IBOutlet weak var mainLabel: UILabel!
-    
-    // Watson button
-    @IBOutlet weak var nelliButton: UIButton!
+    // Outlets
+    @IBOutlet weak var mainLabel: UILabel! // This label is an attributed label, meaning that it can handle multiple text styles in the same label
+    @IBOutlet weak var nelliButton: UIButton! // Watson button
     
     // Question text
     private var question: String?
     private var currentWorkspaceId: String?
-    private var currentBeacon: CLBeacon?
-    
-    // Pieces variable declaration
-    
     
     // CONSTANTS
     private let COLOR_TOP = UIColor(red: 0/255, green: 158/255, blue: 255/255, alpha: 1)
     private let COLOR_BOTTOM = UIColor(red: 0/255, green: 42/255, blue: 69/255, alpha: 1)
     
+    private var pieces:[Int:[Piece]] = [Int:[Piece]]()
     private let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
     // Beacons manager
@@ -49,6 +48,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     
     // Voice
     var talk: Talk?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +79,18 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         // Set main label text align
         mainLabel.textAlignment = .center
         
+        // Setup the pieces array
+        pieces = Piece.getPieces()
+        
+    }
+    
+    @IBAction func watsonTouched(_ sender: UIButton) {
+        do {
+            // It will call didEndListenning if the button is pressed and it was allready listening
+            try speechRecognizerManager?.startRecording()
+        } catch {
+            print("Speech recognizer error.\n\(error)")
+        }
     }
     
     @IBAction func moveTo(_ sender: UIButton) {
@@ -88,15 +100,26 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     func didFinishPlaying(succesfully: Bool) {
-        print("Did finish playing")
+        // TODO
+        // End talking animation
     }
     
     func didChangeAuthorization(_ authorized: Bool) {
-        print("Did change authorization")
+        
+        // Required to perform in main queue
+        OperationQueue.main.addOperation() {
+            // Set button isEnabled
+            self.nelliButton.isEnabled = authorized
+        }
+        
     }
     
     func didOutputText(_ text: String?) {
-        print("Did output text")
+        
+        // Set the text into question
+        question = text
+        mainLabel.text = question
+        
     }
     
     func availabilityDidChange(_ available: Bool) {
@@ -104,27 +127,54 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     func didEndListening() {
-        print("Did end listening")
+        
+        // TODO
+        // End listening animation
+        // Start thinking animation
+        // disableButtons()
+        
+        mainLabel.text = "Pensando...\n\"\(question ?? "")\""
+        
+        // Check that we have a question text
+        if question == nil {
+            print("No question")
+            return
+        } else if currentWorkspaceId == nil { // Check that we have a workspaceId
+            print("No workspace")
+            return
+        } else {
+            Watson.textToSpeech(text: question!, workspaceId: currentWorkspaceId!, callback: { (data) in
+                if let audioData = data {
+                    self.mainLabel.text = "Respondiendo..."
+                    self.talk?.play(data: audioData)
+                    // TODO
+                    // Stop thinking animation
+                    // Start talking animation
+                } else {
+                    // TODO could not get data
+                    print("Didn't get data")
+                }
+            })
+        }
+        
     }
     
     func didStartListening() {
-        print("Did start listening")
+        // TODO
+        // Start listening animation
     }
     
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
         
-        let pieces = Piece.getPieces()
-        
-        if (beacon != nil) {
-            if let piece = pieces[Int(beacon!.major)]?[Int(beacon!.minor)] {
-                
-                print(currentWorkspaceId != piece.workspaceId)
+        if let beacon = beacon {
+            let major = beacon.major.intValue
+            let minor = beacon.minor.intValue
+            if let piece = pieces[major]?[minor] {
                 
                 // Send notification is we find other piece (beacon)
                 if (currentWorkspaceId != piece.workspaceId) {
-                    print("Sending notification...")
                     let content = UNMutableNotificationContent()
-                    content.title = "¡Pregunta!"
+                    content.title = NOTIFICATION_TITLE
                     content.body = "Estás cerca de la pieza \(piece.title), empieza a preguntar"
                     
                     let request = UNNotificationRequest(identifier: "closeToPiece", content: content, trigger: nil)
@@ -132,7 +182,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                     let center = UNUserNotificationCenter.current()
                     center.add(request, withCompletionHandler: { error in
                         if let error = error {
-                            print("ERROR IN REQUEST \(error)")
+                            print("User notification request error.\n\(error)")
                         }
                     })
                     
@@ -145,7 +195,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
                 
                 // Change alpha based on proximity
-                switch beacon!.proximity {
+                switch beacon.proximity {
                 case .far:
                     self.setLabelAlpha(0.4) // Indicate that the piece is far
                 case .unknown:
@@ -157,8 +207,10 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 }
             }
         } else {
-            // If we dont't have a closet beacon invite to move around
-            setLabelText(text: "Acércate a una pieza para preguntarle a Nelli", room: nil, alpha: 0.7)
+            // If we dont't have a closet beacon invite to move around and if we dont have a question around
+            if (question == nil) {
+                setLabelText(text: GO_CLOSER, room: nil, alpha: 0.7)
+            }
         }
     }
     
