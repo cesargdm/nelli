@@ -11,6 +11,8 @@ import UIKit
 class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var piecesTableView: UITableView!
+    
+    weak var delegate: WatsonDelegate?
     let pieces = Piece.getPieces()
     
     override func viewDidLoad() {
@@ -27,6 +29,10 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    @IBAction func back(_ sender: UIBarButtonItem) {
+        delegate?.onMoveTo(viewNumber: 1)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pieces[section]?.count ?? 0
     }
@@ -40,19 +46,9 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let piece = pieces[indexPath.section]?[indexPath.row]
         
-        // Set corner radius
-        cell.pieceImageView.layer.cornerRadius = 10
-        cell.mainView.layer.cornerRadius = 10
-        
         // Set cell info
         cell.setData(pieceTitle: piece?.title ?? "", room: piece?.room.stringValue ?? "")
         cell.piece = piece
-        
-        // Set shadow
-        cell.mainView.layer.shadowColor = UIColor.black.cgColor
-        cell.mainView.layer.shadowOpacity = 0.3
-        cell.mainView.layer.shadowOffset = CGSize.zero
-        cell.mainView.layer.shadowRadius = 4
         
         return cell
     }
