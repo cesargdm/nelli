@@ -48,18 +48,23 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             recognitionRequest?.endAudio()
             
             // Call stop listening
-            delegate?.didEndListening()
             stoppedListening = true
         }
         
         // Cancel the previous task if it's running.
         if let recognitionTask = recognitionTask {
             recognitionTask.cancel()
+
             self.recognitionTask = nil
+        }
+        
+        if let recognitionRequest = recognitionRequest {
+            recognitionRequest.endAudio()
         }
         
         // Call if we stopped listening
         if (stoppedListening) {
+            delegate?.didEndListening()
             return
         }
         
@@ -71,6 +76,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         
         let inputNode = audioEngine.inputNode
+        // Fix for strange bug, occured when 
+        inputNode.removeTap(onBus: 0)
+        
         guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
         
         // Configure request so that results are returned before audio recording is finished
