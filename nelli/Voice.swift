@@ -20,12 +20,15 @@ class Talk: NSObject, AVAudioPlayerDelegate {
     
     override init() {
         super.init()
-        
-        avPlayer = AVAudioPlayer()
-        
+    }
+    
+    func stop() {
+        avPlayer?.stop()
+        avPlayer = nil
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        // Stop player
         player.stop()
         avPlayer = nil
         
@@ -45,7 +48,7 @@ class Talk: NSObject, AVAudioPlayerDelegate {
             avPlayer?.play()
             
         } catch let error {
-            print(error.localizedDescription)
+            print(" AVAudio Player error \(error.localizedDescription)")
         }
     }
     
