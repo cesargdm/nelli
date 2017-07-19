@@ -54,32 +54,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="179" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-ia-hRa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="154" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-ia-hRa">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.35364276639999997" green="0.67605424889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pieceCell" rowHeight="179" id="jk4-ic-nW6" customClass="PieceTableViewCell" customModule="nelli" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="179"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pieceCell" rowHeight="154" id="jk4-ic-nW6" customClass="PieceTableViewCell" customModule="nelli" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="40" width="375" height="154"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jk4-ic-nW6" id="hX6-44-Ycb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cqf-P6-vzT">
-                                                    <rect key="frame" x="8" y="8" width="359" height="163"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hb-hN-HmB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="359" height="163"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Piedra del Sol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeV-Vp-Fye">
-                                                            <rect key="frame" x="8" y="109" width="148.5" height="29"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Piedra del Sol" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeV-Vp-Fye">
+                                                            <rect key="frame" x="8" y="100" width="148.5" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sala Mexica" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEd-HP-DdQ">
-                                                            <rect key="frame" x="8" y="138" width="77" height="17"/>
+                                                            <rect key="frame" x="8" y="129" width="77" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -99,10 +99,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Cqf-P6-vzT" secondAttribute="trailing" id="0z0-oc-JTI"/>
-                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="leading" secondItem="hX6-44-Ycb" secondAttribute="leadingMargin" id="PTb-C1-b1b"/>
-                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="top" secondItem="hX6-44-Ycb" secondAttribute="topMargin" id="Pdm-V8-LPP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Cqf-P6-vzT" secondAttribute="bottom" id="fhL-83-gAx"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cqf-P6-vzT" secondAttribute="bottom" id="03a-AT-hxl"/>
+                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="leading" secondItem="hX6-44-Ycb" secondAttribute="leading" id="YZG-Nb-0hf"/>
+                                                <constraint firstItem="Cqf-P6-vzT" firstAttribute="top" secondItem="hX6-44-Ycb" secondAttribute="top" id="gIC-Hr-1Hf"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cqf-P6-vzT" secondAttribute="trailing" id="w5L-sy-Xj0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -114,22 +114,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3w-aa-saR">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3w-aa-saR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" red="0.27450980392156865" green="0.5725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.35364276639999997" green="0.67605424889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Descubre" id="bl8-L8-tjk">
-                                        <barButtonItem key="rightBarButtonItem" title="Regresar" style="plain" id="HRQ-rm-zFi">
-                                            <color key="tintColor" red="0.35364276639999997" green="0.67605424889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <barButtonItem key="rightBarButtonItem" image="right" style="plain" id="HRQ-rm-zFi">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="back:" destination="8BK-HZ-QhN" id="O8u-0i-RdJ"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.27450980390000002" green="0.57254901960000004" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="m3w-aa-saR" firstAttribute="leading" secondItem="1Fn-fN-p3q" secondAttribute="leading" id="13o-nl-Jyr"/>
                             <constraint firstItem="i4z-7f-kqG" firstAttribute="top" secondItem="Atf-ia-hRa" secondAttribute="bottom" id="DN4-id-Tbf"/>
@@ -172,7 +175,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibm-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Mm-LEO">
-                                <rect key="frame" x="309" y="617" width="50" height="30"/>
+                                <rect key="frame" x="317" y="629" width="50" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="TPQ-5O-BbA"/>
                                     <constraint firstAttribute="height" constant="30" id="hbJ-qd-IZk"/>
@@ -210,20 +213,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inah-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Nzm-QP-4H0">
-                                <rect key="frame" x="16" y="617" width="70" height="30"/>
+                                <rect key="frame" x="8" y="629" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1E1-7c-Wqx"/>
                                     <constraint firstAttribute="width" constant="70" id="73h-H3-zAI"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mapa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rh-iQ-H0N">
-                                <rect key="frame" x="319.5" y="62" width="39.5" height="18"/>
+                                <rect key="frame" x="319.5" y="58" width="39.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descubre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2N-gO-UVc">
-                                <rect key="frame" x="16" y="62" width="69" height="18"/>
+                                <rect key="frame" x="16" y="58" width="69" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -231,28 +234,34 @@
                         </subviews>
                         <color key="backgroundColor" red="0.35364276639999997" green="0.67605424889999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="Nzm-QP-4H0" secondAttribute="bottom" constant="20" id="2jG-Qc-aXn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9rh-iQ-H0N" secondAttribute="trailing" id="4pd-I9-tuv"/>
                             <constraint firstItem="HFa-0y-xHh" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="Dbp-5P-6Jb"/>
-                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="dgA-Mm-LEO" secondAttribute="bottom" constant="20" id="Htv-b8-dLV"/>
-                            <constraint firstItem="9rh-iQ-H0N" firstAttribute="top" secondItem="HFa-0y-xHh" secondAttribute="bottom" constant="4" id="JO7-e1-CYf"/>
+                            <constraint firstItem="dgA-Mm-LEO" firstAttribute="trailing" secondItem="osD-x6-IaL" secondAttribute="trailingMargin" constant="8" id="J5P-S3-I2T"/>
+                            <constraint firstItem="9rh-iQ-H0N" firstAttribute="top" secondItem="HFa-0y-xHh" secondAttribute="bottom" id="JO7-e1-CYf"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="KXV-zk-yHa"/>
-                            <constraint firstItem="h2N-gO-UVc" firstAttribute="top" secondItem="AVy-jL-Hj8" secondAttribute="bottom" constant="4" id="Q2g-pK-eWG"/>
-                            <constraint firstItem="dgA-Mm-LEO" firstAttribute="trailing" secondItem="osD-x6-IaL" secondAttribute="trailingMargin" id="Rnv-a7-oSL"/>
+                            <constraint firstItem="h2N-gO-UVc" firstAttribute="top" secondItem="AVy-jL-Hj8" secondAttribute="bottom" id="Q2g-pK-eWG"/>
                             <constraint firstItem="9rh-iQ-H0N" firstAttribute="centerX" secondItem="HFa-0y-xHh" secondAttribute="centerX" id="S5Y-be-akH"/>
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="SFo-5w-VDl"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leadingMargin" id="Uhp-q0-FmX"/>
-                            <constraint firstItem="Nzm-QP-4H0" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leadingMargin" id="Xlr-Q4-ryD"/>
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="centerY" secondItem="osD-x6-IaL" secondAttribute="centerY" id="a1h-g8-GJh"/>
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="top" secondItem="dmN-LP-hEf" secondAttribute="bottom" constant="30" id="a5W-re-ZQh"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="24" id="cL3-3d-N8o"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="centerX" secondItem="AVy-jL-Hj8" secondAttribute="centerX" id="cVV-8X-kXT"/>
+                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="Nzm-QP-4H0" secondAttribute="bottom" constant="8" id="f4r-c1-eJ9"/>
+                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="dgA-Mm-LEO" secondAttribute="bottom" constant="8" id="f65-Xb-eAX"/>
                             <constraint firstAttribute="trailing" secondItem="dmN-LP-hEf" secondAttribute="trailing" constant="24" id="pjM-ds-yDq"/>
+                            <constraint firstItem="Nzm-QP-4H0" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="8" id="yMz-Ad-Scr"/>
                             <constraint firstItem="AVy-jL-Hj8" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="zh4-bR-VYQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="discoverButton" destination="AVy-jL-Hj8" id="2wa-hL-44A"/>
+                        <outlet property="discoverLabel" destination="h2N-gO-UVc" id="baE-A6-8JF"/>
+                        <outlet property="ibmImageView" destination="dgA-Mm-LEO" id="Xz6-aj-ysA"/>
+                        <outlet property="inahImageView" destination="Nzm-QP-4H0" id="qni-fL-W4B"/>
                         <outlet property="mainLabel" destination="dmN-LP-hEf" id="3Db-fX-mwk"/>
+                        <outlet property="mapButton" destination="HFa-0y-xHh" id="UVO-gz-YpU"/>
+                        <outlet property="mapLabel" destination="9rh-iQ-H0N" id="9hB-Y8-vu7"/>
                         <outlet property="nelliButton" destination="xMK-G2-7lR" id="egB-ZP-qfq"/>
                     </connections>
                 </viewController>
@@ -272,7 +281,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVq-yr-8Xr">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVq-yr-8Xr">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
@@ -280,8 +289,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Mapa" id="Eax-H0-xLm">
-                                        <barButtonItem key="leftBarButtonItem" title="Regresar" id="q2B-Yu-aGT">
+                                        <barButtonItem key="leftBarButtonItem" image="left" id="q2B-Yu-aGT">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="back:" destination="yNG-SA-mmd" id="0qf-gY-6IM"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -303,8 +315,10 @@
     <resources>
         <image name="ibm-logo" width="80" height="40"/>
         <image name="inah-logo" width="80" height="80"/>
+        <image name="left" width="30" height="30"/>
         <image name="map-icon" width="30" height="30"/>
-        <image name="piece" width="37" height="37"/>
+        <image name="piece" width="30" height="30"/>
+        <image name="right" width="30" height="30"/>
         <image name="watson" width="1333" height="1333"/>
     </resources>
 </document>
