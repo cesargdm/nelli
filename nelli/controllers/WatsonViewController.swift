@@ -8,13 +8,17 @@
 
 import UIKit
 import Speech
-import Alamofire
 import AVFoundation
 import CoreLocation
 import UserNotifications
+import Alamofire
 
 protocol WatsonDelegate: class {
     func onMoveTo(viewNumber: Int) -> Void
+}
+
+enum WatsonState: Int {
+    case idle = 0, listening, thinking, talking, error
 }
 
 class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegate, TalkDelegate {
@@ -23,15 +27,26 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     let NOTIFICATION_TITLE = "¡Pregunta!"
     let GO_CLOSER = "Acércate a una pieza para preguntarle a Nelli"
     
+    // Delegate
     weak var delegate: WatsonDelegate?
     
     // Outlets
     @IBOutlet weak var mainLabel: UILabel! // This label is an attributed label, meaning that it can handle multiple text styles in the same label
     @IBOutlet weak var nelliButton: UIButton! // Watson button
+    @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var discoverButton: UIButton!
+    @IBOutlet weak var discoverLabel: UILabel!
+    @IBOutlet weak var mapLabel: UILabel!
+    @IBOutlet weak var inahImageView: UIImageView!
+    @IBOutlet weak var ibmImageView: UIImageView!
     
     // Question text
     private var question: String?
     private var currentWorkspaceId: String?
+    
+    // Variables
+    var watsonState: WatsonState = .idle
+    var request: Alamofire.Request?
     
     // CONSTANTS
     private let COLOR_TOP = UIColor(red: 0/255, green: 158/255, blue: 255/255, alpha: 1)
@@ -49,28 +64,33 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     // Voice
     var talk: Talk?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Talk init
-        talk = Talk()
+        // Notifications
+        NotificationsManager.getAuthorizationStatus { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                NotificationsManager.requestAuthorization()
+            }
+        }
         
-        //Init beacons manager
+        // Talk
+        talk = Talk()
+        talk?.delegate = self
+        
+        // Init beacons manager
         beaconsManager = BeaconsManager(uuid: PROXIMITY_UUID, beaconIdentifier: "beacon")
         beaconsManager?.delegate = self
         
-        // Speech
+        // Speech recognition
         speechRecognizerManager = SpeechRecognizerManager()
         speechRecognizerManager?.delegate = self
         
         // Init background gradient
         let gradient = CAGradientLayer()
         gradient.colors = [
-            UIColor(red: 18/255, green: 139/255, blue: 219/255, alpha: 1).cgColor,
-            UIColor(red: 20/255, green: 155/255, blue: 245/255, alpha: 1).cgColor,
-            UIColor(red: 20/255, green: 155/255, blue: 245/255, alpha: 1).cgColor,
-            UIColor(red: 15/255, green: 115/255, blue: 181/255, alpha: 1).cgColor
+            UIColor(red: 99/255, green: 208/255, blue: 248/255, alpha: 1).cgColor,
+            UIColor(red: 50/255, green: 97/255, blue: 231/255, alpha: 1).cgColor
         ]
         
         gradient.frame = self.view.bounds // Set gradient view bounds
@@ -85,12 +105,40 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     @IBAction func watsonTouched(_ sender: UIButton) {
-        do {
-            // It will call didEndListenning if the button is pressed and it was allready listening
-            try speechRecognizerManager?.startRecording()
-        } catch {
-            print("Speech recognizer error.\n\(error)")
+        
+        switch watsonState {
+        case .talking:
+            talk?.avPlayer?.stop()
+            setState(.idle, buttonsEnabled: true)
+            return
+            
+        case .thinking:
+            self.request?.suspend()
+            
+            // The player may have allready initiated, stop it
+            if let avPlayer = talk?.avPlayer {
+                // Check if its playing
+                if avPlayer.isPlaying {
+                    avPlayer.stop()
+                }
+            }
+            
+            setState(.idle, buttonsEnabled: true)
+            return
+            
+        case .idle, .listening:
+            do {
+                // It will call didEndListenning if the button is pressed and it was allready listening
+                try speechRecognizerManager?.startRecording()
+            } catch {
+                print("Speech recognizer error.\n\(error)")
+            }
+            
+        case .error:
+            setState(.idle, buttonsEnabled: true)
+            
         }
+        
     }
     
     @IBAction func moveTo(_ sender: UIButton) {
@@ -102,6 +150,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     func didFinishPlaying(succesfully: Bool) {
         // TODO
         // End talking animation
+        setState(.idle, buttonsEnabled: true)
     }
     
     func didChangeAuthorization(_ authorized: Bool) {
@@ -117,13 +166,34 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     func didOutputText(_ text: String?) {
         
         // Set the text into question
-        question = text
-        mainLabel.text = question
+        if (watsonState != .thinking) {
+            question = text
+            mainLabel.text = "\"\(question ?? "")\""
+        }
         
     }
     
     func availabilityDidChange(_ available: Bool) {
-        print("Availability did change")
+        nelliButton.isEnabled = available
+    }
+    
+    func setState(_ state: WatsonState, buttonsEnabled enabled: Bool) {
+        watsonState = state
+        
+        UIView.animate(withDuration: 0.2) {
+            self.mapButton.alpha = CGFloat(enabled.hashValue)
+            self.discoverButton.alpha = CGFloat(enabled.hashValue)
+            self.mapLabel.alpha = CGFloat(enabled.hashValue)
+            self.discoverLabel.alpha = CGFloat(enabled.hashValue)
+            self.inahImageView.alpha = CGFloat(enabled.hashValue)/2
+            self.ibmImageView.alpha = CGFloat(enabled.hashValue)/2
+        }
+        self.mapButton.isEnabled = enabled
+        self.discoverButton.isEnabled = enabled
+        
+        if (enabled) {
+            self.question = nil
+        }
     }
     
     func didEndListening() {
@@ -131,28 +201,36 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         // TODO
         // End listening animation
         // Start thinking animation
-        // disableButtons()
+        mainLabel.text = ""
         
-        mainLabel.text = "Pensando...\n\"\(question ?? "")\""
         
         // Check that we have a question text
-        if question == nil {
+        if question == nil || question == "" {
             print("No question")
+            setState(.idle, buttonsEnabled: true)
             return
         } else if currentWorkspaceId == nil { // Check that we have a workspaceId
             print("No workspace")
+            setState(.idle, buttonsEnabled: true)
             return
         } else {
-            Watson.textToSpeech(text: question!, workspaceId: currentWorkspaceId!, callback: { (data) in
+            mainLabel.text = "Pensando...\n\"\(question ?? "")\""
+            watsonState = .thinking
+            
+            request = Watson.textToSpeech(text: question!, workspaceId: currentWorkspaceId!, callback: { (data) in
                 if let audioData = data {
                     self.mainLabel.text = "Respondiendo..."
+                    self.watsonState = .talking
+                    
                     self.talk?.play(data: audioData)
+                    
                     // TODO
                     // Stop thinking animation
                     // Start talking animation
                 } else {
                     // TODO could not get data
                     print("Didn't get data")
+                    self.setState(.error, buttonsEnabled: true)
                 }
             })
         }
@@ -162,6 +240,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     func didStartListening() {
         // TODO
         // Start listening animation
+        mainLabel.text = "Escuchando..."
+        question = ""
+        setState(.listening, buttonsEnabled: false)
     }
     
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
@@ -173,18 +254,12 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 
                 // Send notification is we find other piece (beacon)
                 if (currentWorkspaceId != piece.workspaceId) {
-                    let content = UNMutableNotificationContent()
-                    content.title = NOTIFICATION_TITLE
-                    content.body = "Estás cerca de la pieza \(piece.title), empieza a preguntar"
                     
-                    let request = UNNotificationRequest(identifier: "closeToPiece", content: content, trigger: nil)
-                    
-                    let center = UNUserNotificationCenter.current()
-                    center.add(request, withCompletionHandler: { error in
-                        if let error = error {
-                            print("User notification request error.\n\(error)")
-                        }
-                    })
+                    NotificationsManager.sendNotificationWith(
+                        title: NOTIFICATION_TITLE,
+                        body: "Estás cerca de la pieza \(piece.title), empieza a preguntar",
+                        identifier: "closeToPiece"
+                    )
                     
                 }
                 
@@ -192,7 +267,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 self.currentWorkspaceId = piece.workspaceId
                 
                 // Set label's text and alpha
-                setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
+                if (watsonState == .idle) {
+                    setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
+                }
                 
                 // Change alpha based on proximity
                 switch beacon.proximity {
@@ -208,7 +285,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             }
         } else {
             // If we dont't have a closet beacon invite to move around and if we dont have a question around
-            if (question == nil) {
+            if (watsonState == .idle) {
                 setLabelText(text: GO_CLOSER, room: nil, alpha: 0.7)
             }
         }
@@ -227,5 +304,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         }
     }
     
-    // MARK: Pieces Initalization
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
