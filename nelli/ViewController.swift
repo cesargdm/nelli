@@ -27,6 +27,8 @@ class ViewController: UIViewController, WatsonDelegate {
         
         // Set the view's delegate as this class
         watsonViewController.delegate = self
+        piecesViewController.delegate = self
+        mapViewController.delegate = self
         
         // Set the view and height to scroll view
         containerScrollView.contentSize = CGSize(width: bounds.width*3, height: bounds.height)
@@ -49,7 +51,6 @@ class ViewController: UIViewController, WatsonDelegate {
     }
     
     func onMoveTo(viewNumber: Int) {
-        print("Move to \(viewNumber)")
         containerScrollView.setContentOffset(CGPoint(x: bounds.width*CGFloat(viewNumber),y: 0), animated: true)
     }
     
