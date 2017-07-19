@@ -298,7 +298,12 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     func setLabelText(text: String?, room: String?, alpha: Float?) {
-        mainLabel.text = "\(text ?? "")\n\(room ?? "")"
+        let text = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.regular)])
+        let room = NSAttributedString(string: room != nil ? "\n\(room!)" : "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.medium)])
+        text.append(room)
+        
+        mainLabel.attributedText = text
+        
         if let alpha = alpha {
             setLabelAlpha(alpha)
         }
