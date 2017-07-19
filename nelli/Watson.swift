@@ -13,9 +13,10 @@ class Watson {
     
     private static let API_HOST = "https://mna-guide.mybluemix.net/v1/talk-answer"
     
-    static func textToSpeech(text: String, workspaceId: String, callback: @escaping (Data?) -> Void) {
-        Alamofire.request(API_HOST, method: .post, parameters: ["question": text, "workspace_id": workspaceId], encoding: JSONEncoding.default, headers: nil)
-            .response { (response) in
+    static func textToSpeech(text: String, workspaceId: String, callback: @escaping (Data?) -> Void) -> Alamofire.Request {
+        let request = Alamofire.request(API_HOST, method: .post, parameters: ["question": text, "workspace_id": workspaceId], encoding: JSONEncoding.default, headers: nil)
+            
+        request.response { (response) in
                 if var data = response.data {
                     self.repairWAVHeader(data: &data)
                     callback(data)
@@ -23,6 +24,8 @@ class Watson {
                     callback(nil)
                 }
         }
+        
+        return request
     }
     
     // Three functions from WDC to repair WAV header:
@@ -34,6 +37,12 @@ class Watson {
         
         // update RIFF chunk size
         let fileLength = data.count
+        
+        // César Guadarrama Fix
+        if (fileLength < 8) {
+            return
+        }
+        
         var riffChunkSize = UInt32(fileLength - 8)
         let riffChunkSizeData = Data(bytes: &riffChunkSize, count: MemoryLayout<UInt32>.stride)
         data.replaceSubrange(Range(uncheckedBounds: (lower: 4, upper: 8)), with: riffChunkSizeData)
