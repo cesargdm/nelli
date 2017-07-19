@@ -13,6 +13,7 @@
 		050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */; };
 		050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0EB1F1D483800C833B3 /* Voice.swift */; };
 		050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0ED1F1D486600C833B3 /* Watson.swift */; };
+		055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */; };
 		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
 		0569B35C1F1D47470061B34E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35B1F1D47470061B34E /* Piece.swift */; };
 		0569B35E1F1D47590061B34E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35D1F1D47590061B34E /* Room.swift */; };
@@ -56,6 +57,7 @@
 		050CB0EB1F1D483800C833B3 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
 		050CB0ED1F1D486600C833B3 /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
 		050CB0EF1F1D489600C833B3 /* nelli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nelli.entitlements; sourceTree = "<group>"; };
+		055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
 		0569B35B1F1D47470061B34E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		0569B35D1F1D47590061B34E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				050CB0E71F1D480000C833B3 /* BeaconsManager.swift */,
 				050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */,
+				055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */,
 				050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */,
 				0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */,
+				055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */,
 				050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */,
 				0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */,
 				0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */,
