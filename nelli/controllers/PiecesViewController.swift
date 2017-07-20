@@ -52,5 +52,20 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case "pieceDetailSegue":
+            let destionation = segue.destination as! PieceDetailViewController
+            let sender = sender as! PieceTableViewCell
+            
+            if let piece =  sender.piece {
+                destionation.piece = piece
+            }
+            
+        default:
+            return
+        }
+    }
 
 }

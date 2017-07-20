@@ -9,9 +9,20 @@
 import UIKit
 
 class PieceDetailViewController: UIViewController {
+    
+    @IBOutlet weak var pieceImageView: UIImageView!
+    @IBOutlet weak var pieceRoomLabel: UILabel!
+    @IBOutlet weak var pieceTitleLabel: UILabel!
+    
+    var piece: Piece?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pieceTitleLabel.text = piece?.title
+        pieceRoomLabel.text = piece?.room.stringValue
+        
+        pieceImageView.image = UIImage(named: piece?.title ?? "")
 
         // Do any additional setup after loading the view.
     }
@@ -19,6 +30,10 @@ class PieceDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func back() {
+        dismiss(animated: true, completion: nil)
     }
     
 
