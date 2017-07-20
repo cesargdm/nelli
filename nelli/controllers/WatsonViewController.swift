@@ -13,9 +13,7 @@ import CoreLocation
 import UserNotifications
 import Alamofire
 
-protocol WatsonDelegate: class {
-    func onMoveTo(viewNumber: Int) -> Void
-}
+
 
 enum WatsonState: Int {
     case idle = 0, listening, thinking, talking, error
@@ -105,7 +103,6 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     @IBAction func watsonTouched(_ sender: UIButton) {
-        
         switch watsonState {
         case .talking:
             talk?.avPlayer?.stop()
@@ -128,7 +125,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             
         case .idle, .listening:
             do {
-                // It will call didEndListenning if the button is pressed and it was allready listening
+                // This will automaticly check if it's allready listening and will stop if so
                 try speechRecognizerManager?.startRecording()
             } catch {
                 print("Speech recognizer error.\n\(error)")
@@ -153,8 +150,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         setState(.idle, buttonsEnabled: true)
     }
     
+    // Localization sate
     func didChangeAuthorization(_ authorized: Bool) {
-        
         // Required to perform in main queue
         OperationQueue.main.addOperation() {
             // Set button isEnabled
@@ -164,15 +161,15 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     }
     
     func didOutputText(_ text: String?) {
-        
         // Set the text into question
-        if (watsonState != .thinking) {
+        if (watsonState == .listening) {
             question = text
             mainLabel.text = "\"\(question ?? "")\""
         }
         
     }
     
+    // Do not now where it comes from :/
     func availabilityDidChange(_ available: Bool) {
         nelliButton.isEnabled = available
     }
@@ -201,7 +198,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         // TODO
         // End listening animation
         // Start thinking animation
-        mainLabel.text = ""
+        mainLabel.text = nil
         
         
         // Check that we have a question text
@@ -219,8 +216,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             
             request = Watson.textToSpeech(text: question!, workspaceId: currentWorkspaceId!, callback: { (data) in
                 if let audioData = data {
-                    self.mainLabel.text = "Respondiendo..."
+                    
                     self.watsonState = .talking
+                    self.mainLabel.text = "Respondiendo..."
                     
                     self.talk?.play(data: audioData)
                     
@@ -245,9 +243,14 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         setState(.listening, buttonsEnabled: false)
     }
     
+    // MARK: Beacons
+    
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
         
         if let beacon = beacon {
+            
+            self.nelliButton.isEnabled = true
+            
             let major = beacon.major.intValue
             let minor = beacon.minor.intValue
             if let piece = pieces[major]?[minor] {
@@ -285,32 +288,29 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             }
         } else {
             // If we dont't have a closet beacon invite to move around and if we dont have a question around
+            self.nelliButton.isEnabled = false
             if (watsonState == .idle) {
-                setLabelText(text: GO_CLOSER, room: nil, alpha: 0.7)
+                setLabelText(text: GO_CLOSER, room: nil, alpha: 1)
             }
         }
     }
     
     func setLabelAlpha(_ alpha: Float) {
-        UIView.animate(withDuration: 1.0) {
-            self.mainLabel.alpha = CGFloat(alpha)
-        }
+        
+        
+        
     }
     
     func setLabelText(text: String?, room: String?, alpha: Float?) {
-        let text = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.regular)])
+        let mainText = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.regular)])
         let room = NSAttributedString(string: room != nil ? "\n\(room!)" : "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.medium)])
-        text.append(room)
+        mainText.append(room)
         
-        mainLabel.attributedText = text
+        mainLabel.attributedText = mainText
         
         if let alpha = alpha {
             setLabelAlpha(alpha)
         }
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+
 }

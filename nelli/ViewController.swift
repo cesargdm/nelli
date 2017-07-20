@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WatsonDelegate: class {
+    func onMoveTo(viewNumber: Int) -> Void
+}
+
 class ViewController: UIViewController, WatsonDelegate {
     
     @IBOutlet weak var containerScrollView: UIScrollView!
