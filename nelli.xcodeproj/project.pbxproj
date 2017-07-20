@@ -17,6 +17,7 @@
 		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
 		0569B35C1F1D47470061B34E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35B1F1D47470061B34E /* Piece.swift */; };
 		0569B35E1F1D47590061B34E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35D1F1D47590061B34E /* Room.swift */; };
+		057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CFEA41F2055A90065250C /* PieceDetailViewController.swift */; };
 		0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */; };
 		0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56D1F166C1C00CA8FE1 /* ViewController.swift */; };
 		0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0599B56F1F166C1C00CA8FE1 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
 		0569B35B1F1D47470061B34E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		0569B35D1F1D47590061B34E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		057CFEA41F2055A90065250C /* PieceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDetailViewController.swift; sourceTree = "<group>"; };
 		0599B5681F166C1C00CA8FE1 /* nelli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nelli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0599B56D1F166C1C00CA8FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */,
 				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
 				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
+				057CFEA41F2055A90065250C /* PieceDetailViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 			files = (
 				050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */,
 				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
+				057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */,
 				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
 				0569B35C1F1D47470061B34E /* Piece.swift in Sources */,
 				0569B35E1F1D47590061B34E /* Room.swift in Sources */,
@@ -649,7 +653,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -700,7 +704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
