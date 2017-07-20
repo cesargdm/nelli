@@ -58,6 +58,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             self.recognitionTask = nil
         }
         
+        // Bug fixing
         if let recognitionRequest = recognitionRequest {
             recognitionRequest.endAudio()
         }
