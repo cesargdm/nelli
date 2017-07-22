@@ -15,8 +15,55 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    fileprivate var lastString = ""
+
+    //Test
+    //private var timer = Timer()
+    fileprivate var timer:Timer?
+    func startRecordingTimer() {
+        lastString = ""
+        createTimerTimer(4)
+    }
+    func stopRecordingTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    fileprivate func whileRecordingTimer() {
+        createTimerTimer(2)
+    }
+    func createTimerTimer(_ interval:Double) {
+        OperationQueue.main.addOperation({[unowned self] in
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { (_) in
+                self.timer?.invalidate()
+                if(self.lastString.characters.count > 0){
+                    //DO SOMETHING
+                    print("End listening!")
+                    do{
+                        try self.startRecording()
+                    }catch{
+                        
+                    }
+                    self.stopRecordingTimer()
+                    
+                    
+                }else{
+                    print("Still waiting")
+                    /**/
+                    self.whileRecordingTimer()
+                    
+                }
+            }
+        })
+    }
+    
+    //End Test
+    
+
     
     weak var delegate: SpeechRecoginizerDelegate?
+    
+    
     
     override init() {
         super.init()
@@ -38,10 +85,29 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         delegate?.availabilityDidChange(available)
     }
     
+    func stopRecording(){
+        print("StopRecording!")
+        if audioEngine.isRunning{
+            audioEngine.stop()
+            
+            recognitionRequest?.endAudio()
+            
+            // Call stop listening
+            stoppedListening = true
+        }
+        
+        
+        // Call if we stopped listening
+        if (stoppedListening) {
+            delegate?.didEndListening()
+            return
+        }
+    }
+    //variable stoppedListening in no longer local
+    var stoppedListening = false
+
     func startRecording() throws {
-        
-        var stoppedListening = false
-        
+
         // Check if audio is allready running, if it's cancel it
         if audioEngine.isRunning {
             audioEngine.stop()
@@ -49,6 +115,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             
             // Call stop listening
             stoppedListening = true
+            
+            //Stops timer
+            stopRecordingTimer()
         }
         
         // Cancel the previous task if it's running.
@@ -66,9 +135,13 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         // Call if we stopped listening
         if (stoppedListening) {
             delegate?.didEndListening()
+            // Stop recording timer
+            stopRecordingTimer()
             return
         }
-        
+        // Starting the actual recording
+        // Starts timer
+        startRecordingTimer()
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(AVAudioSessionCategoryRecord)
         try audioSession.setMode(AVAudioSessionModeMeasurement)
@@ -90,11 +163,18 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
             var isFinal = false
             
+
+            
             if let result = result {
                 // Call text results
                 self.delegate?.didOutputText(result.bestTranscription.formattedString)
                 isFinal = result.isFinal
+                self.lastString = result.bestTranscription.formattedString
+                self.whileRecordingTimer()
+                print(self.lastString)
             }
+            
+            
             
             if error != nil || isFinal {
                 self.audioEngine.stop()
@@ -104,9 +184,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 self.recognitionTask = nil
                 
                 // Call end listening
-                if (stoppedListening) {
+                if (self.stoppedListening) {
                     self.delegate?.didEndListening()
-                    stoppedListening = true
+                    self.stoppedListening = true
                 }
                 
             }
@@ -124,5 +204,8 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         // Call start listening
         delegate?.didStartListening()
     }
+    
+    
+    
     
 }
