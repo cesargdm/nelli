@@ -717,7 +717,7 @@
 			baseConfigurationReference = 5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8SJU7BAQK5;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nelli;
@@ -732,7 +732,7 @@
 			baseConfigurationReference = F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8SJU7BAQK5;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nelli;

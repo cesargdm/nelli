@@ -13,8 +13,6 @@ import CoreLocation
 import UserNotifications
 import Alamofire
 
-
-
 enum WatsonState: Int {
     case idle = 0, listening, thinking, talking, error
 }

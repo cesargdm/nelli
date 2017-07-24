@@ -11,59 +11,20 @@ import Speech
 
 class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     
+    // Speech recognition variables
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
+    
+    // Audio engine
     private let audioEngine = AVAudioEngine()
-    fileprivate var lastString = ""
-
-    //Test
-    //private var timer = Timer()
-    fileprivate var timer:Timer?
-    func startRecordingTimer() {
-        lastString = ""
-        createTimerTimer(4)
-    }
-    func stopRecordingTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    fileprivate func whileRecordingTimer() {
-        createTimerTimer(2)
-    }
-    func createTimerTimer(_ interval:Double) {
-        OperationQueue.main.addOperation({[unowned self] in
-            self.timer?.invalidate()
-            self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { (_) in
-                self.timer?.invalidate()
-                if(self.lastString.characters.count > 0){
-                    //DO SOMETHING
-                    print("End listening!")
-                    do{
-                        try self.startRecording()
-                    }catch{
-                        
-                    }
-                    self.stopRecordingTimer()
-                    
-                    
-                }else{
-                    print("Still waiting")
-                    /**/
-                    self.whileRecordingTimer()
-                    
-                }
-            }
-        })
-    }
     
-    //End Test
+    // Timer
+    private var lastString = ""
+    private var timer: Timer?
     
-
-    
+    // Custom delegate
     weak var delegate: SpeechRecoginizerDelegate?
-    
-    
     
     override init() {
         super.init()
@@ -80,6 +41,8 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         }
         
     }
+    
+    // MARK: Speech Recognizer
     
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         delegate?.availabilityDidChange(available)
@@ -98,7 +61,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             stoppedListening = true
             
             //Stops timer
-            stopRecordingTimer()
+            resetTimer()
         }
         
         // Cancel the previous task if it's running.
@@ -108,7 +71,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             self.recognitionTask = nil
         }
         
-        // Bug fixing
+        // Bug fixing ?
         if let recognitionRequest = recognitionRequest {
             recognitionRequest.endAudio()
         }
@@ -117,9 +80,10 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         if (stoppedListening) {
             delegate?.didEndListening()
             // Stop recording timer
-            stopRecordingTimer()
+            resetTimer()
             return
         }
+        
         // Starting the actual recording
         // Starts timer
         startRecordingTimer()
@@ -144,8 +108,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
             var isFinal = false
             
-
-            
             if let result = result {
                 // Call text results
                 self.delegate?.didOutputText(result.bestTranscription.formattedString)
@@ -154,9 +116,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 self.whileRecordingTimer()
                 print(self.lastString)
             }
-            
-            
-            
+
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
@@ -186,7 +146,44 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         delegate?.didStartListening()
     }
     
+    // MARK: Timer
     
+    func startRecordingTimer() {
+        lastString = ""
+        setTimer(with: 4)
+    }
     
+    func resetTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    fileprivate func whileRecordingTimer() {
+        setTimer(with: 2)
+    }
+    
+    func setTimer(with interval:Double) {
+        OperationQueue.main.addOperation({[unowned self] in
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { (_) in
+                self.timer?.invalidate()
+                
+                if (self.lastString.characters.count > 0){
+                    // Call to stopRecording
+                    do {
+                        try self.startRecording()
+                    } catch {
+                        print("START RECORDING ERROR")
+                    }
+                    
+                    self.resetTimer()
+                } else {
+                    print("Still waiting")
+                    /**/
+                    self.whileRecordingTimer()
+                }
+            }
+        })
+    }
     
 }
