@@ -85,28 +85,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         delegate?.availabilityDidChange(available)
     }
     
-    func stopRecording(){
-        print("StopRecording!")
-        if audioEngine.isRunning{
-            audioEngine.stop()
-            
-            recognitionRequest?.endAudio()
-            
-            // Call stop listening
-            stoppedListening = true
-        }
-        
-        
-        // Call if we stopped listening
-        if (stoppedListening) {
-            delegate?.didEndListening()
-            return
-        }
-    }
-    //variable stoppedListening in no longer local
-    var stoppedListening = false
-
+    
     func startRecording() throws {
+        var stoppedListening = false
 
         // Check if audio is allready running, if it's cancel it
         if audioEngine.isRunning {
@@ -184,9 +165,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 self.recognitionTask = nil
                 
                 // Call end listening
-                if (self.stoppedListening) {
+                if (stoppedListening) {
                     self.delegate?.didEndListening()
-                    self.stoppedListening = true
+                    stoppedListening = true
                 }
                 
             }
