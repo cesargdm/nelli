@@ -13,7 +13,7 @@ protocol TalkDelegate: class {
     func didFinishPlaying(succesfully: Bool)
 }
 
-class Talk: NSObject, AVAudioPlayerDelegate {
+class SpeakManager: NSObject, AVAudioPlayerDelegate {
     
     var avPlayer: AVAudioPlayer?
     weak var delegate: TalkDelegate?
