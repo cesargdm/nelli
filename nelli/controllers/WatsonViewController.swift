@@ -167,7 +167,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
     }
     
-    // Do not now where it comes from :/
+    // Speech recognizer availability did change
     func availabilityDidChange(_ available: Bool) {
         nelliButton.isEnabled = available
     }
@@ -276,10 +276,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 switch beacon.proximity {
                 case .far:
                     self.setLabelAlpha(0.4) // Indicate that the piece is far
-                case .unknown:
-                    self.setLabelAlpha(0.2) // Disable the button since it's in a unstable distance
-                    self.nelliButton.isEnabled = false
-                default: //Near and inmediate
+                default: //Near and inmediate and unknown
                     self.setLabelAlpha(1)
                     self.nelliButton.isEnabled = true
                 }
