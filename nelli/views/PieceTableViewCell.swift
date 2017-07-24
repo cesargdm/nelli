@@ -10,7 +10,7 @@ import UIKit
 
 class PieceTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var mainView: UIView?
     @IBOutlet weak var pieceImageView: UIImageView!
     @IBOutlet weak var pieceTitleLabel: UILabel!
     @IBOutlet weak var roomLabel: UILabel!
