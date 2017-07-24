@@ -11,17 +11,49 @@ import Alamofire
 
 class Watson {
     
-    private static let API_HOST = "https://mna-guide.mybluemix.net/v1/talk-answer"
+    private static let API_HOST = "https://mna-guide.mybluemix.net/v1"
     
-    static func textToSpeech(text: String, workspaceId: String, callback: @escaping (Data?) -> Void) -> Alamofire.Request {
+    // Function to get AUDIO from text
+    static func speak(text: String, workspace id: String, completion: @escaping (Data?) -> Void) -> Alamofire.Request {
+        let request = Alamofire.request(API_HOST + "/talk", method: .post, parameters: ["text": text, "workspace_id": id], encoding: JSONEncoding.default, headers: nil)
+        
+        request.response { (response) in
+            if var data = response.data {
+                self.repairWAVHeader(data: &data)
+                completion(data)
+            } else {
+                completion(nil)
+            }
+        }
+        
+        return request
+    }
+    
+    // Function to get TEXT answer
+    static func answer(question: String, workspace id: String, completion: @escaping (String?) -> Void) -> Alamofire.Request {
+        let request = Alamofire.request(API_HOST + "/answer", method: .post, parameters: ["question": question, "workspace_id": id], encoding: JSONEncoding.default, headers: nil)
+        
+        request.responseJSON { (response) in
+            if let json = response.result.value as? [String: String] {
+                completion(json["answer"])
+            } else {
+                completion(nil)
+            }
+        }
+        
+        return request
+    }
+    
+    // Functino to get AUDIO aswer from question
+    static func answerAndSpeech(question text: String, workspaceId: String, completion: @escaping (Data?) -> Void) -> Alamofire.Request {
         let request = Alamofire.request(API_HOST, method: .post, parameters: ["question": text, "workspace_id": workspaceId], encoding: JSONEncoding.default, headers: nil)
             
         request.response { (response) in
                 if var data = response.data {
                     self.repairWAVHeader(data: &data)
-                    callback(data)
+                    completion(data)
                 } else {
-                    callback(nil)
+                    completion(nil)
                 }
         }
         
