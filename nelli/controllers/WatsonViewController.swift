@@ -17,6 +17,14 @@ enum WatsonState: Int {
     case idle = 0, listening, thinking, talking, error
 }
 
+func printTimeStamp() {
+    let d = Date()
+    let df = DateFormatter()
+    df.dateFormat = "y-MM-dd H:m:ss.SSSS"
+    
+    print("TIME STAMP:" + df.string(from: d))
+}
+
 class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerDelegate, TalkDelegate {
     
     // Contants
@@ -37,6 +45,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     @IBOutlet weak var ibmImageView: UIImageView!
     
     // Question text
+    private var answer: String?
     private var question: String?
     private var currentWorkspaceId: String?
     
@@ -58,7 +67,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     private var speechRecognizerManager: SpeechRecognizerManager?
     
     // Voice
-    var talk: Talk?
+    var speak: SpeakManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +80,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         }
         
         // Talk
-        talk = Talk()
-        talk?.delegate = self
+        speak = SpeakManager()
+        speak?.delegate = self
         
         // Init beacons manager
         beaconsManager = BeaconsManager(uuid: PROXIMITY_UUID, beaconIdentifier: "beacon")
@@ -103,7 +112,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     @IBAction func watsonTouched(_ sender: UIButton) {
         switch watsonState {
         case .talking:
-            talk?.avPlayer?.stop()
+            speak?.avPlayer?.stop()
             setState(.idle, buttonsEnabled: true)
             return
             
@@ -111,7 +120,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             self.request?.suspend()
             
             // The player may have allready initiated, stop it
-            if let avPlayer = talk?.avPlayer {
+            if let avPlayer = speak?.avPlayer {
                 // Check if its playing
                 if avPlayer.isPlaying {
                     avPlayer.stop()
@@ -200,34 +209,49 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
         
         // Check that we have a question text
-        if question == nil || question == "" {
+        guard question != nil || question != "" else {
             print("No question")
             setState(.idle, buttonsEnabled: true)
             return
-        } else if currentWorkspaceId == nil { // Check that we have a workspaceId
+        }
+        
+        // Check that we have a workspaceId
+        guard currentWorkspaceId != nil else {
             print("No workspace")
             setState(.idle, buttonsEnabled: true)
             return
-        } else {
-            mainLabel.text = "Pensando...\n\"\(question ?? "")\""
-            watsonState = .thinking
+        }
+        
+        mainLabel.text = "Pensando...\n\"\(question ?? "")\""
+        watsonState = .thinking
+        
+        request = Watson.answer(question: question!, workspace: currentWorkspaceId!) { (answer) in
+            guard let answer = answer else {
+                print("Could not get answer")
+                // It can be fired with a request cancel ._. check fix
+                self.setState(.error, buttonsEnabled: true)
+                return
+            }
             
-            request = Watson.textToSpeech(text: question!, workspaceId: currentWorkspaceId!, callback: { (data) in
-                if let audioData = data {
-                    
-                    self.watsonState = .talking
-                    self.mainLabel.text = "Respondiendo..."
-                    
-                    self.talk?.play(data: audioData)
-                    
-                    // TODO
-                    // Stop thinking animation
-                    // Start talking animation
-                } else {
-                    // TODO could not get data
-                    print("Didn't get data")
+            self.answer = answer
+            
+            // TODO
+            // Caché stuff
+            // Show captions button
+            
+            self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
+
+                guard let audio = audio else {
+                    print("Could not get audio")
+                    // It can be fired with a request cancel ._. check fix
                     self.setState(.error, buttonsEnabled: true)
+                    return
                 }
+                
+                self.watsonState = .talking
+                self.mainLabel.text = "Respondiendo..."
+                
+                self.speak?.play(data: audio)
             })
         }
         
