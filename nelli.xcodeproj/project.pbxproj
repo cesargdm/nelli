@@ -11,7 +11,7 @@
 		050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */; };
 		050CB0E81F1D480000C833B3 /* BeaconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E71F1D480000C833B3 /* BeaconsManager.swift */; };
 		050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */; };
-		050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0EB1F1D483800C833B3 /* Voice.swift */; };
+		050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0EB1F1D483800C833B3 /* SpeakManager.swift */; };
 		050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0ED1F1D486600C833B3 /* Watson.swift */; };
 		055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */; };
 		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
@@ -55,7 +55,7 @@
 		050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		050CB0E71F1D480000C833B3 /* BeaconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsManager.swift; sourceTree = "<group>"; };
 		050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
-		050CB0EB1F1D483800C833B3 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
+		050CB0EB1F1D483800C833B3 /* SpeakManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakManager.swift; sourceTree = "<group>"; };
 		050CB0ED1F1D486600C833B3 /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
 		050CB0EF1F1D489600C833B3 /* nelli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nelli.entitlements; sourceTree = "<group>"; };
 		055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 		0569B3561F1D372D0061B34E /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				050CB0EB1F1D483800C833B3 /* SpeakManager.swift */,
 				050CB0E71F1D480000C833B3 /* BeaconsManager.swift */,
 				050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */,
 				055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */,
@@ -194,7 +195,6 @@
 				0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */,
 				0599B56D1F166C1C00CA8FE1 /* ViewController.swift */,
 				0599B56F1F166C1C00CA8FE1 /* Main.storyboard */,
-				050CB0EB1F1D483800C833B3 /* Voice.swift */,
 				050CB0E21F1D47AD00C833B3 /* controllers */,
 				0569B35A1F1D472D0061B34E /* models */,
 				0569B35F1F1D476E0061B34E /* delegates */,
@@ -535,7 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				050CB0EC1F1D483800C833B3 /* Voice.swift in Sources */,
+				050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */,
 				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
 				057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */,
 				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
