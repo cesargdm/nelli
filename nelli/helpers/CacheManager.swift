@@ -2,8 +2,8 @@
 //  CacheManager.swift
 //  nelli
 //
-//  Created by IBM Studio on 7/24/17.
-//  Copyright © 2017 César Guadarrama. All rights reserved.
+//  Created by Isaac Secundino, Marco Aurélio Bigélli Cardoso on 7/24/17.
+//  Copyright © 2017 Isaac Secundino, IBM. All rights reserved.
 //
 
 import Foundation
@@ -73,11 +73,13 @@ class CacheManager {
     
     /* Store data in cache and create a register for it */
     
-    public func storeAnswer(answer: String, data: Data) {
+    public func store(answer: String, data: Data) {
         updateAnswerRegister(message: answer)
         dataToCache(message: answer, data: data)
     }
     
+    //  Created by Marco Aurélio Bigélli Cardoso on 20/01/17.
+    //  Copyright © 2017 IBM. All rights reserved.
     private func dataToCache(message: String, data: Data) {
         
         let finalPath = CacheManager.documentsPath + String(message.hash) + ".wav"
@@ -105,6 +107,8 @@ class CacheManager {
         }
     }
     
+    //  Created by Marco Aurélio Bigélli Cardoso on 20/01/17.
+    //  Copyright © 2017 IBM. All rights reserved.
     private func dataFromCache(message: String) -> Data? {
         
         let finalPath = CacheManager.documentsPath + String(message.hash) + ".wav"
