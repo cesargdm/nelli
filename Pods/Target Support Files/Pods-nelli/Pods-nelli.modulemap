@@ -1,0 +1,6 @@
+framework module Pods_nelli {
+  umbrella header "Pods-nelli-umbrella.h"
+
+  export *
+  module * { export * }
+}

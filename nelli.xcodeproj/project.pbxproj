@@ -1,0 +1,853 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */; };
+		050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */; };
+		050CB0E81F1D480000C833B3 /* BeaconsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E71F1D480000C833B3 /* BeaconsManager.swift */; };
+		050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */; };
+		050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0EB1F1D483800C833B3 /* SpeakManager.swift */; };
+		050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CB0ED1F1D486600C833B3 /* Watson.swift */; };
+		055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */; };
+		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
+		0569B35C1F1D47470061B34E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35B1F1D47470061B34E /* Piece.swift */; };
+		0569B35E1F1D47590061B34E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35D1F1D47590061B34E /* Room.swift */; };
+		057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CFEA41F2055A90065250C /* PieceDetailViewController.swift */; };
+		0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */; };
+		0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56D1F166C1C00CA8FE1 /* ViewController.swift */; };
+		0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0599B56F1F166C1C00CA8FE1 /* Main.storyboard */; };
+		0599B5731F166C1C00CA8FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0599B5721F166C1C00CA8FE1 /* Assets.xcassets */; };
+		0599B5761F166C1C00CA8FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0599B5741F166C1C00CA8FE1 /* LaunchScreen.storyboard */; };
+		0599B5811F166C1C00CA8FE1 /* nelliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B5801F166C1C00CA8FE1 /* nelliTests.swift */; };
+		0599B58C1F166C1C00CA8FE1 /* nelliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B58B1F166C1C00CA8FE1 /* nelliUITests.swift */; };
+		0599B59A1F1670CD00CA8FE1 /* WatsonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */; };
+		0599B59C1F1670D300CA8FE1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59B1F1670D300CA8FE1 /* MapViewController.swift */; };
+		0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */; };
+		0FB613BE8331A5FCDF3DD2C1 /* Pods_nelli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95411867A51AE4814BA24619 /* Pods_nelli.framework */; };
+		4434F6C640F1A3A1A77D2066 /* Pods_nelliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */; };
+		F6447619DABF5B27C2957EE9 /* Pods_nelliUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542118E4544311B203637995 /* Pods_nelliUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0599B57D1F166C1C00CA8FE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0599B5601F166C1C00CA8FE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0599B5671F166C1C00CA8FE1;
+			remoteInfo = nelli;
+		};
+		0599B5881F166C1C00CA8FE1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0599B5601F166C1C00CA8FE1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0599B5671F166C1C00CA8FE1;
+			remoteInfo = nelli;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDelegate.swift; sourceTree = "<group>"; };
+		050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		050CB0E71F1D480000C833B3 /* BeaconsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconsManager.swift; sourceTree = "<group>"; };
+		050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerManager.swift; sourceTree = "<group>"; };
+		050CB0EB1F1D483800C833B3 /* SpeakManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakManager.swift; sourceTree = "<group>"; };
+		050CB0ED1F1D486600C833B3 /* Watson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watson.swift; sourceTree = "<group>"; };
+		050CB0EF1F1D489600C833B3 /* nelli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = nelli.entitlements; sourceTree = "<group>"; };
+		055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
+		0569B35B1F1D47470061B34E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		0569B35D1F1D47590061B34E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		057CFEA41F2055A90065250C /* PieceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDetailViewController.swift; sourceTree = "<group>"; };
+		0599B5681F166C1C00CA8FE1 /* nelli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nelli.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0599B56D1F166C1C00CA8FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0599B5701F166C1C00CA8FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0599B5721F166C1C00CA8FE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0599B5751F166C1C00CA8FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0599B5771F166C1C00CA8FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0599B57C1F166C1C00CA8FE1 /* nelliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nelliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0599B5801F166C1C00CA8FE1 /* nelliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nelliTests.swift; sourceTree = "<group>"; };
+		0599B5821F166C1C00CA8FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0599B5871F166C1C00CA8FE1 /* nelliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nelliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0599B58B1F166C1C00CA8FE1 /* nelliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nelliUITests.swift; sourceTree = "<group>"; };
+		0599B58D1F166C1C00CA8FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatsonViewController.swift; sourceTree = "<group>"; };
+		0599B59B1F1670D300CA8FE1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesViewController.swift; sourceTree = "<group>"; };
+		1F21456D17FBC32508D0E385 /* Pods-nelliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EE6F52F503C15D4015FB05C /* Pods-nelliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.release.xcconfig"; sourceTree = "<group>"; };
+		542118E4544311B203637995 /* Pods_nelliUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelliUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelli/Pods-nelli.debug.xcconfig"; sourceTree = "<group>"; };
+		95411867A51AE4814BA24619 /* Pods_nelli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE391D7ACC449A35928CEF84 /* Pods-nelliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests.release.xcconfig"; sourceTree = "<group>"; };
+		F82258EE54A36488169788E4 /* Pods-nelliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelli.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelli/Pods-nelli.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0599B5651F166C1C00CA8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FB613BE8331A5FCDF3DD2C1 /* Pods_nelli.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B5791F166C1C00CA8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4434F6C640F1A3A1A77D2066 /* Pods_nelliTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B5841F166C1C00CA8FE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6447619DABF5B27C2957EE9 /* Pods_nelliUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		050CB0E21F1D47AD00C833B3 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */,
+				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
+				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
+				057CFEA41F2055A90065250C /* PieceDetailViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		0569B3561F1D372D0061B34E /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				050CB0EB1F1D483800C833B3 /* SpeakManager.swift */,
+				050CB0E71F1D480000C833B3 /* BeaconsManager.swift */,
+				050CB0E91F1D481800C833B3 /* SpeechRecognizerManager.swift */,
+				055B2DCC1F1FD69500E7C8B1 /* NotificationsManager.swift */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		0569B3571F1D37340061B34E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		0569B35A1F1D472D0061B34E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				0569B35B1F1D47470061B34E /* Piece.swift */,
+				0569B35D1F1D47590061B34E /* Room.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		0569B35F1F1D476E0061B34E /* delegates */ = {
+			isa = PBXGroup;
+			children = (
+				050CB0E31F1D47C200C833B3 /* BeaconDelegate.swift */,
+				050CB0E51F1D47D400C833B3 /* SpeechRecognizer.swift */,
+			);
+			path = delegates;
+			sourceTree = "<group>";
+		};
+		0599B55F1F166C1C00CA8FE1 = {
+			isa = PBXGroup;
+			children = (
+				0599B56A1F166C1C00CA8FE1 /* nelli */,
+				0599B57F1F166C1C00CA8FE1 /* nelliTests */,
+				0599B58A1F166C1C00CA8FE1 /* nelliUITests */,
+				0599B5691F166C1C00CA8FE1 /* Products */,
+				1C2DEFAE9B8DD47AFB9B96D2 /* Pods */,
+				CA410AF90D033978748F9E3F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0599B5691F166C1C00CA8FE1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0599B5681F166C1C00CA8FE1 /* nelli.app */,
+				0599B57C1F166C1C00CA8FE1 /* nelliTests.xctest */,
+				0599B5871F166C1C00CA8FE1 /* nelliUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0599B56A1F166C1C00CA8FE1 /* nelli */ = {
+			isa = PBXGroup;
+			children = (
+				050CB0EF1F1D489600C833B3 /* nelli.entitlements */,
+				0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */,
+				0599B56D1F166C1C00CA8FE1 /* ViewController.swift */,
+				0599B56F1F166C1C00CA8FE1 /* Main.storyboard */,
+				050CB0E21F1D47AD00C833B3 /* controllers */,
+				0569B35A1F1D472D0061B34E /* models */,
+				0569B35F1F1D476E0061B34E /* delegates */,
+				0569B3571F1D37340061B34E /* views */,
+				0569B3561F1D372D0061B34E /* helpers */,
+				0599B5721F166C1C00CA8FE1 /* Assets.xcassets */,
+				0599B5741F166C1C00CA8FE1 /* LaunchScreen.storyboard */,
+				0599B5771F166C1C00CA8FE1 /* Info.plist */,
+				050CB0ED1F1D486600C833B3 /* Watson.swift */,
+			);
+			path = nelli;
+			sourceTree = "<group>";
+		};
+		0599B57F1F166C1C00CA8FE1 /* nelliTests */ = {
+			isa = PBXGroup;
+			children = (
+				0599B5801F166C1C00CA8FE1 /* nelliTests.swift */,
+				0599B5821F166C1C00CA8FE1 /* Info.plist */,
+			);
+			path = nelliTests;
+			sourceTree = "<group>";
+		};
+		0599B58A1F166C1C00CA8FE1 /* nelliUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0599B58B1F166C1C00CA8FE1 /* nelliUITests.swift */,
+				0599B58D1F166C1C00CA8FE1 /* Info.plist */,
+			);
+			path = nelliUITests;
+			sourceTree = "<group>";
+		};
+		1C2DEFAE9B8DD47AFB9B96D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */,
+				F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */,
+				F82258EE54A36488169788E4 /* Pods-nelliTests.debug.xcconfig */,
+				CE391D7ACC449A35928CEF84 /* Pods-nelliTests.release.xcconfig */,
+				1F21456D17FBC32508D0E385 /* Pods-nelliUITests.debug.xcconfig */,
+				3EE6F52F503C15D4015FB05C /* Pods-nelliUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA410AF90D033978748F9E3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95411867A51AE4814BA24619 /* Pods_nelli.framework */,
+				3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */,
+				542118E4544311B203637995 /* Pods_nelliUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0599B5671F166C1C00CA8FE1 /* nelli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0599B5901F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelli" */;
+			buildPhases = (
+				6DBFBF13A7BD5C6E3E88E6F8 /* [CP] Check Pods Manifest.lock */,
+				0599B5641F166C1C00CA8FE1 /* Sources */,
+				0599B5651F166C1C00CA8FE1 /* Frameworks */,
+				0599B5661F166C1C00CA8FE1 /* Resources */,
+				21E3B4E049E3E13548C6E2E4 /* [CP] Embed Pods Frameworks */,
+				13282C2959E716D7B11EF368 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = nelli;
+			productName = nelli;
+			productReference = 0599B5681F166C1C00CA8FE1 /* nelli.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0599B57B1F166C1C00CA8FE1 /* nelliTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0599B5931F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelliTests" */;
+			buildPhases = (
+				00720451F230C0284F5EE87B /* [CP] Check Pods Manifest.lock */,
+				0599B5781F166C1C00CA8FE1 /* Sources */,
+				0599B5791F166C1C00CA8FE1 /* Frameworks */,
+				0599B57A1F166C1C00CA8FE1 /* Resources */,
+				46B02F717A22CE2F56A0126E /* [CP] Embed Pods Frameworks */,
+				0FE915F022322649FA53D466 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0599B57E1F166C1C00CA8FE1 /* PBXTargetDependency */,
+			);
+			name = nelliTests;
+			productName = nelliTests;
+			productReference = 0599B57C1F166C1C00CA8FE1 /* nelliTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0599B5861F166C1C00CA8FE1 /* nelliUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0599B5961F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelliUITests" */;
+			buildPhases = (
+				41AD194A09A8964931DB5210 /* [CP] Check Pods Manifest.lock */,
+				0599B5831F166C1C00CA8FE1 /* Sources */,
+				0599B5841F166C1C00CA8FE1 /* Frameworks */,
+				0599B5851F166C1C00CA8FE1 /* Resources */,
+				322670B791FC31CADC4F8683 /* [CP] Embed Pods Frameworks */,
+				EF8D2B0FD45393484F622C30 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0599B5891F166C1C00CA8FE1 /* PBXTargetDependency */,
+			);
+			name = nelliUITests;
+			productName = nelliUITests;
+			productReference = 0599B5871F166C1C00CA8FE1 /* nelliUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0599B5601F166C1C00CA8FE1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "César Guadarrama";
+				TargetAttributes = {
+					0599B5671F166C1C00CA8FE1 = {
+						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
+					};
+					0599B57B1F166C1C00CA8FE1 = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = 0599B5671F166C1C00CA8FE1;
+					};
+					0599B5861F166C1C00CA8FE1 = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = 0599B5671F166C1C00CA8FE1;
+					};
+				};
+			};
+			buildConfigurationList = 0599B5631F166C1C00CA8FE1 /* Build configuration list for PBXProject "nelli" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0599B55F1F166C1C00CA8FE1;
+			productRefGroup = 0599B5691F166C1C00CA8FE1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0599B5671F166C1C00CA8FE1 /* nelli */,
+				0599B57B1F166C1C00CA8FE1 /* nelliTests */,
+				0599B5861F166C1C00CA8FE1 /* nelliUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0599B5661F166C1C00CA8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0599B5761F166C1C00CA8FE1 /* LaunchScreen.storyboard in Resources */,
+				0599B5731F166C1C00CA8FE1 /* Assets.xcassets in Resources */,
+				0599B5711F166C1C00CA8FE1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B57A1F166C1C00CA8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B5851F166C1C00CA8FE1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00720451F230C0284F5EE87B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0FE915F022322649FA53D466 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13282C2959E716D7B11EF368 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelli/Pods-nelli-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21E3B4E049E3E13548C6E2E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelli/Pods-nelli-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		322670B791FC31CADC4F8683 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41AD194A09A8964931DB5210 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		46B02F717A22CE2F56A0126E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DBFBF13A7BD5C6E3E88E6F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EF8D2B0FD45393484F622C30 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0599B5641F166C1C00CA8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */,
+				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
+				057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */,
+				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
+				0569B35C1F1D47470061B34E /* Piece.swift in Sources */,
+				0569B35E1F1D47590061B34E /* Room.swift in Sources */,
+				050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */,
+				050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */,
+				0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */,
+				055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */,
+				050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */,
+				0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */,
+				0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */,
+				050CB0E81F1D480000C833B3 /* BeaconsManager.swift in Sources */,
+				0599B59A1F1670CD00CA8FE1 /* WatsonViewController.swift in Sources */,
+				0599B59C1F1670D300CA8FE1 /* MapViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B5781F166C1C00CA8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0599B5811F166C1C00CA8FE1 /* nelliTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0599B5831F166C1C00CA8FE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0599B58C1F166C1C00CA8FE1 /* nelliUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0599B57E1F166C1C00CA8FE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0599B5671F166C1C00CA8FE1 /* nelli */;
+			targetProxy = 0599B57D1F166C1C00CA8FE1 /* PBXContainerItemProxy */;
+		};
+		0599B5891F166C1C00CA8FE1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0599B5671F166C1C00CA8FE1 /* nelli */;
+			targetProxy = 0599B5881F166C1C00CA8FE1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0599B56F1F166C1C00CA8FE1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0599B5701F166C1C00CA8FE1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0599B5741F166C1C00CA8FE1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0599B5751F166C1C00CA8FE1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0599B58E1F166C1C00CA8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0599B58F1F166C1C00CA8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0599B5911F166C1C00CA8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelli/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nelli;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0599B5921F166C1C00CA8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelli/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nelli;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0599B5941F166C1C00CA8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F82258EE54A36488169788E4 /* Pods-nelliTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelliTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cesargdm.nelliTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nelli.app/nelli";
+			};
+			name = Debug;
+		};
+		0599B5951F166C1C00CA8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE391D7ACC449A35928CEF84 /* Pods-nelliTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelliTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cesargdm.nelliTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nelli.app/nelli";
+			};
+			name = Release;
+		};
+		0599B5971F166C1C00CA8FE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F21456D17FBC32508D0E385 /* Pods-nelliUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelliUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cesargdm.nelliUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = nelli;
+			};
+			name = Debug;
+		};
+		0599B5981F166C1C00CA8FE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EE6F52F503C15D4015FB05C /* Pods-nelliUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = AUR7UR6M72;
+				INFOPLIST_FILE = nelliUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cesargdm.nelliUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = nelli;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0599B5631F166C1C00CA8FE1 /* Build configuration list for PBXProject "nelli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0599B58E1F166C1C00CA8FE1 /* Debug */,
+				0599B58F1F166C1C00CA8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0599B5901F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0599B5911F166C1C00CA8FE1 /* Debug */,
+				0599B5921F166C1C00CA8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0599B5931F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelliTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0599B5941F166C1C00CA8FE1 /* Debug */,
+				0599B5951F166C1C00CA8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0599B5961F166C1C00CA8FE1 /* Build configuration list for PBXNativeTarget "nelliUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0599B5971F166C1C00CA8FE1 /* Debug */,
+				0599B5981F166C1C00CA8FE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0599B5601F166C1C00CA8FE1 /* Project object */;
+}
