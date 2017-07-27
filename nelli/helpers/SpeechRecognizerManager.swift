@@ -98,7 +98,9 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         // Fix for strange bug, occured when 
         inputNode.removeTap(onBus: 0)
         
-        guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object")
+        }
         
         // Configure request so that results are returned before audio recording is finished
         recognitionRequest.shouldReportPartialResults = true
@@ -114,7 +116,6 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
                 isFinal = result.isFinal
                 self.lastString = result.bestTranscription.formattedString
                 self.whileRecordingTimer()
-                print(self.lastString)
             }
 
             if error != nil || isFinal {
