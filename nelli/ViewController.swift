@@ -52,6 +52,9 @@ class ViewController: UIViewController, WatsonDelegate {
             viewController.didMove(toParentViewController: self)
         }
         
+        // Delete unsued audio data from cache
+        CacheManager.deleteExpiredFilesFromCache()
+        CacheManager.printRegistersTime()
     }
     
     func onMoveTo(viewNumber: Int) {
