@@ -238,23 +238,36 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             // TODO
             // Caché stuff
             // Show captions button
+            let cache = CacheManager()
+            var audioData: Data?
             
-            self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
-
-                guard let audio = audio else {
-                    print("Could not get audio")
-                    // It can be fired with a request cancel ._. check fix
-                    self.setState(.error, buttonsEnabled: true)
-                    return
-                }
+            // Search audio on cache
+            if let dataFromCache = cache.getAnswer(answer: answer) {
+                audioData = dataFromCache
+                print("Played from cache: \(answer)")
+            } else {
                 
-                self.watsonState = .talking
-                self.mainLabel.text = "Respondiendo..."
-                
-                self.speak?.play(data: audio)
-            })
+                self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
+                    
+                    guard let audio = audio else {
+                        print("Could not get audio")
+                        // It can be fired with a request cancel ._. check fix
+                        self.setState(.error, buttonsEnabled: true)
+                        return
+                    }
+                    
+                    // Save audio from request
+                    cache.storeAnswer(answer: answer, data: audio)
+                    audioData = audio
+                    print("Played from request: \(answer)")
+                    
+                })
+            }
+            
+            self.watsonState = .talking
+            self.mainLabel.text = "Respondiendo..."
+            self.speak?.play(data: audioData!)
         }
-        
     }
     
     func didStartListening() {
