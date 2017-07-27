@@ -41,7 +41,6 @@ class NotificationsManager {
                 print("User notification request error.\n\(error)")
                 return
             }
-            print("Completed!")
         })
     }
 }
