@@ -54,17 +54,13 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     var request: Alamofire.Request?
     
     // CONSTANTS
-    private let COLOR_TOP = UIColor(red: 0/255, green: 158/255, blue: 255/255, alpha: 1)
-    private let COLOR_BOTTOM = UIColor(red: 0/255, green: 42/255, blue: 69/255, alpha: 1)
-    
-    private var pieces:[Int:[Piece]] = [Int:[Piece]]()
+    private var pieces = Piece.getPieces()
     private let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
-    // Beacons manager
+    // Managers/helpers
     private var beaconsManager: BeaconsManager?
-    
-    // Speech recognizer
     private var speechRecognizerManager: SpeechRecognizerManager?
+    private let cache = CacheManager()
     
     // Voice
     var speak: SpeakManager?
@@ -103,10 +99,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
         // Set main label text align
         mainLabel.textAlignment = .center
-        
-        // Setup the pieces array
-        pieces = Piece.getPieces()
-        
+
     }
     
     @IBAction func watsonTouched(_ sender: UIButton) {
@@ -151,13 +144,15 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         delegate?.onMoveTo(viewNumber: tag)
     }
     
+    // MARK: Audio player
+    
     func didFinishPlaying(succesfully: Bool) {
-        // TODO
+        // TODO: Missing
         // End talking animation
         setState(.idle, buttonsEnabled: true)
     }
     
-    // Localization sate
+    // Localization state
     func didChangeAuthorization(_ authorized: Bool) {
         // Required to perform in main queue
         OperationQueue.main.addOperation() {
@@ -176,11 +171,6 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
     }
     
-    // Speech recognizer availability did change
-    func availabilityDidChange(_ available: Bool) {
-        nelliButton.isEnabled = available
-    }
-    
     func setState(_ state: WatsonState, buttonsEnabled enabled: Bool) {
         watsonState = state
         
@@ -192,6 +182,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             self.inahImageView.alpha = CGFloat(enabled.hashValue)/2
             self.ibmImageView.alpha = CGFloat(enabled.hashValue)/2
         }
+        
         self.mapButton.isEnabled = enabled
         self.discoverButton.isEnabled = enabled
         
@@ -200,13 +191,13 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         }
     }
     
+    // MARK: - Speech
+    
     func didEndListening() {
         
-        // TODO
-        // End listening animation
+        // TODO: Missing
         // Start thinking animation
         mainLabel.text = nil
-        
         
         // Check that we have a question text
         guard question != nil || question != "" else {
@@ -226,110 +217,128 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         watsonState = .thinking
         
         request = Watson.answer(question: question!, workspace: currentWorkspaceId!) { (answer) in
+            
             guard let answer = answer else {
-                print("Could not get answer")
+                print("Could not get text answer")
+                // TODO: Fix
                 // It can be fired with a request cancel ._. check fix
+                
                 self.setState(.error, buttonsEnabled: true)
                 return
             }
             
             self.answer = answer
             
-            // TODO
-            // Caché stuff
-            // Show captions button
-            let cache = CacheManager()
-            var audioData: Data?
-            
-            // Search audio on cache
-            if let dataFromCache = cache.getAnswer(answer: answer) {
-                audioData = dataFromCache
-                print("Played from cache: \(answer)")
-            } else {
+            // Check if we have data from caché
+            if let dataFromCache = self.cache.getAnswer(answer: answer) {
                 
-                self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
-                    
-                    guard let audio = audio else {
-                        print("Could not get audio")
-                        // It can be fired with a request cancel ._. check fix
-                        self.setState(.error, buttonsEnabled: true)
-                        return
-                    }
-                    
-                    // Save audio from request
-                    cache.storeAnswer(answer: answer, data: audio)
-                    audioData = audio
-                    print("Played from request: \(answer)")
-                    
-                })
+                // Talk data from caché
+                self.speak(data: dataFromCache)
+                
+                return
             }
             
-            self.watsonState = .talking
-            self.mainLabel.text = "Respondiendo..."
-            self.speak?.play(data: audioData!)
+            // If not make the request
+            self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
+
+                guard let audio = audio else {
+                    print("Could not get audio response")
+                    // TODO: Fix
+                    // It can be fired with a request cancel ._. check fix
+                    
+                    self.setState(.error, buttonsEnabled: true)
+                    return
+                }
+                
+                // Talk response
+                self.speak(data: audio)
+                
+                // Save audio from request
+                self.cache.store(answer: answer, data: audio)
+
+            })
+            
         }
     }
     
+    func speak(data: Data) {
+        self.watsonState = .talking
+        self.mainLabel.text = "Respondiendo..."
+        self.speak?.play(data: data)
+    }
+    
+    // Speech recognizer availability did change
+    func availabilityDidChange(_ available: Bool) {
+        nelliButton.isEnabled = available
+    }
+    
     func didStartListening() {
-        // TODO
-        // Start listening animation
+        // TODO: Missing
+        // Listening animation
         mainLabel.text = "Escuchando..."
         question = ""
         setState(.listening, buttonsEnabled: false)
     }
     
-    // MARK: Beacons
+    // MARK: - Beacons
     
     func didFoundClosestBeacon(_ beacon: CLBeacon?) {
         
-        if let beacon = beacon {
-            
-            self.nelliButton.isEnabled = true
-            
-            let major = beacon.major.intValue
-            let minor = beacon.minor.intValue
-            if let piece = pieces[major]?[minor] {
-                
-                // Send notification is we find other piece (beacon)
-                if (currentWorkspaceId != piece.workspaceId) {
-                    
-                    NotificationsManager.sendNotificationWith(
-                        title: NOTIFICATION_TITLE,
-                        body: "Estás cerca de la pieza \(piece.title), empieza a preguntar",
-                        identifier: "closeToPiece"
-                    )
-                    
-                }
-                
-                // Set workspaceId
-                self.currentWorkspaceId = piece.workspaceId
-                
-                // Set label's text and alpha
-                if (watsonState == .idle) {
-                    setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
-                }
-                
-                // Change alpha based on proximity
-                switch beacon.proximity {
-                case .far:
-                    self.setLabelAlpha(0.4) // Indicate that the piece is far
-                default: //Near and inmediate and unknown
-                    self.setLabelAlpha(1)
-                    self.nelliButton.isEnabled = true
-                }
-            }
-        } else {
+        guard let beacon = beacon else {
             // If we dont't have a closet beacon invite to move around and if we dont have a question around
             self.nelliButton.isEnabled = false
+            
             if (watsonState == .idle) {
                 setLabelText(text: GO_CLOSER, room: nil, alpha: 1)
             }
+            
+            return
+        }
+        
+        self.nelliButton.isEnabled = true
+        
+        let major = beacon.major.intValue
+        let minor = beacon.minor.intValue
+        if let piece = pieces[major]?[minor] {
+            
+            // Send notification is we find other piece (beacon)
+            if (currentWorkspaceId != piece.workspaceId) {
+                
+                NotificationsManager.sendNotificationWith(
+                    title: NOTIFICATION_TITLE,
+                    body: "Estás cerca de la pieza \(piece.title), empieza a preguntar",
+                    identifier: "closeToPiece"
+                )
+                
+            }
+            
+            // Set workspaceId
+            currentWorkspaceId = piece.workspaceId
+            
+            // Set label's text and alpha only if it's idle
+            if (watsonState == .idle) {
+                setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
+            }
+            
+            // Change alpha based on proximity
+            switch beacon.proximity {
+            case .far:
+                setLabelAlpha(0.4) // Indicate that the piece is far
+            default: //Near and inmediate and unknown
+                setLabelAlpha(1)
+                nelliButton.isEnabled = true
+            }
+
         }
     }
     
+    // MARK: - UI Changes
+    
     func setLabelAlpha(_ alpha: Float) {
         
-        
+        UIView.animate(withDuration: 1.0) {
+            self.mainLabel.alpha = CGFloat(alpha)
+        }
         
     }
     
