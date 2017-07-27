@@ -9,11 +9,12 @@
 import UIKit
 
 class PieceDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
 
     @IBOutlet weak var pieceTableView: UITableView!
     var piece: Piece?
-
+    
+    var pieceImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +48,8 @@ class PieceDetailViewController: UIViewController, UITableViewDelegate, UITableV
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! PieceTableViewCell
             cell.setData(pieceTitle: piece?.title ?? "", room: piece?.room.stringValue ?? "")
+            cell.pieceImageView.image = pieceImage
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath)

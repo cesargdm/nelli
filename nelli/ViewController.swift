@@ -16,6 +16,8 @@ class ViewController: UIViewController, WatsonDelegate {
     
     @IBOutlet weak var containerScrollView: UIScrollView!
     
+    static var selectedPieceImageView: UIImageView?
+    
     // Get the bounds width and height
     let bounds = UIScreen.main.bounds
     
