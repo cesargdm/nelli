@@ -29,7 +29,11 @@ class Piece {
             Piece("Ocelocuauhxicalli", room: .mexica, workspaceId: "1e8f7277-c44c-4933-8ee7-bae318428a73")
         ]
         pieces[1] = [
-            Piece("Dintel 26", room: .maya, workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91"),
+            Piece(
+                "Dintel 26",
+                room: .maya,
+                workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91"
+            ),
             Piece("Tumba de Pakal", room: .maya, workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"),
             Piece("Chac Mool", room: .maya, workspaceId: "e1ea6765-3399-4367-85e6-47425605f8b6"),
             Piece("Piedra de Tizoc", room: .maya, workspaceId: "e3fab98f-daaa-47d8-b4b4-dd65775f7f82")

@@ -20,6 +20,9 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         piecesTableView.delegate = self
         piecesTableView.dataSource = self
+        
+        // Add refresh control
+        piecesTableView.refreshControl = refreshControl
 
     }
     
@@ -67,5 +70,26 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
     }
+    
+    @objc
+    private func reloadPieces() {
+        refreshControl.attributedTitle = NSAttributedString(string: ReloadMessage.random(), attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            self.refreshControl.endRefreshing()
+        })
+    }
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadPieces), for: UIControlEvents.valueChanged)
+        
+        // Set title
+        refreshControl.attributedTitle = NSAttributedString(string: ReloadMessage.random(), attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
+        
+        // Set background black
+        refreshControl.backgroundColor = UIColor.black
+        return refreshControl
+    }()
 
 }
