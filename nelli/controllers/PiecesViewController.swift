@@ -77,6 +77,8 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
             self.refreshControl.endRefreshing()
+            
+            self.refreshControl.attributedTitle = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
         })
     }
     
@@ -85,7 +87,7 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.addTarget(self, action: #selector(reloadPieces), for: UIControlEvents.valueChanged)
         
         // Set title
-        refreshControl.attributedTitle = NSAttributedString(string: ReloadMessage.random(), attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
+        refreshControl.attributedTitle = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor : UIColor.gray])
         
         // Set background black
         refreshControl.backgroundColor = UIColor.black
