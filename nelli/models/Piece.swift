@@ -11,41 +11,77 @@ class Piece {
     let title: String
     let room: Room
     let workspaceId: String
-    
-    init (_ title:String, room: Room, workspaceId: String, description: String, origin: String, dimensions: String) {
+
+    init (_ title:String, room: Room, workspaceId: String) {
         self.title = title
         self.room = room
         self.workspaceId = workspaceId
     }
-    
+
     static func getPieces() -> [Int:[Piece]] {
         var pieces:[Int:[Piece]] = [Int:[Piece]]()
         pieces[0] = [
-            Piece("Friso Estucado", room: .mexica, workspaceId: "e2b7f5ad-eb36-4e45-a824-70e1af62e8be"),
-            Piece("Piedra del Sol", room: .mexica, workspaceId: "99d3e78d-8e38-448a-903b-d887c5bf3dd3"),
-            Piece("Coatlicue", room: .access, workspaceId: "f46bba7b-6355-463a-aaa7-d51386612d50"),
-            Piece("Penacho de Moctezuma", room: .mexica, workspaceId: "e151b746-d91c-480c-8137-5cce7294201d"),
-            Piece("Coyolxauhqui", room: .mexica, workspaceId: "6c1de7f2-109e-48d6-9418-db2b58b31bde"),
-            Piece("Ocelocuauhxicalli", room: .mexica, workspaceId: "1e8f7277-c44c-4933-8ee7-bae318428a73")
+            Piece(
+                "Friso Estucado",
+                room: .mexica,
+                workspaceId: "36b526c1-e082-4805-9987-2adfaa82c81c"
+              ),
+            Piece(
+                "Piedra del Sol",
+                room: .mexica,
+                workspaceId: "073ea817-fbef-4051-8f3e-5c4a164a3850"
+              ),
+            Piece(
+                "Coatlicue",
+                room: .access,
+                workspaceId: "43c62df1-4638-4583-b429-83391dd5b703"
+              ),
+            Piece(
+                "Penacho de Moctezuma",
+                room: .mexica,
+                workspaceId: "dcc9709b-8188-4917-bab2-6d11d1f748ed"
+              ),
+            Piece(
+                "Coyolxauhqui",
+                room: .mexica,
+                workspaceId: "f9ef9583-9983-4565-9ba3-c049728831a6"
+              ),
+            Piece(
+                "Ocelocuauhxicalli",
+                room: .mexica,
+                workspaceId: "d70bc353-b5dd-442c-9fdf-bd29348cea31"
+              )
         ]
         pieces[1] = [
             Piece(
                 "Dintel 26",
                 room: .maya,
-                workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91",
-                description: "",
-                origin: "",
-                dimensions: "",
-                
+                workspaceId: "0af5181c-cee1-4aa1-9a9d-8afa70f69290"
             ),
-            Piece("Tumba de Pakal", room: .maya, workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"),
-            Piece("Chac Mool", room: .maya, workspaceId: "e1ea6765-3399-4367-85e6-47425605f8b6"),
-            Piece("Piedra de Tizoc", room: .maya, workspaceId: "e3fab98f-daaa-47d8-b4b4-dd65775f7f82")
+            Piece(
+                "Tumba de Pakal",
+                room: .maya,
+                workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"
+            ),
+            Piece(
+                "Chac Mool",
+                room: .maya,
+                workspaceId: "7547a3e5-c402-45a3-abd2-e75c6c8295a5"
+            ),
+            Piece(
+                "Piedra de Tizoc",
+                room: .maya,
+                workspaceId: "a8be1ed9-06ce-4f83-a3b3-caa844c8652a"
+            )
         ]
         pieces[2] = [
-            Piece("Mural Dualidad", room: .access, workspaceId: "e2b7f5ad-eb36-4e45-a824-70e1af62e8be")
+            Piece(
+                "Mural Dualidad",
+                room: .access,
+                workspaceId: "348f53b4-2538-4281-ae19-d98e6393ab14"
+            )
         ]
-        
+
         return pieces
     }
 }
