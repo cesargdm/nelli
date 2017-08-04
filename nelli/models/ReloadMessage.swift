@@ -11,9 +11,14 @@ import Foundation
 struct ReloadMessage {
     
     private static let dictionary = [
-        "Contactando con Quetzatcoatl",
-        "Reconstruyendo a Coyolxauqui",
-        "Danza para la lluvia 🌧"
+        "Reconstruyendo a la Coyolxauqui",
+        "Danza para la lluvia 💃🌧",
+        "Enviando mensaje a Quetzatcoatl 🐍",
+        "Conectando con el supramundo...",
+        "Gracias a César, Martín e Isaac 👨🏽‍💻",
+        "🕳 Abriendo un portal con la historia...",
+        "🚢 Navegando sobre un mar de cultura...",
+        "👁🐝M"
     ]
     
     static func random() -> String {
