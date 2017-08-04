@@ -304,6 +304,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             // Send notification is we find other piece (beacon)
             if (currentWorkspaceId != piece.workspaceId) {
                 
+                // Vibrate
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                
                 NotificationsManager.sendNotificationWith(
                     title: NOTIFICATION_TITLE,
                     body: "Estás cerca de la pieza \(piece.title), empieza a preguntar",
