@@ -12,7 +12,7 @@ class Piece {
     let room: Room
     let workspaceId: String
     
-    init (_ title:String, room: Room, workspaceId: String) {
+    init (_ title:String, room: Room, workspaceId: String, description: String, origin: String, dimensions: String) {
         self.title = title
         self.room = room
         self.workspaceId = workspaceId
@@ -32,7 +32,11 @@ class Piece {
             Piece(
                 "Dintel 26",
                 room: .maya,
-                workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91"
+                workspaceId: "1ea9af05-c530-4e56-8c54-eaf95fb13f91",
+                description: "",
+                origin: "",
+                dimensions: "",
+                
             ),
             Piece("Tumba de Pakal", room: .maya, workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"),
             Piece("Chac Mool", room: .maya, workspaceId: "e1ea6765-3399-4367-85e6-47425605f8b6"),
