@@ -13,7 +13,7 @@ class CacheManager {
     private static let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/"
     private static let AUDIO_REGISTERS = "AUDIO_REGISTERS"
     private static let A_DAY = 86400 as Double
-    private static let MAX_TIME_UNUSED = CacheManager.A_DAY * 1
+    private static let MAX_TIME_UNUSED = CacheManager.A_DAY * 7
     
     private var registers: [String: Double] = [:]
     
