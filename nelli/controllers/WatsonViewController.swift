@@ -381,9 +381,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         switch segue.identifier! {
         case "transcriptSegue":
             let destionation = segue.destination as! CaptionsViewController
-            destionation.answer = answer ?? ""
-            destionation.question = question ?? ""
-
+            destionation.setText(question: question ?? "", answer: answer ?? "")
+            
         default:
             return
         }

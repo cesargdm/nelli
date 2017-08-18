@@ -651,7 +651,9 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="answerLabel" destination="HIj-2U-WhM" id="3Md-CF-fil"/>
                         <outlet property="containerView" destination="ZX4-ld-vL2" id="fNK-Fo-eeA"/>
+                        <outlet property="questionLabel" destination="7Qb-tV-eL8" id="1dZ-rr-4aN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7U-c4-x1f" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -11,13 +11,18 @@ import UIKit
 class CaptionsViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
-    var question = ""
-    var answer = ""
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var answerLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         containerView.layer.cornerRadius = 20
+    }
+    
+    func setText(question: String, answer: String) {
+        questionLabel.text = question
+        answerLabel.text = answer
     }
 
     @IBAction func dimiss(_ sender: UIButton) {
