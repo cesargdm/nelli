@@ -29,6 +29,7 @@
 		0599B59A1F1670CD00CA8FE1 /* WatsonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */; };
 		0599B59C1F1670D300CA8FE1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59B1F1670D300CA8FE1 /* MapViewController.swift */; };
 		0599B59E1F1670DA00CA8FE1 /* PiecesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */; };
+		05AECF3C1F474AB500AC67BA /* CaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AECF3B1F474AB500AC67BA /* CaptionsViewController.swift */; };
 		05E0E1401F2A4B350078CF8C /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0E13F1F2A4B350078CF8C /* CacheManager.swift */; };
 		0FB613BE8331A5FCDF3DD2C1 /* Pods_nelli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95411867A51AE4814BA24619 /* Pods_nelli.framework */; };
 		4434F6C640F1A3A1A77D2066 /* Pods_nelliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */; };
@@ -82,6 +83,7 @@
 		0599B5991F1670CD00CA8FE1 /* WatsonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatsonViewController.swift; sourceTree = "<group>"; };
 		0599B59B1F1670D300CA8FE1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesViewController.swift; sourceTree = "<group>"; };
+		05AECF3B1F474AB500AC67BA /* CaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionsViewController.swift; sourceTree = "<group>"; };
 		05E0E13F1F2A4B350078CF8C /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		1F21456D17FBC32508D0E385 /* Pods-nelliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelliTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
 				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
 				057CFEA41F2055A90065250C /* PieceDetailViewController.swift */,
+				05AECF3B1F474AB500AC67BA /* CaptionsViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 			files = (
 				050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */,
 				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
+				05AECF3C1F474AB500AC67BA /* CaptionsViewController.swift in Sources */,
 				057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */,
 				05E0E1401F2A4B350078CF8C /* CacheManager.swift in Sources */,
 				0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */,
