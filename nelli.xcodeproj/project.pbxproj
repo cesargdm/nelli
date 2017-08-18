@@ -33,6 +33,7 @@
 		05E0E1401F2A4B350078CF8C /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E0E13F1F2A4B350078CF8C /* CacheManager.swift */; };
 		0FB613BE8331A5FCDF3DD2C1 /* Pods_nelli.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95411867A51AE4814BA24619 /* Pods_nelli.framework */; };
 		4434F6C640F1A3A1A77D2066 /* Pods_nelliTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E8AACC545B57776641F3 /* Pods_nelliTests.framework */; };
+		86DEF7B31F4776EC005BC921 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DEF7B21F4776EC005BC921 /* InfoTableViewCell.swift */; };
 		F6447619DABF5B27C2957EE9 /* Pods_nelliUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542118E4544311B203637995 /* Pods_nelliUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		3EE6F52F503C15D4015FB05C /* Pods-nelliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelliUITests/Pods-nelliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		542118E4544311B203637995 /* Pods_nelliUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelliUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelli.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelli/Pods-nelli.debug.xcconfig"; sourceTree = "<group>"; };
+		86DEF7B21F4776EC005BC921 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		95411867A51AE4814BA24619 /* Pods_nelli.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nelli.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE391D7ACC449A35928CEF84 /* Pods-nelliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests.release.xcconfig"; sourceTree = "<group>"; };
 		F82258EE54A36488169788E4 /* Pods-nelliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nelliTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nelliTests/Pods-nelliTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */,
+				86DEF7B21F4776EC005BC921 /* InfoTableViewCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				050CB0EC1F1D483800C833B3 /* SpeakManager.swift in Sources */,
+				86DEF7B31F4776EC005BC921 /* InfoTableViewCell.swift in Sources */,
 				050CB0EE1F1D486600C833B3 /* Watson.swift in Sources */,
 				05AECF3C1F474AB500AC67BA /* CaptionsViewController.swift in Sources */,
 				057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */,
