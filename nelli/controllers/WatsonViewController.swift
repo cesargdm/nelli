@@ -36,6 +36,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     
     // Outlets
     @IBOutlet weak var mainLabel: UILabel! // This label is an attributed label, meaning that it can handle multiple text styles in the same label
+    @IBOutlet weak var showTextView: UIView!
     @IBOutlet weak var nelliButton: UIButton! // Watson button
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var discoverButton: UIButton!
@@ -97,6 +98,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         gradient.frame = self.view.bounds // Set gradient view bounds
         self.view.layer.insertSublayer(gradient, at: 0) // Insert gradient sublayer
         
+        self.showTextView.transform = CGAffineTransform(translationX: 0, y: 66)
+        
         // Set main label text align
         mainLabel.textAlignment = .center
 
@@ -149,6 +152,11 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     func didFinishPlaying(succesfully: Bool) {
         // TODO: Missing
         // End talking animation
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
+            self.showTextView.transform = CGAffineTransform(translationX: 0, y: 66)
+        }, completion: nil)
+        
         setState(.idle, buttonsEnabled: true)
     }
     
@@ -189,6 +197,12 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         if (enabled) {
             self.question = nil
         }
+    }
+    
+    // MARK: - Transcript
+    
+    @IBAction func showTranscript(_ sender: UIButton) {
+        performSegue(withIdentifier: "transcriptSegue", sender: self)
     }
     
     // MARK: - Speech
@@ -264,6 +278,11 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     func speak(data: Data) {
         self.watsonState = .talking
         self.mainLabel.text = "Respondiendo..."
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 10.0, options: .curveEaseInOut, animations: {
+            self.showTextView.transform = CGAffineTransform(translationX: 0, y: 0)
+        }, completion: nil)
+        
         self.speak?.play(data: data)
     }
     
@@ -276,6 +295,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         // TODO: Missing
         // Listening animation
         mainLabel.text = "Escuchando..."
+    
         question = ""
         setState(.listening, buttonsEnabled: false)
     }
@@ -354,6 +374,18 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
         if let alpha = alpha {
             setLabelAlpha(alpha)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier! {
+        case "transcriptSegue":
+            let destionation = segue.destination as! CaptionsViewController
+            destionation.answer = answer ?? ""
+            destionation.question = question ?? ""
+
+        default:
+            return
         }
     }
 
