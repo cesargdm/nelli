@@ -61,7 +61,7 @@ class Piece {
             Piece(
                 "Tumba de Pakal",
                 room: .maya,
-                workspaceId: "536e6b75-98d7-41ae-bbad-4f1d776e56a6"
+                workspaceId: "b4e9b2df-1073-44b7-a9f8-9dbe1117588e"
             ),
             Piece(
                 "Chac Mool",
