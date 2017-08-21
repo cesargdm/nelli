@@ -34,8 +34,8 @@ struct PieceIconView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.textColor = UIColor(red: 3/255, green: 52/255, blue: 89/255, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        
+        label.font = UIFont.systemFont(ofSize: 16, weight: 600)
+
         let imageView = UIImageView(image: UIImage(named: name))
         imageView.contentMode = .scaleAspectFit
         imageView.frame.size = self.view.frame.size
@@ -60,7 +60,7 @@ class MayaMapManager: NSObject, UIScrollViewDelegate {
     
     var pieceIcons: [PieceIconView] = []
     
-    func set(scrollView: UIScrollView, mapWidth: CGFloat, pieceIcons: [PieceIconView]) {
+    func set(_ scrollView: UIScrollView, mapWidth: CGFloat, pieceIcons: [PieceIconView]) {
         salaMayaMap.clipsToBounds = false
         salaMayaMap.frame = CGRect(x: 0, y: 0, width: mapWidth, height: mapWidth)
         
@@ -111,7 +111,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
              PieceIconView(name: "Friso Estucado", size: 60, position: CGPoint(x: 330, y: 255))
         ]
         
-        mayaMapManager.set(scrollView: scrollSalaMayaMap, mapWidth: viewWidth, pieceIcons: pieceIcons)
+        mayaMapManager.set(scrollSalaMayaMap, mapWidth: viewWidth, pieceIcons: pieceIcons)
         
         scrollSalaMayaMap.delegate = mayaMapManager
         scrollSalaMayaMap.minimumZoomScale = 1.0
@@ -130,7 +130,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         
         let salaMayaLabel = UILabel(frame: CGRect(x: viewWidth - 160, y: 0, width: viewWidth, height: 40))
         salaMayaLabel.text = "Sala Maya"
-        salaMayaLabel.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.bold)
+        salaMayaLabel.font = UIFont.systemFont(ofSize: 30, weight: 600)
         salaMayaLabel.textColor = .white
         
         mapScrollView.addSubview(scrollSalaMayaMap)
@@ -139,7 +139,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func back(_ sender: UIBarButtonItem) {
-        delegate?.onMoveTo(viewNumber: 1)
+        delegate?.onMoveTo(1)
     }
     
 }

@@ -11,15 +11,15 @@ import Alamofire
 
 class Watson {
     
-    private static let API_HOST = "https://mna-guide.mybluemix.net/v1"
+    fileprivate static let API_HOST = "https://mna-guide.mybluemix.net/v1"
     
     // Function to get AUDIO from text
-    static func speak(text: String, workspace id: String, completion: @escaping (Data?) -> Void) -> Alamofire.Request {
+    static func speak(_ text: String, workspace id: String, completion: @escaping (Data?) -> Void) -> Alamofire.Request {
         let request = Alamofire.request(API_HOST + "/talk", method: .post, parameters: ["text": text, "workspace_id": id], encoding: JSONEncoding.default, headers: nil)
         
         request.response { (response) in
             if var data = response.data {
-                self.repairWAVHeader(data: &data)
+                self.repairWAVHeader(&data)
                 completion(data)
             } else {
                 completion(nil)
@@ -30,7 +30,7 @@ class Watson {
     }
     
     // Function to get TEXT answer
-    static func answer(question: String, workspace id: String, completion: @escaping (String?) -> Void) -> Alamofire.Request {
+    static func answer(_ question: String, workspace id: String, completion: @escaping (String?) -> Void) -> Alamofire.Request {
         let request = Alamofire.request(API_HOST + "/answer", method: .post, parameters: ["question": question, "workspace_id": id], encoding: JSONEncoding.default, headers: nil)
         
         request.responseJSON { (response) in
@@ -50,7 +50,7 @@ class Watson {
             
         request.response { (response) in
                 if var data = response.data {
-                    self.repairWAVHeader(data: &data)
+                    self.repairWAVHeader(&data)
                     completion(data)
                 } else {
                     completion(nil)
@@ -61,7 +61,7 @@ class Watson {
     }
     
     // Three functions from WDC to repair WAV header:
-    static func repairWAVHeader(data: inout Data) {
+    static func repairWAVHeader(_ data: inout Data) {
         
         // resources for WAV header format:
         // [1] http://unusedino.de/ec64/technical/formats/wav.html
@@ -91,14 +91,14 @@ class Watson {
             }
             
             // read subchunk ID
-            subchunkID = dataToUTF8String(data: data, offset: fieldOffset, length: fieldSize)
+            subchunkID = dataToUTF8String(data, offset: fieldOffset, length: fieldSize)
             fieldOffset += fieldSize
             if subchunkID == "data" {
                 break
             }
             
             // read subchunk size
-            subchunkSize = dataToUInt32(data: data, offset: fieldOffset)
+            subchunkSize = dataToUInt32(data, offset: fieldOffset)
             fieldOffset += fieldSize + subchunkSize
         }
         
@@ -110,13 +110,13 @@ class Watson {
         data.replaceSubrange(Range(uncheckedBounds: (lower: fieldOffset, upper: fieldOffset+fieldSize)), with: dataSubchunkSizeData)
     }
     
-    static func dataToUTF8String(data: Data, offset: Int, length: Int) -> String? {
+    static func dataToUTF8String(_ data: Data, offset: Int, length: Int) -> String? {
         let range = Range(uncheckedBounds: (lower: offset, upper: offset + length))
         let subdata = data.subdata(in: range)
         return String(data: subdata, encoding: String.Encoding.utf8)
     }
     
-    static func dataToUInt32(data: Data, offset: Int) -> Int {
+    static func dataToUInt32(_ data: Data, offset: Int) -> Int {
         var num: UInt8 = 0
         let length = 4
         let range = Range(uncheckedBounds: (lower: offset, upper: offset + length))

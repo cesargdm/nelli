@@ -11,7 +11,7 @@ import UserNotifications
 
 class NotificationsManager {
     
-    static func getAuthorizationStatus(handler: @escaping (UNNotificationSettings) -> Void)   {
+    static func getAuthorizationStatus(_ handler: @escaping (UNNotificationSettings) -> Void)   {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings(completionHandler: handler)
     }
@@ -26,7 +26,7 @@ class NotificationsManager {
         }
     }
     
-    static func sendNotificationWith(title: String, body: String, identifier: String) {
+    static func sendNotificationWith(_ title: String, body: String, identifier: String) {
         print("Sending notification \(title)\n\(body)")
         let content = UNMutableNotificationContent()
         content.title = title

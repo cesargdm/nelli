@@ -27,7 +27,7 @@ class InfoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(info: String) {
+    func setData(_ info: String) {
         infoTitle.text = "Información"
         pieceInformation.text = info
     }

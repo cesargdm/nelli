@@ -12,16 +12,16 @@ import Speech
 class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
     
     // Speech recognition variables
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))!
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var recognitionTask: SFSpeechRecognitionTask?
+    fileprivate let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-MX"))!
+    fileprivate var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    fileprivate var recognitionTask: SFSpeechRecognitionTask?
     
     // Audio engine
-    private let audioEngine = AVAudioEngine()
+    fileprivate let audioEngine = AVAudioEngine()
     
     // Timer
-    private var lastString = ""
-    private var timer: Timer?
+    fileprivate var lastString = ""
+    fileprivate var timer: Timer?
     
     // Custom delegate
     weak var delegate: SpeechRecoginizerDelegate?
@@ -96,7 +96,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
         
         let inputNode = audioEngine.inputNode
         // Fix for strange bug, occured when 
-        inputNode.removeTap(onBus: 0)
+        inputNode?.removeTap(onBus: 0)
         
         guard let recognitionRequest = recognitionRequest else {
             fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object")
@@ -120,7 +120,7 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
 
             if error != nil || isFinal {
                 self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
+                inputNode?.removeTap(onBus: 0)
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
@@ -134,8 +134,8 @@ class SpeechRecognizerManager: NSObject, SFSpeechRecognizerDelegate  {
             }
         }
         
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+        let recordingFormat = inputNode?.outputFormat(forBus: 0)
+        inputNode?.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
             self.recognitionRequest?.append(buffer)
         }
         

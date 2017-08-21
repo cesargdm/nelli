@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 
 protocol TalkDelegate: class {
-    func didFinishPlaying(succesfully: Bool)
+    func didFinishPlaying(_ succesfully: Bool)
 }
 
 class SpeakManager: NSObject, AVAudioPlayerDelegate {
@@ -33,16 +33,16 @@ class SpeakManager: NSObject, AVAudioPlayerDelegate {
         avPlayer = nil
         
         // Call delegate
-        delegate?.didFinishPlaying(succesfully: flag)
+        delegate?.didFinishPlaying(flag)
     }
     
-    func play(data: Data) {
+    func play(_ data: Data) {
         do {
             // AVAudioSessionCategoryPlayAndRecord
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            avPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.wav.rawValue)
+            avPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileTypeWAVE)
             avPlayer?.delegate = self
             avPlayer?.volume = 1.0
             avPlayer?.play()

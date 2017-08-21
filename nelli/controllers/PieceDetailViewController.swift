@@ -50,7 +50,7 @@ class PieceDetailViewController: UIViewController, UITableViewDelegate, UITableV
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
-            cell.setData(info: piece?.information ?? "")
+            cell.setData(piece?.information ?? "")
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "mapCell", for: indexPath)
