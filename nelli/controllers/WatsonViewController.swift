@@ -202,6 +202,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     // MARK: - Transcript
     
     @IBAction func showTranscript(_ sender: UIButton) {
+        print("Show transcript")
         performSegue(withIdentifier: "transcriptSegue", sender: self)
     }
     
@@ -245,7 +246,6 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             
             // Check if we have data from caché
             if let dataFromCache = self.cache.getAnswer(answer: answer) {
-                
                 // Talk data from caché
                 self.speak(data: dataFromCache)
                 
@@ -269,7 +269,6 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 
                 // Save audio from request
                 self.cache.store(answer: answer, data: audio)
-
             })
             
         }
@@ -380,9 +379,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier! {
         case "transcriptSegue":
-            let destionation = segue.destination as! CaptionsViewController
-            destionation.setText(question: question ?? "", answer: answer ?? "")
-            
+            let destination = segue.destination as! CaptionsViewController
+            destination.answer = answer
+            destination.question = question
         default:
             return
         }
