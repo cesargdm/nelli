@@ -15,6 +15,8 @@ class PieceTableViewCell: UITableViewCell {
     @IBOutlet weak var pieceTitleLabel: UILabel!
     @IBOutlet weak var roomLabel: UILabel!
     
+    
+    
     var piece: Piece?
     
     override func awakeFromNib() {
