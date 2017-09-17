@@ -10,7 +10,7 @@ import Foundation
 
 struct ReloadMessage {
     
-    private static let dictionary = [
+    fileprivate static let dictionary = [
         "Reconstruyendo a la Coyolxauqui",
         "Danza para la lluvia 💃🌧",
         "Enviando mensaje a Quetzatcoatl 🐍",

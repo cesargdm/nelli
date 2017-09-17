@@ -10,12 +10,12 @@ import Foundation
 
 class CacheManager {
     
-    private static let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/"
-    private static let AUDIO_REGISTERS = "AUDIO_REGISTERS"
-    private static let A_DAY = 86400 as Double
-    private static let MAX_TIME_UNUSED = CacheManager.A_DAY * 7
+    fileprivate static let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/"
+    fileprivate static let AUDIO_REGISTERS = "AUDIO_REGISTERS"
+    fileprivate static let A_DAY = 86400 as Double
+    fileprivate static let MAX_TIME_UNUSED = CacheManager.A_DAY * 7
     
-    private var registers: [String: Double] = [:]
+    fileprivate var registers: [String: Double] = [:]
     
     init() {
         let dictionary = UserDefaults.standard.object(forKey: CacheManager.AUDIO_REGISTERS)
@@ -30,7 +30,7 @@ class CacheManager {
      * This file and its register are deleted
      */
     
-    public static func deleteExpiredFilesFromCache() {
+    open static func deleteExpiredFilesFromCache() {
         
         let dic = UserDefaults.standard.object(forKey: CacheManager.AUDIO_REGISTERS)
         if dic != nil {
@@ -40,7 +40,7 @@ class CacheManager {
             for register in registers {
                 let regDate = register.value
                 if currentDate - regDate > CacheManager.MAX_TIME_UNUSED {
-                    CacheManager.deleteAnswer(answerHash: register.key)
+                    CacheManager.deleteAnswer(register.key)
                 }
             }
         }
@@ -48,23 +48,23 @@ class CacheManager {
     
     /* Delete data and register */
     
-    public static func deleteAnswer(answerHash: String) {
+    open static func deleteAnswer(_ answerHash: String) {
         do {
-            try deleteDataFromCache(fileName: answerHash)
-            removeAnswerRegister(fileName: answerHash)
+            try deleteDataFromCache(answerHash)
+            removeAnswerRegister(answerHash)
         }
         catch {
             print("The file of [" + answerHash + ".wav] couldn't be deleted")
         }
     }
     
-    private static func removeAnswerRegister(fileName: String) {
+    fileprivate static func removeAnswerRegister(_ fileName: String) {
         var dic = CacheManager.getRegisterDictionary()
         dic.removeValue(forKey: fileName)
         UserDefaults.standard.set(dic, forKey: CacheManager.AUDIO_REGISTERS)
     }
     
-    private static func deleteDataFromCache(fileName: String) throws {
+    fileprivate static func deleteDataFromCache(_ fileName: String) throws {
         
         let finalPath = CacheManager.documentsPath + fileName + ".wav"
         try FileManager.default.removeItem(atPath: finalPath)

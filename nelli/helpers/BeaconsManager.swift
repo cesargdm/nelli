@@ -18,7 +18,7 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
     weak var delegate: BeaconDelegate?
     
     // CONSTANTS
-    private var pieces = Piece.getPieces()
+    fileprivate var pieces = Piece.getPieces()
     
     init(uuid: String, beaconIdentifier: String) {
         super.init()
@@ -79,7 +79,7 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
                     closestBeacon = beacons[index]
                 }
             }
-            if(isBeaconRangeValid( beaconToValidate: closestBeacon! )){
+            if(isBeaconRangeValid( closestBeacon! )){
                 delegate?.didFoundClosestBeacon(closestBeacon)
             }else{
                 delegate?.didFoundClosestBeacon(nil)
@@ -94,11 +94,11 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
     
     
     
-    func isBeaconRangeValid( beaconToValidate: CLBeacon ) -> Bool {
+    func isBeaconRangeValid( _ beaconToValidate: CLBeacon ) -> Bool {
         
-        let major = beaconToValidate.major.intValue
-        let minor = beaconToValidate.minor.intValue
-        print("prox:\(beaconToValidate.proximity.rawValue)")
+        let major = Int(beaconToValidate.major.int32Value)
+        let minor = Int(beaconToValidate.minor.int32Value)
+        
         if let piece = pieces[major]?[minor] {
             if(piece.minRange >= beaconToValidate.accuracy && beaconToValidate.accuracy >= 0 ){
                 return true

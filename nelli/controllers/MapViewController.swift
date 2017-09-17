@@ -16,15 +16,18 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        //let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+
 
         mapImageView.isUserInteractionEnabled = true
         mapImageView.addGestureRecognizer(tapGestureRecognizer)
 
     }
 
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        var touchPoint = tapGestureRecognizer.location(in: self.mapImageView)
+        @objc func imageTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+        var touchPoint = gestureRecognizer.location(in: self.mapImageView)
 
         touchPoint.x = touchPoint.x *  (mapImageView.image?.size.width)! / mapImageView.frame.width
         touchPoint.y = touchPoint.y *  (mapImageView.image?.size.height)! / mapImageView.frame.height
@@ -47,7 +50,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func back(_ sender: UIBarButtonItem) {
-        delegate?.onMoveTo(viewNumber: 1)
+        delegate?.onMoveTo(1)
     }
 
 }

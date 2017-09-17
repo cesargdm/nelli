@@ -47,22 +47,22 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     @IBOutlet weak var ibmImageView: UIImageView!
     
     // Question text
-    private var answer: String?
-    private var question: String?
-    private var currentWorkspaceId: String?
+    fileprivate var answer: String?
+    fileprivate var question: String?
+    fileprivate var currentWorkspaceId: String?
     
     // Variables
     var watsonState: WatsonState = .idle
     var request: Alamofire.Request?
     
     // CONSTANTS
-    private var pieces = Piece.getPieces()
-    private let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
+    fileprivate var pieces = Piece.getPieces()
+    fileprivate let PROXIMITY_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
     // Managers/helpers
-    private var beaconsManager: BeaconsManager?
-    private var speechRecognizerManager: SpeechRecognizerManager?
-    private let cache = CacheManager()
+    fileprivate var beaconsManager: BeaconsManager?
+    fileprivate var speechRecognizerManager: SpeechRecognizerManager?
+    fileprivate let cache = CacheManager()
     
     // Voice
     var speak: SpeakManager?
@@ -145,12 +145,12 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     @IBAction func moveTo(_ sender: UIButton) {
         // The tag is like an id defined in the storyboard
         let tag = sender.tag
-        delegate?.onMoveTo(viewNumber: tag)
+        delegate?.onMoveTo(tag)
     }
     
     // MARK: Audio player
     
-    func didFinishPlaying(succesfully: Bool) {
+    func didFinishPlaying(_ succesfully: Bool) {
         // TODO: Missing
         // End talking animation
         
@@ -232,7 +232,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         mainLabel.text = "Pensando...\n\"\(question ?? "")\""
         watsonState = .thinking
         
-        request = Watson.answer(question: question!, workspace: currentWorkspaceId!) { (answer) in
+        request = Watson.answer(question!, workspace: currentWorkspaceId!) { (answer) in
             
             guard let answer = answer else {
                 print("Could not get text answer")
@@ -248,13 +248,13 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             // Check if we have data from caché
             if let dataFromCache = self.cache.getAnswer(answer: answer) {
                 // Talk data from caché
-                self.speak(data: dataFromCache)
+                self.speak(dataFromCache)
                 
                 return
             }
             
             // If not make the request
-            self.request = Watson.speak(text: answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
+            self.request = Watson.speak(answer, workspace: self.currentWorkspaceId!, completion: { (audio) in
 
                 guard let audio = audio else {
                     print("Could not get audio response")
@@ -266,7 +266,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 }
                 
                 // Talk response
-                self.speak(data: audio)
+                self.speak(audio)
                 
                 // Save audio from request
                 self.cache.store(answer: answer, data: audio)
@@ -275,7 +275,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         }
     }
     
-    func speak(data: Data) {
+    func speak(_ data: Data) {
         self.watsonState = .talking
         self.mainLabel.text = "Respondiendo..."
         
@@ -283,7 +283,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             self.showTextView.transform = CGAffineTransform(translationX: 0, y: 0)
         }, completion: nil)
         
-        self.speak?.play(data: data)
+        self.speak?.play(data)
     }
     
     // Speech recognizer availability did change
@@ -313,7 +313,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 backgroundImage.image = UIImage(named: "Regadera")
                 
                 // Set label
-                setLabelText(text: GO_CLOSER, room: nil, alpha: 1, fontSize: 24)
+                setLabelText(GO_CLOSER, room: nil, alpha: 1, fontSize: 24)
             }
             
             return
@@ -321,8 +321,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
         self.nelliButton.isEnabled = true
         
-        let major = beacon.major.intValue
-        let minor = beacon.minor.intValue
+        let major = Int(beacon.major.int32Value)
+        let minor = Int(beacon.minor.int32Value)
+        
         if let piece = pieces[major]?[minor] {
             
             // Send notification is we find other piece (beacon)
@@ -332,7 +333,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 
                 NotificationsManager.sendNotificationWith(
-                    title: NOTIFICATION_TITLE,
+                    NOTIFICATION_TITLE,
                     body: "Estás cerca de la pieza \(piece.title), empieza a preguntar",
                     identifier: "closeToPiece"
                 )
@@ -347,7 +348,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             
             // Set label's text and alpha only if it's idle
             if (watsonState == .idle) {
-                setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1, fontSize: 34)
+                setLabelText(piece.title, room: piece.room.stringValue, alpha: 1, fontSize: 34)
             }
             
             // Change alpha based on proximity
@@ -372,9 +373,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
     }
     
-    func setLabelText(text: String?, room: String?, alpha: Float?, fontSize: Int) {
-        let mainText = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: UIFont.Weight.regular)])
-        let room = NSAttributedString(string: room != nil ? "\n\(room!)" : "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.medium)])
+    func setLabelText(_ text: String?, room: String?, alpha: Float?, fontSize: Int) {
+        let mainText = NSMutableAttributedString(string: text ?? "", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 34, weight: 2)])
+        let room = NSAttributedString(string: room != nil ? "\n\(room!)" : "", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 22, weight: 1)])
         mainText.append(room)
         
         mainLabel.attributedText = mainText

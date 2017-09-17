@@ -9,7 +9,7 @@
 import UIKit
 
 protocol WatsonDelegate: class {
-    func onMoveTo(viewNumber: Int) -> Void
+    func onMoveTo(_ viewNumber: Int) -> Void
 }
 
 class ViewController: UIViewController, WatsonDelegate {
@@ -57,7 +57,7 @@ class ViewController: UIViewController, WatsonDelegate {
         CacheManager.printRegistersTime()
     }
     
-    func onMoveTo(viewNumber: Int) {
+    func onMoveTo(_ viewNumber: Int) {
         containerScrollView.setContentOffset(CGPoint(x: bounds.width*CGFloat(viewNumber),y: 0), animated: true)
     }
     
