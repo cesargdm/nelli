@@ -379,12 +379,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmN-LP-hEf">
-                                <rect key="frame" x="24" y="252.00000000000003" width="366" height="46.666666666666714"/>
+                                <rect key="frame" x="24" y="237.33333333333337" width="366" height="60.666666666666629"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Acércate a una pieza para preguntar a Nelli">
+                                    <fragment content="Acércate a una pieza para preguntar">
                                         <attributes>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <font key="NSFont" size="20" name=".SFNSDisplay"/>
+                                            <font key="NSFont" size="26" name=".SFNSDisplay"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
