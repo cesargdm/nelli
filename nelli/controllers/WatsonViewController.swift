@@ -43,7 +43,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     @IBOutlet weak var discoverButton: UIButton!
     @IBOutlet weak var discoverLabel: UILabel!
     @IBOutlet weak var mapLabel: UILabel!
-    @IBOutlet weak var inahImageView: UIImageView!
+//    @IBOutlet weak var inahImageView: UIImageView!
     @IBOutlet weak var ibmImageView: UIImageView!
     
     // Question text
@@ -188,7 +188,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             self.discoverButton.alpha = CGFloat(enabled.hashValue)
             self.mapLabel.alpha = CGFloat(enabled.hashValue)
             self.discoverLabel.alpha = CGFloat(enabled.hashValue)
-            self.inahImageView.alpha = CGFloat(enabled.hashValue)/2
+//            self.inahImageView.alpha = CGFloat(enabled.hashValue)/2
             self.ibmImageView.alpha = CGFloat(enabled.hashValue)/2
         }
         
@@ -313,7 +313,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 backgroundImage.image = UIImage(named: "Regadera")
                 
                 // Set label
-                setLabelText(text: GO_CLOSER, room: nil, alpha: 1)
+                setLabelText(text: GO_CLOSER, room: nil, alpha: 1, fontSize: 24)
             }
             
             return
@@ -347,7 +347,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             
             // Set label's text and alpha only if it's idle
             if (watsonState == .idle) {
-                setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1)
+                setLabelText(text: piece.title, room: piece.room.stringValue, alpha: 1, fontSize: 34)
             }
             
             // Change alpha based on proximity
@@ -372,8 +372,8 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
         
     }
     
-    func setLabelText(text: String?, room: String?, alpha: Float?) {
-        let mainText = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 34, weight: UIFont.Weight.regular)])
+    func setLabelText(text: String?, room: String?, alpha: Float?, fontSize: Int) {
+        let mainText = NSMutableAttributedString(string: text ?? "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: CGFloat(fontSize), weight: UIFont.Weight.regular)])
         let room = NSAttributedString(string: room != nil ? "\n\(room!)" : "", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.medium)])
         mainText.append(room)
         

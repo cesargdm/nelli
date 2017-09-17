@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -395,13 +395,6 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inah-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Nzm-QP-4H0">
-                                <rect key="frame" x="8" y="698" width="70" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1E1-7c-Wqx"/>
-                                    <constraint firstAttribute="width" constant="70" id="73h-H3-zAI"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mapa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rh-iQ-H0N">
                                 <rect key="frame" x="355" y="58" width="39" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -457,12 +450,14 @@
                                     <constraint firstAttribute="width" constant="75" id="yLp-ov-njW"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logos_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Mm-LEO">
-                                <rect key="frame" x="0.0" y="670" width="414" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logos_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Mm-LEO">
+                                <rect key="frame" x="0.0" y="668" width="414" height="60"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                 </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Wew-Cq-aNs"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.57254901960000004" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -471,6 +466,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="9rh-iQ-H0N" secondAttribute="trailing" id="4pd-I9-tuv"/>
                             <constraint firstItem="5NZ-Ex-Elw" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leadingMargin" constant="8" id="AhW-1C-mDc"/>
                             <constraint firstItem="HFa-0y-xHh" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="Dbp-5P-6Jb"/>
+                            <constraint firstItem="dgA-Mm-LEO" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" id="HbL-Qy-Xgz"/>
                             <constraint firstItem="9rh-iQ-H0N" firstAttribute="top" secondItem="HFa-0y-xHh" secondAttribute="bottom" id="JO7-e1-CYf"/>
                             <constraint firstItem="p3d-et-FL2" firstAttribute="top" secondItem="osD-x6-IaL" secondAttribute="top" id="K9e-Ur-64a"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="KXV-zk-yHa"/>
@@ -482,13 +478,12 @@
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="centerY" secondItem="osD-x6-IaL" secondAttribute="centerY" constant="60" id="a1h-g8-GJh"/>
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="top" secondItem="dmN-LP-hEf" secondAttribute="bottom" constant="30" id="a5W-re-ZQh"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="24" id="cL3-3d-N8o"/>
+                            <constraint firstAttribute="trailing" secondItem="dgA-Mm-LEO" secondAttribute="trailing" id="cTh-9n-Wc2"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="centerX" secondItem="AVy-jL-Hj8" secondAttribute="centerX" id="cVV-8X-kXT"/>
-                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="Nzm-QP-4H0" secondAttribute="bottom" constant="8" id="f4r-c1-eJ9"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="dgA-Mm-LEO" secondAttribute="bottom" constant="8" id="f65-Xb-eAX"/>
                             <constraint firstItem="p3d-et-FL2" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" id="lCf-UI-VOe"/>
                             <constraint firstAttribute="trailing" secondItem="dmN-LP-hEf" secondAttribute="trailing" constant="24" id="pjM-ds-yDq"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="5NZ-Ex-Elw" secondAttribute="bottom" constant="16" id="qLM-6Q-Ete"/>
-                            <constraint firstItem="Nzm-QP-4H0" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="8" id="yMz-Ad-Scr"/>
                             <constraint firstItem="AVy-jL-Hj8" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="zh4-bR-VYQ"/>
                         </constraints>
                     </view>
@@ -497,7 +492,6 @@
                         <outlet property="discoverButton" destination="AVy-jL-Hj8" id="2wa-hL-44A"/>
                         <outlet property="discoverLabel" destination="h2N-gO-UVc" id="baE-A6-8JF"/>
                         <outlet property="ibmImageView" destination="dgA-Mm-LEO" id="Xz6-aj-ysA"/>
-                        <outlet property="inahImageView" destination="Nzm-QP-4H0" id="qni-fL-W4B"/>
                         <outlet property="mainLabel" destination="dmN-LP-hEf" id="3Db-fX-mwk"/>
                         <outlet property="mapButton" destination="HFa-0y-xHh" id="UVO-gz-YpU"/>
                         <outlet property="mapLabel" destination="9rh-iQ-H0N" id="9hB-Y8-vu7"/>
@@ -726,7 +720,6 @@
     <resources>
         <image name="Piedra del Sol" width="2000" height="2000"/>
         <image name="close" width="30" height="30"/>
-        <image name="inah-logo" width="80" height="80"/>
         <image name="left" width="30" height="30"/>
         <image name="logos_footer" width="2763" height="447"/>
         <image name="map-icon" width="30" height="30"/>
