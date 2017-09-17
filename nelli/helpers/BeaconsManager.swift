@@ -17,6 +17,9 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
     var locationManager: CLLocationManager?
     weak var delegate: BeaconDelegate?
     
+    // CONSTANTS
+    private var pieces = Piece.getPieces()
+    
     init(uuid: String, beaconIdentifier: String) {
         super.init()
         
@@ -60,17 +63,50 @@ class BeaconsManager: NSObject, CLLocationManagerDelegate {
             return
         }
         
+        
+        
+        print(("----------------"))
         for index in 0..<numberOfBeacons {
+            //print("[PRE]index:\(index)")
+            //print("isNIL:\(closestBeacon==nil)")
+
             if (closestBeacon == nil) {
+                //print("NILclosest:\(index)")
                 closestBeacon = beacons[index]
             } else {
-                if (index+1 == numberOfBeacons-1 && beacons[index+1].accuracy > 0 && beacons[index+1].accuracy < closestBeacon!.accuracy) {
-                    closestBeacon = beacons[index+1]
+                if (beacons[index].accuracy > 0 && beacons[index].accuracy < closestBeacon!.accuracy ) {
+                    //print("STUFF")
+                    closestBeacon = beacons[index]
                 }
             }
+            if(isBeaconRangeValid( beaconToValidate: closestBeacon! )){
+                delegate?.didFoundClosestBeacon(closestBeacon)
+            }else{
+                delegate?.didFoundClosestBeacon(nil)
+            }
+            print("[REAL]index:\(index)")
+            print("[\(beacons[index].major)][\(beacons[index].minor)] \(beacons[index].accuracy) > 0 && [\(beacons[index].major)][\(beacons[index].minor)]\(beacons[index].accuracy) < [\(closestBeacon!.major)][\(closestBeacon!.minor)] \(closestBeacon!.accuracy)")
+            
         }
+        print(("----------------"))
         
-        delegate?.didFoundClosestBeacon(closestBeacon)
+    }
+    
+    
+    
+    func isBeaconRangeValid( beaconToValidate: CLBeacon ) -> Bool {
+        
+        let major = beaconToValidate.major.intValue
+        let minor = beaconToValidate.minor.intValue
+        print("prox:\(beaconToValidate.proximity.rawValue)")
+        if let piece = pieces[major]?[minor] {
+            if(piece.minRange >= beaconToValidate.accuracy && beaconToValidate.accuracy >= 0 ){
+                return true
+            }else{
+                return false
+            }
+        }
+        return false
     }
     
     func startScanning() {
