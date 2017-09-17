@@ -105,7 +105,7 @@ class MapViewController: UIViewController, UIScrollViewDelegate {
         let scrollSalaMayaMap = UIScrollView()
         
         let pieceIcons = [
-            PieceIconView(name: "Dintel 26", size: 60, position: CGPoint(x: 188, y: 165)),
+             PieceIconView(name: "Dintel 26", size: 60, position: CGPoint(x: 188, y: 165)),
              PieceIconView(name: "Chac Mool", size: 60, position: CGPoint(x: 330, y: 180)),
              PieceIconView(name: "Tumba de Pakal", size: 60, position: CGPoint(x: 188, y: 245)),
              PieceIconView(name: "Friso Estucado", size: 60, position: CGPoint(x: 330, y: 255))
