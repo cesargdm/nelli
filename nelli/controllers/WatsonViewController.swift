@@ -35,6 +35,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     weak var delegate: WatsonDelegate?
     
     // Outlets
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var mainLabel: UILabel! // This label is an attributed label, meaning that it can handle multiple text styles in the same label
     @IBOutlet weak var showTextView: UIView!
     @IBOutlet weak var nelliButton: UIButton! // Watson button
@@ -308,6 +309,10 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
             self.nelliButton.isEnabled = false
             
             if (watsonState == .idle) {
+                // Set default background image
+                backgroundImage.image = UIImage(named: "Regadera")
+                
+                // Set label
                 setLabelText(text: GO_CLOSER, room: nil, alpha: 1)
             }
             
@@ -333,6 +338,9 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
                 )
                 
             }
+            
+            // Set background image
+            backgroundImage.image = UIImage(named: piece.title)
             
             // Set workspaceId
             currentWorkspaceId = piece.workspaceId

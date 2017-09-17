@@ -349,6 +349,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p3d-et-FL2" userLabel="backgroundImage">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" red="0.27450980390000002" green="0.57254901960000004" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMK-G2-7lR">
                                 <rect key="frame" x="107" y="328" width="200" height="200"/>
                                 <constraints>
@@ -463,12 +467,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.57254901960000004" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="p3d-et-FL2" secondAttribute="trailing" id="42P-im-i7I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9rh-iQ-H0N" secondAttribute="trailing" id="4pd-I9-tuv"/>
                             <constraint firstItem="5NZ-Ex-Elw" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leadingMargin" constant="8" id="AhW-1C-mDc"/>
                             <constraint firstItem="HFa-0y-xHh" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="Dbp-5P-6Jb"/>
                             <constraint firstItem="dgA-Mm-LEO" firstAttribute="trailing" secondItem="osD-x6-IaL" secondAttribute="trailingMargin" constant="8" id="J5P-S3-I2T"/>
                             <constraint firstItem="9rh-iQ-H0N" firstAttribute="top" secondItem="HFa-0y-xHh" secondAttribute="bottom" id="JO7-e1-CYf"/>
+                            <constraint firstItem="p3d-et-FL2" firstAttribute="top" secondItem="osD-x6-IaL" secondAttribute="top" id="K9e-Ur-64a"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="KXV-zk-yHa"/>
+                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="p3d-et-FL2" secondAttribute="bottom" id="Mwl-i7-kJb"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="top" secondItem="AVy-jL-Hj8" secondAttribute="bottom" id="Q2g-pK-eWG"/>
                             <constraint firstItem="9rh-iQ-H0N" firstAttribute="centerX" secondItem="HFa-0y-xHh" secondAttribute="centerX" id="S5Y-be-akH"/>
                             <constraint firstItem="xMK-G2-7lR" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="SFo-5w-VDl"/>
@@ -479,6 +486,7 @@
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="centerX" secondItem="AVy-jL-Hj8" secondAttribute="centerX" id="cVV-8X-kXT"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="Nzm-QP-4H0" secondAttribute="bottom" constant="8" id="f4r-c1-eJ9"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="dgA-Mm-LEO" secondAttribute="bottom" constant="8" id="f65-Xb-eAX"/>
+                            <constraint firstItem="p3d-et-FL2" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" id="lCf-UI-VOe"/>
                             <constraint firstAttribute="trailing" secondItem="dmN-LP-hEf" secondAttribute="trailing" constant="24" id="pjM-ds-yDq"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="5NZ-Ex-Elw" secondAttribute="bottom" constant="16" id="qLM-6Q-Ete"/>
                             <constraint firstItem="Nzm-QP-4H0" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="8" id="yMz-Ad-Scr"/>
@@ -486,6 +494,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="p3d-et-FL2" id="VG1-nw-eoH"/>
                         <outlet property="discoverButton" destination="AVy-jL-Hj8" id="2wa-hL-44A"/>
                         <outlet property="discoverLabel" destination="h2N-gO-UVc" id="baE-A6-8JF"/>
                         <outlet property="ibmImageView" destination="dgA-Mm-LEO" id="Xz6-aj-ysA"/>
@@ -500,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnJ-QF-eDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="805.54722638680664"/>
+            <point key="canvasLocation" x="-79.710144927536234" y="805.43478260869574"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="N2d-5J-o4t">
