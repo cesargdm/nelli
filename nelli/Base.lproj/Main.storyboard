@@ -349,13 +349,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMK-G2-7lR">
+                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMK-G2-7lR">
                                 <rect key="frame" x="107" y="328" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="IrV-zc-WjX"/>
                                     <constraint firstAttribute="height" constant="200" id="lxH-iY-fpn"/>
                                 </constraints>
-                                <state key="normal" image="watson"/>
+                                <state key="normal" image="watson_circuloazul"/>
                                 <connections>
                                     <action selector="watsonTouched:" destination="i4K-PX-dz5" eventType="touchUpInside" id="lqy-yp-8PM"/>
                                 </connections>
@@ -723,6 +723,6 @@
         <image name="mapas solos v1" width="500" height="889"/>
         <image name="piece" width="30" height="30"/>
         <image name="right" width="30" height="30"/>
-        <image name="watson" width="1333" height="1333"/>
+        <image name="watson_circuloazul" width="1901" height="1901"/>
     </resources>
 </document>
