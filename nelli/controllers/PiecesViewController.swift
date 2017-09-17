@@ -13,7 +13,7 @@ class PiecesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var piecesTableView: UITableView!
     
     weak var delegate: WatsonDelegate?
-    let pieces = Piece.getPieces()
+    let pieces = Piece.getPiecesSorted()
     
     override func viewDidLoad() {
         super.viewDidLoad()

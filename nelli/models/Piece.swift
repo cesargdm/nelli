@@ -21,6 +21,31 @@ class Piece {
         self.minRange = minRange
         self.information = info
     }
+    //Not scalable solution (HARDCODED) due to time constraints
+    static func getPiecesSorted() -> [Int:[Piece]] {
+        var sorted:[Int:[Piece]] = [Int:[Piece]]()
+        var pieces:[Int:[Piece]] = getPieces()
+        sorted[0] = pieces[2]
+        sorted[1] = pieces[0]
+        sorted[2] = pieces[1]
+        
+        sorted[1]![0] = pieces[0]![2]
+        sorted[1]![1] = pieces[0]![4]
+        sorted[1]![2] = pieces[0]![0]
+        sorted[1]![3] = pieces[0]![5]
+        sorted[1]![4] = pieces[0]![3]
+        sorted[1]![5] = pieces[0]![1]
+        
+        sorted[2]![0] = pieces[1]![2]
+        sorted[2]![1] = pieces[1]![0]
+        sorted[2]![2] = pieces[1]![3]
+        sorted[2]![3] = pieces[1]![1]
+        
+        
+        
+    
+        return sorted
+    }
 
     static func getPieces() -> [Int:[Piece]] {
         var pieces:[Int:[Piece]] = [Int:[Piece]]()
@@ -41,7 +66,7 @@ class Piece {
               ),
             Piece(
                 "Coatlicue",
-                room: .access,
+                room: .mexica,
                 workspaceId: "43c62df1-4638-4583-b429-83391dd5b703",
                 minRange: 4,
                 info: "Monumento que sintetiza numerosos significados y asociaciones del pensamiento y la estética de los antiguos mexicanos. Representa a una mujer decapitada y parcialmente desmembrada, con atributos que la relacionan con la tierra, la muerte y con seres sobrenaturales del cielo nocturno. Se ha identificado particularmente con la diosa Coatlicue, madre de Huitzilopochtli, el dios patrono de los mexicas. La escultura fue encontrada en 1790 durante las obras de remodelación de la Plaza Mayor de la capital de la Nueva España."
@@ -81,7 +106,7 @@ class Piece {
                 room: .maya,
                 workspaceId: "b4e9b2df-1073-44b7-a9f8-9dbe1117588e",
                 minRange: 7,
-                info: "Not found"
+                info: "El sarcófago y la tapa fueron tallados en un gran bloque de piedra; por su peso y su tamaño se piensa que fueron construidos antes que la pirámide. El relieve de la tapa muestra Pakal como un adulto vigoroso, cayendo en las fauces de la Serpiente de Hueso Blanco, una de las entradas al Inframundo. La copa alcanza los cielos, y sobre ella descansa Itzam Yeh, el ave celeste que acompaña al Dios Itzamnaaj. La inscripción del borde de la tapa, da la fecha de la muerte de ocho generaciones de gobernantes anteriores a Pakal, del 524 al 643 d.C., año en que su padre muere. La inscripción del frente refiere su nacimiento en 603 y su muerte en 683, y dice que fue hijo de Na Sak K’uku’ (Señora quetzal Blanco) y de K’an Mo’ Hix (preciosos Jaguar Guacamaya). Los Gobernantes precedentes, retratados en los lados del sarcófago, salen de una grieta en la tierra junto con un árbol, indicando su transformación en antepasados venerados y la regeneración."
             ),
             Piece(
                 "Chac Mool",
@@ -104,7 +129,7 @@ class Piece {
                 room: .access,
                 workspaceId: "348f53b4-2538-4281-ae19-d98e6393ab14",
                 minRange: 11,
-                info: "Not found"
+                info: "El tema de la obra sintetiza el pensamiento prehispánico representado por el antiguo mito cosmogónico nahua: el eterno conflicto de Quetzalcoátl (serpiente emplumada) y Tezcatlipoca (jaguar). El principio dual que rige el cosmos y está presente en todas sus manifestaciones vitales: día-noche, bien-mal, etc."
             )
         ]
 

@@ -29,7 +29,7 @@ class WatsonViewController: UIViewController, BeaconDelegate, SpeechRecoginizerD
     
     // Contants
     let NOTIFICATION_TITLE = "¡Pregunta!"
-    let GO_CLOSER = "Acércate a una pieza para preguntarle a Nelli"
+    let GO_CLOSER = "Acércate a una pieza para preguntar"
     
     // Delegate
     weak var delegate: WatsonDelegate?
