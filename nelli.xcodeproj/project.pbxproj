@@ -18,6 +18,7 @@
 		0569B3591F1D385B0061B34E /* PieceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */; };
 		0569B35C1F1D47470061B34E /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35B1F1D47470061B34E /* Piece.swift */; };
 		0569B35E1F1D47590061B34E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569B35D1F1D47590061B34E /* Room.swift */; };
+		0570E2141F6E151200E16D60 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0570E2131F6E151200E16D60 /* MapDetailViewController.swift */; };
 		057CFEA51F2055A90065250C /* PieceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CFEA41F2055A90065250C /* PieceDetailViewController.swift */; };
 		0599B56C1F166C1C00CA8FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */; };
 		0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0599B56D1F166C1C00CA8FE1 /* ViewController.swift */; };
@@ -67,6 +68,7 @@
 		0569B3581F1D385B0061B34E /* PieceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceTableViewCell.swift; sourceTree = "<group>"; };
 		0569B35B1F1D47470061B34E /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
 		0569B35D1F1D47590061B34E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		0570E2131F6E151200E16D60 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		057CFEA41F2055A90065250C /* PieceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieceDetailViewController.swift; sourceTree = "<group>"; };
 		0599B5681F166C1C00CA8FE1 /* nelli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nelli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0599B56B1F166C1C00CA8FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				0599B59B1F1670D300CA8FE1 /* MapViewController.swift */,
 				0599B59D1F1670DA00CA8FE1 /* PiecesViewController.swift */,
 				057CFEA41F2055A90065250C /* PieceDetailViewController.swift */,
+				0570E2131F6E151200E16D60 /* MapDetailViewController.swift */,
 				05AECF3B1F474AB500AC67BA /* CaptionsViewController.swift */,
 			);
 			path = controllers;
@@ -338,6 +341,7 @@
 				TargetAttributes = {
 					0599B5671F166C1C00CA8FE1 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -558,6 +562,7 @@
 				0569B35E1F1D47590061B34E /* Room.swift in Sources */,
 				050CB0EA1F1D481800C833B3 /* SpeechRecognizerManager.swift in Sources */,
 				050CB0E41F1D47C200C833B3 /* BeaconDelegate.swift in Sources */,
+				0570E2141F6E151200E16D60 /* MapDetailViewController.swift in Sources */,
 				0599B56E1F166C1C00CA8FE1 /* ViewController.swift in Sources */,
 				055B2DCD1F1FD69500E7C8B1 /* NotificationsManager.swift in Sources */,
 				050CB0E61F1D47D400C833B3 /* SpeechRecognizer.swift in Sources */,
@@ -733,11 +738,14 @@
 			baseConfigurationReference = 5EA38245DB671520E0E938A3 /* Pods-nelli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nelli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -748,11 +756,13 @@
 			baseConfigurationReference = F86A89FEFA22EF25091A3501 /* Pods-nelli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = AUR7UR6M72;
 				INFOPLIST_FILE = nelli/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nelli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
