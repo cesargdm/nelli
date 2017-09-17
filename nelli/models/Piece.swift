@@ -106,7 +106,7 @@ class Piece {
                 room: .maya,
                 workspaceId: "b4e9b2df-1073-44b7-a9f8-9dbe1117588e",
                 minRange: 7,
-                info: "Not found"
+                info: "El sarcófago y la tapa fueron tallados en un gran bloque de piedra; por su peso y su tamaño se piensa que fueron construidos antes que la pirámide. El relieve de la tapa muestra Pakal como un adulto vigoroso, cayendo en las fauces de la Serpiente de Hueso Blanco, una de las entradas al Inframundo. La copa alcanza los cielos, y sobre ella descansa Itzam Yeh, el ave celeste que acompaña al Dios Itzamnaaj. La inscripción del borde de la tapa, da la fecha de la muerte de ocho generaciones de gobernantes anteriores a Pakal, del 524 al 643 d.C., año en que su padre muere. La inscripción del frente refiere su nacimiento en 603 y su muerte en 683, y dice que fue hijo de Na Sak K’uku’ (Señora quetzal Blanco) y de K’an Mo’ Hix (preciosos Jaguar Guacamaya). Los Gobernantes precedentes, retratados en los lados del sarcófago, salen de una grieta en la tierra junto con un árbol, indicando su transformación en antepasados venerados y la regeneración."
             ),
             Piece(
                 "Chac Mool",
@@ -129,7 +129,7 @@ class Piece {
                 room: .access,
                 workspaceId: "348f53b4-2538-4281-ae19-d98e6393ab14",
                 minRange: 11,
-                info: "Not found"
+                info: "El tema de la obra sintetiza el pensamiento prehispánico representado por el antiguo mito cosmogónico nahua: el eterno conflicto de Quetzalcoátl (serpiente emplumada) y Tezcatlipoca (jaguar). El principio dual que rige el cosmos y está presente en todas sus manifestaciones vitales: día-noche, bien-mal, etc."
             )
         ]
 
