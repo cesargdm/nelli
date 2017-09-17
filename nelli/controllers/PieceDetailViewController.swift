@@ -49,7 +49,8 @@ class PieceDetailViewController: UIViewController, UITableViewDelegate, UITableV
             cell.setData(pieceTitle: piece?.title ?? "", room: piece?.room.stringValue ?? "")
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as! InfoTableViewCell
+            cell.setData(info: piece?.information ?? "")
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "mapCell", for: indexPath)
