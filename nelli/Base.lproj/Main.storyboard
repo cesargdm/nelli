@@ -360,13 +360,6 @@
                                     <action selector="watsonTouched:" destination="i4K-PX-dz5" eventType="touchUpInside" id="lqy-yp-8PM"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ibm-logo" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Mm-LEO">
-                                <rect key="frame" x="352" y="698" width="50" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="TPQ-5O-BbA"/>
-                                    <constraint firstAttribute="height" constant="30" id="hbJ-qd-IZk"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFa-0y-xHh">
                                 <rect key="frame" x="359.66666666666669" y="28" width="30" height="30"/>
                                 <state key="normal" image="map-icon"/>
@@ -460,13 +453,19 @@
                                     <constraint firstAttribute="width" constant="75" id="yLp-ov-njW"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logos_footer" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Mm-LEO">
+                                <rect key="frame" x="0.0" y="670" width="414" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                </accessibility>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980390000002" green="0.57254901960000004" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="9rh-iQ-H0N" secondAttribute="trailing" id="4pd-I9-tuv"/>
                             <constraint firstItem="5NZ-Ex-Elw" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leadingMargin" constant="8" id="AhW-1C-mDc"/>
                             <constraint firstItem="HFa-0y-xHh" firstAttribute="top" secondItem="2Oy-Ce-AkS" secondAttribute="bottom" constant="8" id="Dbp-5P-6Jb"/>
-                            <constraint firstItem="dgA-Mm-LEO" firstAttribute="trailing" secondItem="osD-x6-IaL" secondAttribute="trailingMargin" constant="8" id="J5P-S3-I2T"/>
                             <constraint firstItem="9rh-iQ-H0N" firstAttribute="top" secondItem="HFa-0y-xHh" secondAttribute="bottom" id="JO7-e1-CYf"/>
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="centerX" secondItem="osD-x6-IaL" secondAttribute="centerX" id="KXV-zk-yHa"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="top" secondItem="AVy-jL-Hj8" secondAttribute="bottom" id="Q2g-pK-eWG"/>
@@ -478,7 +477,6 @@
                             <constraint firstItem="dmN-LP-hEf" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="24" id="cL3-3d-N8o"/>
                             <constraint firstItem="h2N-gO-UVc" firstAttribute="centerX" secondItem="AVy-jL-Hj8" secondAttribute="centerX" id="cVV-8X-kXT"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="Nzm-QP-4H0" secondAttribute="bottom" constant="8" id="f4r-c1-eJ9"/>
-                            <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="dgA-Mm-LEO" secondAttribute="bottom" constant="8" id="f65-Xb-eAX"/>
                             <constraint firstAttribute="trailing" secondItem="dmN-LP-hEf" secondAttribute="trailing" constant="24" id="pjM-ds-yDq"/>
                             <constraint firstItem="LqX-x7-JOx" firstAttribute="top" secondItem="5NZ-Ex-Elw" secondAttribute="bottom" constant="16" id="qLM-6Q-Ete"/>
                             <constraint firstItem="Nzm-QP-4H0" firstAttribute="leading" secondItem="osD-x6-IaL" secondAttribute="leading" constant="8" id="yMz-Ad-Scr"/>
@@ -500,7 +498,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnJ-QF-eDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="805.54722638680664"/>
+            <point key="canvasLocation" x="-79.710144927536234" y="805.43478260869574"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="N2d-5J-o4t">
@@ -718,9 +716,9 @@
     <resources>
         <image name="Piedra del Sol" width="2000" height="2000"/>
         <image name="close" width="30" height="30"/>
-        <image name="ibm-logo" width="80" height="40"/>
         <image name="inah-logo" width="80" height="80"/>
         <image name="left" width="30" height="30"/>
+        <image name="logos_footer" width="2763" height="447"/>
         <image name="map-icon" width="30" height="30"/>
         <image name="mapas solos v1" width="500" height="889"/>
         <image name="piece" width="30" height="30"/>
