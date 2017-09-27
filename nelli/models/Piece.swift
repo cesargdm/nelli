@@ -54,42 +54,42 @@ class Piece {
                 "Friso Estucado",
                 room: .mexica,
                 workspaceId: "36b526c1-e082-4805-9987-2adfaa82c81c",
-                minRange: 6,
+                minRange: 3.5,
                 info: "Esta fachada fue recortada y desmontada de un edificio localizado en el sitio Placeres. En 1968 el saqueador pretendió venderla al Museo Metropolitano de Nueva York, pero por fortuna fue rescatada y repatriada a México. La fachada muestra la representación de un mascarón con atributos solares, característica del periodo Clásico temprano y presente en numerosos sitios de la región (como Kohunlich, por mencionar sólo uno). Aparece flanqueado por dioses viejos que sostienen jeroglíficos en ambas manos, aunque el anciano de la derecha sólo conserva el de la mano izquierda."
               ),
             Piece(
                 "Piedra del Sol",
                 room: .mexica,
                 workspaceId: "073ea817-fbef-4051-8f3e-5c4a164a3850",
-                minRange: 4.5,
+                minRange: 3.5,
                 info: "Monumento colosal con la imagen labrada del disco solar representado como una sucesión de anillos concéntricos con diferentes elementos. En su centro se encuentra el glifo “4 movimiento” (nahui ollin), que rodea el rostro de una deidad solar. El siguiente anillo contiene los 20 signos de los días; alrededor de éste se encuentra otro anillo, labrado con cuadretes que simbolizan los 52 años de un siglo mexica. Dos grandes serpientes de turquesa o xiuhcóatl envuelven todos estos elementos y unen su cabeza en la parte inferior del monolito."
               ),
             Piece(
                 "Coatlicue",
                 room: .mexica,
                 workspaceId: "43c62df1-4638-4583-b429-83391dd5b703",
-                minRange: 4,
+                minRange: 3.5,
                 info: "Monumento que sintetiza numerosos significados y asociaciones del pensamiento y la estética de los antiguos mexicanos. Representa a una mujer decapitada y parcialmente desmembrada, con atributos que la relacionan con la tierra, la muerte y con seres sobrenaturales del cielo nocturno. Se ha identificado particularmente con la diosa Coatlicue, madre de Huitzilopochtli, el dios patrono de los mexicas. La escultura fue encontrada en 1790 durante las obras de remodelación de la Plaza Mayor de la capital de la Nueva España."
               ),
             Piece(
                 "Penacho de Moctezuma",
                 room: .mexica,
                 workspaceId: "dcc9709b-8188-4917-bab2-6d11d1f748ed",
-                minRange: 6,
+                minRange: 3.5,
                 info: "Not Found"
               ),
             Piece(
                 "Coyolxauhqui",
                 room: .mexica,
                 workspaceId: "f9ef9583-9983-4565-9ba3-c049728831a6",
-                minRange: 3,
+                minRange: 3.5,
                 info: "Cabeza de la diosa Coyolxauhqui (“la que tiene pintura facial de cascabeles”), quien murió en el cerro de Coatepec decapitada y desmembrada por su hermano Huitzilopochtli, el dios patrono de los mexicas. Está ataviada con nariguera y orejeras en forma de rayos de luz. En el cabello lleva un tocado de plumas y pequeños plumones; en sus mejillas se ven los cascabeles de oro que le dan el nombre, y en la base de la escultura, invisible al ojo del visitante, está labrado en bajo relieve el glifo de la guerra."
               ),
             Piece(
                 "Ocelocuauhxicalli",
                 room: .mexica,
                 workspaceId: "d70bc353-b5dd-442c-9fdf-bd29348cea31",
-                minRange: 5,
+                minRange: 3.5,
                 info: "El jaguar (océlotl) era el señor de la noche y nagual del dios Tezcatlipoca. Sus cualidades de fuerza y peligrosidad lo hicieron el animal tutelar de una importante orden militar. El hueco labrado en el lomo funcionaba como un recipiente sagrado llamado “vaso del águila” (cuauhxicalli); ahí se depositaban la sangre y los corazones de los cautivos sacrificados para alimentar al Sol y a la Tierra. En el contenedor está labrado Huitzilopochtli, dios patrono de los mexicas, y Tezcatlipoca, dios protector de los guerreros."
               )
         ]
@@ -98,14 +98,14 @@ class Piece {
                 "Dintel 26",
                 room: .maya,
                 workspaceId: "0af5181c-cee1-4aa1-9a9d-8afa70f69290",
-                minRange: 5,
+                minRange: 3.5,
                 info: "Dintel que muestra al gobernante Kokaaj B’ahlam III y a su consorte principal, la Señora K’ab’al Xook. Este dintel formó parte de un conjunto escultórico que se encontraba integrado al Edificio 23 de Yaxchilán. Narra el momento en que el gobernante Kokaaj B’ahlam III, también conocido como Escudo Jaguar III, fue investido con una coraza elaborada con conchas, ante la presencia del numen Huk Chapaaht Tz’ikin K’inich Ajaw. Su consorte, la señora K’ab’al Xook, le entrega un tocado con cabeza de jaguar. Destaca el huipil de la señora, con diseño de ranas en la trama del textil y borde adornado con una banda celeste."
             ),
             Piece(
                 "Tumba de Pakal",
                 room: .maya,
                 workspaceId: "b4e9b2df-1073-44b7-a9f8-9dbe1117588e",
-                minRange: 7,
+                minRange: 3.5,
                 info: "El sarcófago y la tapa fueron tallados en un gran bloque de piedra; por su peso y su tamaño se piensa que fueron construidos antes que la pirámide. El relieve de la tapa muestra Pakal como un adulto vigoroso, cayendo en las fauces de la Serpiente de Hueso Blanco, una de las entradas al Inframundo. La copa alcanza los cielos, y sobre ella descansa Itzam Yeh, el ave celeste que acompaña al Dios Itzamnaaj. La inscripción del borde de la tapa, da la fecha de la muerte de ocho generaciones de gobernantes anteriores a Pakal, del 524 al 643 d.C., año en que su padre muere. La inscripción del frente refiere su nacimiento en 603 y su muerte en 683, y dice que fue hijo de Na Sak K’uku’ (Señora quetzal Blanco) y de K’an Mo’ Hix (preciosos Jaguar Guacamaya). Los Gobernantes precedentes, retratados en los lados del sarcófago, salen de una grieta en la tierra junto con un árbol, indicando su transformación en antepasados venerados y la regeneración."
             ),
             Piece(
@@ -119,7 +119,7 @@ class Piece {
                 "Piedra de Tizoc",
                 room: .maya,
                 workspaceId: "a8be1ed9-06ce-4f83-a3b3-caa844c8652a",
-                minRange: 6,
+                minRange: 3.5,
                 info: "Cilindro monumental. En la cara superior aparece la imagen labrada del Sol con una oquedad en el centro, de la que se desprende un canal que atraviesa la piedra hasta el borde. El canto de la escultura muestra al gobernante Tízoc, identificado por su glifo onomástico, sujetando por los cabellos a señores de quince distintos pueblos en señal de conquista. Una franja con símbolos estelares limita la parte superior del canto y otra con la imagen del monstruo de la tierra rodea la base del monumento. Este objeto está asociado al sacrificio gladiatorio."
             )
         ]
